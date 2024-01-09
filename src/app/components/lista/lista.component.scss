@@ -1,0 +1,33 @@
+.lista {
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.titulo {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+ion-list {
+    margin-top: -10px;
+    background: transparent;
+}
+
+.itemLista {
+    --border-radius: 4px;
+}
+
+.textoEvento {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.data {
+    font-size: .9rem;
+    margin-bottom: 5px;
+}
+
+.evento {
+    font-size: 1.2rem;
+}

@@ -1,0 +1,36 @@
+.header-bg {
+    height: 180px;
+    background-color: #212929;
+}
+
+.titulo {
+    font-family: 'Bebas Neue';
+    color: #000;
+    font-weight: bold;
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.header {
+    margin: 0 auto;
+    width: 90%;
+    padding: 20px;
+    border-radius: 4px;
+    margin-top: -164px;
+    margin-bottom: -16px;
+    background-color: #fff;
+}
+
+.input {
+    margin-bottom: 14px;
+    border-bottom: 1px solid #000;
+    background: transparent;
+}
+
+.botao {
+    width: 100%;
+    height: 45px;
+    --border-radius: 2px;
+    --background: #1ea9ff;
+}
