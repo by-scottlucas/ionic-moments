@@ -1,38 +1,42 @@
 .header-bg {
-    height: 180px;
+    height: 140px;
     background-color: #212929;
 }
 
 .titulo {
     font-family: 'Bebas Neue';
-    color: #000;
+    color: #212929;
     font-weight: bold;
     text-align: center;
-    font-size: 3rem;
-    margin-bottom: -20px;
+    font-size: 2.6rem;
+    margin-bottom: -16px;
 }
 
 .header {
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 90%;
-    padding: 20px;
+    padding: 8px;
     border-radius: 4px;
-    margin-top: -164px;
+    margin-top: -100px;
     margin-bottom: -20px;
     background-color: #fff;
 }
 
 .input {
-    margin-bottom: 14px;
+    font-size: 1.2rem;
     border-bottom: 1px solid #000;
     background: transparent;
     --highlight-color: trasparent;
 }
 
 .botao {
-    width: 100%;
+    width: 94%;
     height: 45px;
     --box-shadow: 0;
     --border-radius: 2px;
-    --background: #1ea9ff;
+    --background: #212929;
 }

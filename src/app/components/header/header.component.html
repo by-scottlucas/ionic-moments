@@ -2,24 +2,32 @@
 <div class="header">
   <h1 class="titulo">Eventos</h1>
 
-  <ion-input
-    type="text"
-    label="Título"
-    labelPlacement="floating"
-    placeholder="O que aconteceu?"
-    class="input"
-    [(ngModel)]="titulo"
-  />
+  <ion-grid [fixed]="true">
+    <ion-row>
+      <ion-col>
+        <ion-input
+          type="text"
+          label="Título"
+          labelPlacement="floating"
+          placeholder="Titulo"
+          class="input"
+          [(ngModel)]="titulo"
+        />
+      </ion-col>
 
-  <ion-input
-    type="text"
-    label="Data"
-    labelPlacement="floating"
-    placeholder="dd/mm/aaaa"
-    (input)="formatarData($event)"
-    class="input"
-    [(ngModel)]="data"
-  />
+      <ion-col>
+        <ion-input
+          type="text"
+          label="Data"
+          labelPlacement="floating"
+          placeholder="dd/mm/aaaa"
+          (input)="formatarData($event)"
+          class="input"
+          [(ngModel)]="data"
+        />
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
   <ion-button class="botao" (click)="adicionar()">Adicionar</ion-button>
 </div>

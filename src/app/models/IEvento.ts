@@ -1,4 +1,4 @@
-export interface IEventos {
+export interface IEvento {
     titulo: string,
     data: string,
 }

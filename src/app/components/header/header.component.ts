@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IEventos } from 'src/app/models/IEventos';
+import { IEvento } from 'src/app/models/IEvento';
 import { CrudService } from '../../services/crud.service';
 
 @Component({
@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit {
 
   titulo!: string;
   data!: string;
-  listaEventos!: IEventos[];
+  listaEventos!: IEvento[];
 
   constructor(private crudService: CrudService) {
     this.listaEventos = this.crudService.eventos;

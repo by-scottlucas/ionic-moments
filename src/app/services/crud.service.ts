@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IEventos } from 'src/app/models/IEventos';
+import { IEvento } from 'src/app/models/IEvento';
 import { StorageService } from 'src/app/services/local-storage.service';
 
 const eventosStorageKey = 'Eventos';
@@ -9,7 +9,7 @@ const eventosStorageKey = 'Eventos';
 })
 export class CrudService {
 
-  eventos: IEventos[] = [];
+  eventos: IEvento[] = [];
 
   constructor(private storageService: StorageService) {
     this.eventos = this.storageService.getData(eventosStorageKey) || [];
@@ -24,12 +24,12 @@ export class CrudService {
   }
 
   create(titulo: string, data: string): void {
-    const novoEvento: IEventos = { titulo, data };
+    const novoEvento: IEvento = { titulo, data };
     this.eventos.push(novoEvento);
     this.save();
   }
 
-  read(index: number): IEventos {
+  read(index: number): IEvento {
     return this.eventos[index];
   }
 
