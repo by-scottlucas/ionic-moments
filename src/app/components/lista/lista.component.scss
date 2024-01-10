@@ -13,8 +13,17 @@ ion-list {
     background: transparent;
 }
 
+.itemSlide {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2px;
+    background-color: #fff;
+}
+
 .itemLista {
-    --border-radius: 4px;
+    width: 100%;
+    --border-radius: 0px;
+    --background: #fff;
 }
 
 .textoEvento {
@@ -29,5 +38,6 @@ ion-list {
 }
 
 .evento {
+    color: #000;
     font-size: 1.2rem;
 }

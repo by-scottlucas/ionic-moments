@@ -1,6 +1,6 @@
 <div class="header-bg"></div>
 <div class="header">
-  <h1 class="titulo">Eventos 2024</h1>
+  <h1 class="titulo">Eventos</h1>
 
   <ion-input
     type="text"
@@ -8,6 +8,7 @@
     labelPlacement="floating"
     placeholder="O que aconteceu?"
     class="input"
+    [(ngModel)]="titulo"
   />
 
   <ion-input
@@ -15,8 +16,10 @@
     label="Data"
     labelPlacement="floating"
     placeholder="dd/mm/aaaa"
+    (input)="formatarData($event)"
     class="input"
+    [(ngModel)]="data"
   />
 
-  <ion-button class="botao">Adicionar</ion-button>
+  <ion-button class="botao" (click)="adicionar()">Adicionar</ion-button>
 </div>
