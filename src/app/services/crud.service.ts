@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { IEvento } from 'src/app/models/IEvento';
 import { StorageService } from 'src/app/services/local-storage.service';
 
-const eventosStorageKey = 'Eventos';
+const eventosStorageKey = 'Lista_Eventos';
 
 @Injectable({
   providedIn: 'root'
