@@ -3,13 +3,8 @@
     background-color: #212929;
 }
 
-.titulo {
-    font-family: 'Bebas Neue';
-    color: #212929;
-    font-weight: bold;
-    text-align: center;
-    font-size: 2.6rem;
-    margin-bottom: -16px;
+.logo {
+    width: 240px;
 }
 
 .header {
@@ -19,7 +14,7 @@
     justify-content: center;
     align-items: center;
     width: 90%;
-    padding: 8px;
+    padding: 20px 8px 20px 8px;
     border-radius: 4px;
     margin-top: -100px;
     margin-bottom: -20px;
@@ -54,8 +49,10 @@
 
 ion-datetime {
     color: #000;
+    --text-transform: capitalize;
     --background: transparent;
-    --title-color: #fff --wheel-fade-background-rgb: transparent;
+    --title-color: #fff;
+    --wheel-fade-background-rgb: transparent;
     --wheel-highlight-background: transparent;
 }
 
@@ -79,6 +76,7 @@ ion-datetime {
     width: 100%;
     text-transform: lowercase;
     font-size: 1.1rem;
+    font-weight: normal;
     margin-top: 7px;
     height: 50px;
     --border-radius: 0;
