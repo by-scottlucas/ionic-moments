@@ -25,3 +25,7 @@ ionic serve
 * TypeScript
 * Angular
 * Ionic
+
+## Imagem do Projeto
+
+![Thumb](./src/assets/thumb.png)
