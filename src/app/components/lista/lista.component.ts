@@ -9,22 +9,44 @@ import { CrudService } from '../../services/crud.service';
 })
 export class ListaComponent implements OnInit {
 
+  dataAtual = new Date().toISOString();
+
   index: number | null = null
   titulo!: string;
   data!: string;
   listaEventos!: IEvento[];
 
   modal = false;
-
-  modalEdicao(open: boolean) {
-    this.modal = open;
-  }
+  modalDate = false;
 
   constructor(private crudService: CrudService) {
     this.listaEventos = this.crudService.eventos;
   }
 
   ngOnInit() { }
+
+  modalEdicao(open: boolean) {
+    this.modal = open;
+  }
+
+  modalData(open: boolean) {
+    this.modalDate = open;
+  }
+
+  selecionarData(): void {
+    this.modalData(true);
+  }
+
+  salvarData(): void {
+
+    const dataFormatada = this.dataAtual.replace(/(\d*)-(\d*)-(\d*).*/, '$3/$2/$1');
+    this.data = dataFormatada;
+
+
+    if (this.data.length !== 0) {
+      this.modalData(false);
+    }
+  }
 
   editar(evento: IEvento): void {
     this.index = this.listaEventos.indexOf(evento);

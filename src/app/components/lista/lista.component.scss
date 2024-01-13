@@ -67,10 +67,11 @@ ion-list {
     font-weight: bold;
     text-align: center;
     font-size: 2.8rem;
-    margin-bottom: -10px;
+    margin-bottom: -4px;
 }
 
 .header {
+    text-align: center;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -89,6 +90,57 @@ ion-list {
     border-bottom: 1px solid #000;
     background: transparent;
     --highlight-color: trasparent;
+}
+
+.modalData {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #e5e5e5;
+}
+
+.calendario {
+    text-align: center;
+    margin: 0 auto;
+    width: 90%;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+ion-datetime {
+    color: #000;
+    --background: transparent;
+    --title-color: #fff --wheel-fade-background-rgb: transparent;
+    --wheel-highlight-background: transparent;
+}
+
+.date {
+    width: 100%;
+    text-transform: lowercase;
+    font-size: 1.1rem;
+    margin-top: 17px;
+    height: 40px;
+    --border-radius: 0;
+    --box-shadow: 0;
+    --background: transparent;
+}
+
+.botoes {
+    display: flex;
+    justify-content: space-around;
+    background: transparent;
+}
+
+.botoes ion-button {
+    width: 140px;
+    height: 50px;
+    color: #000;
+    font-weight: bold;
+    --box-shadow: none;
+    --border-radius: 2px;
+    --background: transparent;
 }
 
 .botao {

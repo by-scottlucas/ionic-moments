@@ -2,10 +2,7 @@
   <h3 class="titulo">Eventos recentes</h3>
 
   <ion-list>
-    <ion-item-sliding
-      *ngFor="let evento of listaEventos; let i = index"
-      class="itemSlide"
-    >
+    <ion-item-sliding *ngFor="let evento of listaEventos; let i = index" class="itemSlide">
       <ion-item class="itemLista">
         <ion-label class="textoEvento">
           <p class="data">{{ evento.data }}</p>
@@ -32,24 +29,27 @@
         <div class="header">
           <h1 class="titulo edicao">Editar</h1>
 
-          <ion-input
-            type="text"
-            label="Título"
-            labelPlacement="floating"
-            placeholder="O que aconteceu?"
-            class="input"
-            [(ngModel)]="titulo"
-          />
+          <ion-input type="text" class="input" [(ngModel)]="titulo" />
 
-          <ion-input
-            type="text"
-            label="Data"
-            labelPlacement="floating"
-            placeholder="dd/mm/aaaa"
-            (input)="formatarData($event)"
-            class="input"
-            [(ngModel)]="data"
-          />
+          <ion-button class="input date" (click)="selecionarData()">{{ data }}</ion-button>
+
+          <ion-modal [isOpen]="modalDate">
+            <ng-template>
+              <div class="modalData">
+                <div class="calendario">
+
+                  <ion-datetime id="datetime" presentation="date" [(ngModel)]="dataAtual" />
+
+                  <div class="botoes">
+                    <ion-button (click)="modalData(false)">Cancelar</ion-button>
+                    <ion-button (click)="salvarData()">Salvar</ion-button>
+                  </div>
+                </div>
+
+
+              </div>
+            </ng-template>
+          </ion-modal>
 
           <ion-button class="botao" (click)="salvarEdicao()">Editar</ion-button>
         </div>

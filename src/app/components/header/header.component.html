@@ -1,30 +1,38 @@
 <div class="header-bg"></div>
 <div class="header">
-  <h1 class="titulo">Eventos</h1>
+  <h1 class="titulo">Moments</h1>
 
   <ion-grid [fixed]="true">
     <ion-row>
       <ion-col>
-        <ion-input
-          type="text"
-          label="Título"
-          labelPlacement="floating"
-          placeholder="Titulo"
-          class="input"
-          [(ngModel)]="titulo"
-        />
+        <ion-input type="text" label="Título" labelPlacement="floating" placeholder="Titulo" class="input"
+          [(ngModel)]="titulo" />
       </ion-col>
 
       <ion-col>
-        <ion-input
-          type="text"
-          label="Data"
-          labelPlacement="floating"
-          placeholder="dd/mm/aaaa"
-          (input)="formatarData($event)"
-          class="input"
-          [(ngModel)]="data"
-        />
+        <ion-button class="input data" (click)="selecionarData()">{{data}}</ion-button>
+
+        <ion-modal [isOpen]="modal">
+          <ng-template>
+
+            <div class="modalData">
+
+              <div class="calendario">
+
+                <ion-datetime presentation="date" [(ngModel)]="dataAtual" />
+
+                <div class="botoes">
+                  <ion-button (click)="modalData(false)">Cancelar</ion-button>
+                  <ion-button (click)="salvarData()">Salvar</ion-button>
+                </div>
+              </div>
+
+
+            </div>
+
+          </ng-template>
+
+        </ion-modal>
       </ion-col>
     </ion-row>
   </ion-grid>

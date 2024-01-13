@@ -1,10 +1,10 @@
-# Ionic - Meus Eventos
+# Ionic - Moments
 
 Este projeto foi desenvolvido para fins de estudo sobre Angular utilizando o framework Ionic para desenvolvimento mobile.
 
 ## Introdução
 
-O projeto se trata de um app que serve para registrar os acontecimentos mais importantes durante o ano.
+O projeto se trata de um app que serve para registrar os momentos mais importantes.
 
 ### Pré-requisitos
 

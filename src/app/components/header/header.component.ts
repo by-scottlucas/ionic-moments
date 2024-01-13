@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { IEvento } from 'src/app/models/IEvento';
 import { CrudService } from '../../services/crud.service';
 
@@ -9,9 +9,13 @@ import { CrudService } from '../../services/crud.service';
 })
 export class HeaderComponent implements OnInit {
 
+  dataAtual = new Date().toISOString();
+
   titulo!: string;
-  data!: string;
+  data: string = 'dd/mm/yyyy';
   listaEventos!: IEvento[];
+
+  modal = false;
 
   constructor(private crudService: CrudService) {
     this.listaEventos = this.crudService.eventos;
@@ -19,11 +23,32 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() { }
 
+  modalData(isOpen: boolean) {
+    this.modal = isOpen;
+  }
+
+  selecionarData(): void {
+    this.modalData(true);
+  }
+
+  salvarData(): void {
+
+    const dataFormatada = this.dataAtual.replace(/(\d*)-(\d*)-(\d*).*/, '$3/$2/$1');
+    this.data = dataFormatada;
+    
+
+    if (this.data.length !== 0) {
+      this.modalData(false);
+    }
+  }
+
   adicionar(): void {
 
     if (this.titulo && this.data) {
 
-      this.crudService.create(this.titulo, this.data);
+      const dataFormatada = this.data.replace(/(\d*)-(\d*)-(\d*).*/, '$3/$2/$1');
+
+      this.crudService.create(this.titulo, dataFormatada);
       this.limparInputs();
       alert('Evento registrado com sucesso!');
 
@@ -37,7 +62,7 @@ export class HeaderComponent implements OnInit {
 
   limparInputs() {
     this.titulo = '';
-    this.data = '';
+    this.data = 'dd/mm/aaaa';
   }
 
   formatarData(event: any): void {
