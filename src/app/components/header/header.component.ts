@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IEvento } from 'src/app/models/IEvento';
-import { CrudService } from '../../services/crud.service';
+import { IMoment } from 'src/app/models/IMoment';
+import { MomentService } from '../../services/moment.service';
 
 @Component({
   selector: 'app-header',
@@ -13,12 +13,12 @@ export class HeaderComponent implements OnInit {
 
   titulo!: string;
   data: string = 'dd/mm/yyyy';
-  listaEventos!: IEvento[];
+  moments!: IMoment[];
 
   modal = false;
 
-  constructor(private crudService: CrudService) {
-    this.listaEventos = this.crudService.eventos;
+  constructor(private momentService: MomentService) {
+    this.moments = this.momentService.moments;
   }
 
   ngOnInit() { }
@@ -35,7 +35,7 @@ export class HeaderComponent implements OnInit {
 
     const dataFormatada = this.dataAtual.replace(/(\d*)-(\d*)-(\d*).*/, '$3/$2/$1');
     this.data = dataFormatada;
-    
+
 
     if (this.data.length !== 0) {
       this.modalData(false);
@@ -48,7 +48,7 @@ export class HeaderComponent implements OnInit {
 
       const dataFormatada = this.data.replace(/(\d*)-(\d*)-(\d*).*/, '$3/$2/$1');
 
-      this.crudService.create(this.titulo, dataFormatada);
+      this.momentService.create(this.titulo, dataFormatada);
       this.limparInputs();
       alert('Evento registrado com sucesso!');
 

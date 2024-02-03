@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
+  appId: 'io.ionic.moments',
   appName: 'moments',
   webDir: 'www',
   server: {
@@ -14,7 +14,7 @@ const config: CapacitorConfig = {
       launchFadeOutDuration: 3000,
       backgroundColor: "#ffffffff",
       androidSplashResourceName: "splash",
-      androidScaleType: "CENTER_CROP",
+      androidScaleType: "CENTER",
       showSpinner: true,
       androidSpinnerStyle: "large",
       iosSpinnerStyle: "small",

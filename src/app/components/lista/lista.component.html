@@ -1,32 +1,61 @@
-<div class="lista">
-  <h3 class="titulo">Meus Moments</h3>
+<div class="box-lista">
+
+  <div *ngIf="moments.length; else nenhumMoment">
+
+    <h3 class="titulo">Moments Recentes</h3>
+
+    <ion-searchbar class="searchBar" placeholder="Buscar Moments" [(ngModel)]="search"
+      (ionInput)="searchInput($event)" />
+
+  </div>
+
+  <ng-template #nenhumMoment>
+
+    <h3 class="titulo semMoments">
+      Nenhum Momento Registrado
+    </h3>
+
+  </ng-template>
 
   <ion-list>
-    <ion-item-sliding *ngFor="let evento of listaEventos; let i = index" class="itemSlide">
-      <ion-item class="itemLista">
-        <ion-label class="textoEvento">
-          <p class="data">{{ evento.data }}</p>
-          <p class="evento">{{ evento.titulo }}</p>
+
+    <ion-item-sliding *ngFor="let moment of moments; let i = index" class="item-slide">
+
+      <ion-item class="item-lista">
+
+        <ion-label class="label-moment">
+          <p class="data-moment">{{ moment.data }}</p>
+          <p class="titulo-moment">{{ moment.titulo }}</p>
         </ion-label>
+
       </ion-item>
 
       <ion-item-options>
-        <ion-item-option (click)="editar(evento)" class="botaoAcoes">
+
+        <ion-item-option (click)="editar(moment)" class="botao-acoes">
           <ion-icon name="create-outline" />
         </ion-item-option>
-        <ion-item-option color="danger" (click)="excluir(i)" class="botaoAcoes">
+
+        <ion-item-option color="danger" (click)="excluir(i)" class="botao-acoes">
           <ion-icon name="trash-outline" />
         </ion-item-option>
+
       </ion-item-options>
+
     </ion-item-sliding>
+
   </ion-list>
+
 </div>
 
 <ion-modal [isOpen]="modal">
   <ng-template>
     <ion-content>
+
       <div class="container">
+
         <div class="header">
+
           <h1 class="titulo edicao">Editar</h1>
 
           <ion-input type="text" class="input" [(ngModel)]="titulo" />
@@ -35,9 +64,9 @@
 
           <ion-modal [isOpen]="modalDate">
             <ng-template>
-              <div class="modalData">
-                <div class="calendario">
+              <div class="modal-data">
 
+                <div class="calendario">
                   <ion-datetime id="datetime" presentation="date" [(ngModel)]="dataAtual" />
 
                   <div class="botoes">
@@ -46,14 +75,16 @@
                   </div>
                 </div>
 
-
               </div>
             </ng-template>
           </ion-modal>
 
           <ion-button class="botao" (click)="salvarEdicao()">Editar</ion-button>
+
         </div>
+
       </div>
+
     </ion-content>
   </ng-template>
 </ion-modal>

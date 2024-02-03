@@ -1,42 +1,41 @@
 <div class="header-bg"></div>
+
 <div class="header">
 
   <img src="../../../assets/logo.png" alt="logo" class="logo">
 
   <ion-grid [fixed]="true">
-    <ion-row>
-      <ion-col>
-        <ion-input type="text" label="Título" labelPlacement="floating" placeholder="Titulo" class="input"
-          [(ngModel)]="titulo" />
-      </ion-col>
 
-      <ion-col>
-        <ion-button class="input data" (click)="selecionarData()">{{data}}</ion-button>
-
-        <ion-modal [isOpen]="modal">
-          <ng-template>
-
-            <div class="modalData">
-
-              <div class="calendario">
-
-                <ion-datetime presentation="date" [(ngModel)]="dataAtual" />
-
-                <div class="botoes">
-                  <ion-button (click)="modalData(false)">Cancelar</ion-button>
-                  <ion-button (click)="salvarData()">Salvar</ion-button>
-                </div>
-              </div>
+    <ion-input type="text" placeholder="Qual momento deseja registrar?" class="input" [(ngModel)]="titulo" class="input" />
 
 
+    <ion-button class="input data" (click)="selecionarData()">{{data}}</ion-button>
+
+    <ion-modal [isOpen]="modal">
+
+      <ng-template>
+
+        <div class="modal-data">
+
+          <div class="calendario">
+
+            <ion-datetime presentation="date" [(ngModel)]="dataAtual" />
+
+            <div class="botoes">
+              <ion-button (click)="modalData(false)">Cancelar</ion-button>
+              <ion-button (click)="salvarData()">Salvar</ion-button>
             </div>
+          </div>
 
-          </ng-template>
 
-        </ion-modal>
-      </ion-col>
-    </ion-row>
+        </div>
+
+      </ng-template>
+
+    </ion-modal>
+
+    <ion-button class="botao" (click)="adicionar()">Adicionar</ion-button>
+
   </ion-grid>
 
-  <ion-button class="botao" (click)="adicionar()">Adicionar</ion-button>
 </div>

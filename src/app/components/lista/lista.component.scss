@@ -1,50 +1,65 @@
-.lista {
+.box-lista {
     margin: 0 auto;
     padding: 20px;
 }
 
 .titulo {
     color: #000;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: bold;
 }
 
-ion-list {
+.semMoments {
+    font-size: 1rem;
+    text-align: center;
+    margin-top: 180px;
+}
+
+.searchBar {
     margin-top: -10px;
+    color: #000;
+    padding-left: 0;
+    padding-right: 0;
+    --box-shadow: none;
+    --border-radius: 4px;
+    --background: #fff;
+}
+
+ion-list {
     background: transparent;
 }
 
-.itemSlide {
+.item-slide {
     display: flex;
     align-items: center;
     margin-bottom: 6px;
     background-color: #fff;
 }
 
-.itemLista {
+.item-lista {
     width: 100%;
     --border-color: transparent;
     --border-radius: 0px;
     --background: #fff;
 }
 
-.textoEvento {
+.label-moment {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.data {
+.data-moment {
     font-size: .9rem;
     margin-bottom: 5px;
 }
 
-.evento {
+.titulo-moment {
     color: #000;
     font-size: 1.2rem;
 }
 
-.botaoAcoes {
+.botao-acoes {
     width: 60px;
     font-size: 1.6rem;
 }
@@ -61,15 +76,6 @@ ion-list {
     background: #e5e5e5;
 }
 
-.edicao {
-    font-family: 'Bebas Neue';
-    color: #000;
-    font-weight: bold;
-    text-align: center;
-    font-size: 2.8rem;
-    margin-bottom: -4px;
-}
-
 .header {
     text-align: center;
     margin: 0 auto;
@@ -83,6 +89,15 @@ ion-list {
     background-color: #fff;
 }
 
+.edicao {
+    font-family: 'Bebas Neue';
+    color: #000;
+    font-weight: bold;
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: -4px;
+}
+
 .input {
     color: #000;
     font-size: 1.1rem;
@@ -92,7 +107,19 @@ ion-list {
     --highlight-color: trasparent;
 }
 
-.modalData {
+.date {
+    width: 100%;
+    text-transform: lowercase;
+    font-size: 1.1rem;
+    font-weight: normal;
+    margin-top: 17px;
+    height: 40px;
+    --border-radius: 0;
+    --box-shadow: 0;
+    --background: transparent;
+}
+
+.modal-data {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -114,18 +141,6 @@ ion-datetime {
     --background: transparent;
     --title-color: #fff --wheel-fade-background-rgb: transparent;
     --wheel-highlight-background: transparent;
-}
-
-.date {
-    width: 100%;
-    text-transform: lowercase;
-    font-size: 1.1rem;
-    font-weight: normal;
-    margin-top: 17px;
-    height: 40px;
-    --border-radius: 0;
-    --box-shadow: 0;
-    --background: transparent;
 }
 
 .botoes {

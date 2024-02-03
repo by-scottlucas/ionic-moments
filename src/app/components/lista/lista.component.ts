@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IEvento } from 'src/app/models/IEvento';
-import { CrudService } from '../../services/crud.service';
+import { IMoment } from 'src/app/models/IMoment';
+import { MomentService } from '../../services/moment.service';
 
 @Component({
   selector: 'app-lista',
@@ -14,16 +14,37 @@ export class ListaComponent implements OnInit {
   index: number | null = null
   titulo!: string;
   data!: string;
-  listaEventos!: IEvento[];
+  moments: IMoment[] = [];
 
   modal = false;
   modalDate = false;
 
-  constructor(private crudService: CrudService) {
-    this.listaEventos = this.crudService.eventos;
+  search!: string;
+
+  constructor(private momentService: MomentService) {
+    this.moments = this.momentService.moments;
   }
 
   ngOnInit() { }
+
+  searchInput(event: any) {
+    this.search = event.target.value.trim().toLowerCase();
+
+    if (this.search === '') {
+      this.moments = this.momentService.moments;
+    } else {
+      const filtroMoments = this.momentService.moments.filter((moment) => {
+        return moment.titulo.toLowerCase().includes(this.search);
+      });
+
+      if (filtroMoments.length === 0) {
+        alert("Nenhuma movimentação encontrada");
+        this.search = '';
+      } else {
+        this.moments = filtroMoments;
+      }
+    }
+  }
 
   modalEdicao(open: boolean) {
     this.modal = open;
@@ -48,24 +69,24 @@ export class ListaComponent implements OnInit {
     }
   }
 
-  editar(evento: IEvento): void {
-    this.index = this.listaEventos.indexOf(evento);
-    this.titulo = evento.titulo;
-    this.data = evento.data;
+  editar(moment: IMoment): void {
+    this.index = this.moments.indexOf(moment);
+    this.titulo = moment.titulo;
+    this.data = moment.data;
 
     this.modalEdicao(true);
   }
 
   salvarEdicao(): void {
     if (this.index !== null && this.titulo) {
-      this.crudService.update(this.index, this.titulo, this.data);
+      this.momentService.update(this.index, this.titulo, this.data);
     }
     this.modalEdicao(false);
 
   }
 
   excluir(index: number): void {
-    this.crudService.delete(index);
+    this.momentService.delete(index);
   }
 
   formatarData(event: any): void {

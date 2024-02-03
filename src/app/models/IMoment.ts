@@ -1,4 +1,4 @@
-export interface IEvento {
+export interface IMoment {
     titulo: string,
     data: string,
 }
