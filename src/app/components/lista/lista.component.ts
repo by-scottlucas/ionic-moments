@@ -93,12 +93,14 @@ export class ListaComponent implements OnInit {
 
   }
 
-  async excluir(id: number) {
+  async excluir(id: any) {
 
     await this.momentService.read(id);
 
     if (await confirm("Deseja excluir o Moment?")) {
-      this.momentService.delete(id).subscribe();
+      this.momentService.delete(id).subscribe(() => {
+        this.getMoments();
+      });
     };
 
   }

@@ -19,7 +19,7 @@
 
   <ion-list>
 
-    <ion-item-sliding *ngFor="let moment of moments; let i = index" class="item-slide">
+    <ion-item-sliding *ngFor="let moment of moments;" class="item-slide">
 
       <ion-item class="item-lista">
 
@@ -36,7 +36,7 @@
           <ion-icon name="create-outline" />
         </ion-item-option>
 
-        <ion-item-option color="danger" (click)="excluir(i)" class="botao-acoes">
+        <ion-item-option color="danger" (click)="excluir(moment.id)" class="botao-acoes">
           <ion-icon name="trash-outline" />
         </ion-item-option>
 

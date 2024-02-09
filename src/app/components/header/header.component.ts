@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IMoment } from 'src/app/models/IMoment';
 import { MomentService } from '../../services/moment.service';
 
@@ -9,21 +10,21 @@ import { MomentService } from '../../services/moment.service';
 })
 export class HeaderComponent implements OnInit {
 
-  dataAtual = new Date().toISOString();
+  dataAtual = new Date();
 
   titulo!: string;
-  data: string = 'dd/mm/yyyy';
-  moments!: IMoment[];
+  data: any = 'dd/mm/yyyy';
+  moments: IMoment[] = [];
 
   modal = false;
 
-  constructor(private momentService: MomentService) { }
+  constructor(private momentService: MomentService, private route: Router) { }
 
   ngOnInit() {
     this.getMoments();
   }
 
-  private getMoments(): void {
+  private getMoments() {
     this.momentService.getMoments()
       .subscribe(moment => {
         this.moments = moment;
@@ -40,8 +41,8 @@ export class HeaderComponent implements OnInit {
 
   salvarData(): void {
 
-    const dataFormatada = this.dataAtual.replace(/(\d*)-(\d*)-(\d*).*/, '$3/$2/$1');
-    this.data = dataFormatada;
+    // const dataFormatada = this.dataAtual.replace(/(\d*)-(\d*)-(\d*).*/, '$3/$2/$1');
+    this.data = this.dataAtual;
 
 
     if (this.data.length !== 0) {
@@ -55,7 +56,10 @@ export class HeaderComponent implements OnInit {
 
       // const dataFormatada = this.data.replace(/(\d*)-(\d*)-(\d*).*/, '$3/$2/$1');
 
-      this.momentService.create(this.titulo, this.data).subscribe();
+      this.momentService.create(this.titulo, this.data).subscribe(() => {
+        this.getMoments();
+      });
+
       this.limparInputs();
       alert('Evento registrado com sucesso!');
 

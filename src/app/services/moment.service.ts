@@ -34,7 +34,7 @@ export class MomentService {
     return this.http.put<IMoment>(url, eventoAtualizado);
   }
 
-  delete(id: number) {
+  delete(id: any) {
     const url = `${this.api}/${id}`;
     return this.http.delete(url);
   }
