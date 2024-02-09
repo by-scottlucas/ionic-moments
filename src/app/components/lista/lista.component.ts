@@ -77,19 +77,26 @@ export class ListaComponent implements OnInit {
     this.modalEdicao(true);
   }
 
-  salvarEdicao(): void {
-    if (this.index !== null && this.titulo) {
+  async salvarEdicao() {
+
+    if (this.index !== null && this.titulo && await confirm("Deseja salvar as alterações?")) {
       this.momentService.update(this.index, this.titulo, this.data);
     }
+
     this.modalEdicao(false);
 
   }
 
-  excluir(index: number): void {
-    this.momentService.delete(index);
+  async excluir(index: number) {
+
+    if (await confirm("Deseja excluir o Moment?")) {
+      return this.momentService.delete(index);
+    };
+
   }
 
   formatarData(event: any): void {
+
     let input = event.target.value;
 
     // Remover caracteres não numéricos
@@ -107,6 +114,7 @@ export class ListaComponent implements OnInit {
       input = input.substring(0, 8);
       this.data = `${input.substring(0, 2)}/${input.substring(2, 4)}/${input.substring(4, 8)}`;
     }
+    
   }
 
 }
