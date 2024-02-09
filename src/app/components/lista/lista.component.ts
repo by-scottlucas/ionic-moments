@@ -21,30 +21,36 @@ export class ListaComponent implements OnInit {
 
   search!: string;
 
-  constructor(private momentService: MomentService) {
-    this.moments = this.momentService.moments;
+  constructor(private momentService: MomentService) { }
+
+  ngOnInit() {
+    this.getMoments();
   }
 
-  ngOnInit() { }
-
-  searchInput(event: any) {
-    this.search = event.target.value.trim().toLowerCase();
-
-    if (this.search === '') {
-      this.moments = this.momentService.moments;
-    } else {
-      const filtroMoments = this.momentService.moments.filter((moment) => {
-        return moment.titulo.toLowerCase().includes(this.search);
-      });
-
-      if (filtroMoments.length === 0) {
-        alert("Nenhuma movimentação encontrada");
-        this.search = '';
-      } else {
-        this.moments = filtroMoments;
-      }
-    }
+  private getMoments() {
+    this.momentService.getMoments().subscribe(moment => {
+      this.moments = moment;
+    })
   }
+
+  // searchInput(event: any) {
+  //   this.search = event.target.value.trim().toLowerCase();
+
+  //   if (this.search === '') {
+  //     this.moments = this.momentService.getMoments();
+  //   } else {
+  //     const filtroMoments = this.momentService.moments.filter((moment) => {
+  //       return moment.titulo.toLowerCase().includes(this.search);
+  //     });
+
+  //     if (filtroMoments.length === 0) {
+  //       alert("Nenhuma movimentação encontrada");
+  //       this.search = '';
+  //     } else {
+  //       this.moments = filtroMoments;
+  //     }
+  //   }
+  // }
 
   modalEdicao(open: boolean) {
     this.modal = open;
@@ -87,10 +93,12 @@ export class ListaComponent implements OnInit {
 
   }
 
-  async excluir(index: number) {
+  async excluir(id: number) {
+
+    await this.momentService.read(id);
 
     if (await confirm("Deseja excluir o Moment?")) {
-      return this.momentService.delete(index);
+      this.momentService.delete(id).subscribe();
     };
 
   }
@@ -114,7 +122,7 @@ export class ListaComponent implements OnInit {
       input = input.substring(0, 8);
       this.data = `${input.substring(0, 2)}/${input.substring(2, 4)}/${input.substring(4, 8)}`;
     }
-    
+
   }
 
 }

@@ -17,11 +17,18 @@ export class HeaderComponent implements OnInit {
 
   modal = false;
 
-  constructor(private momentService: MomentService) {
-    this.moments = this.momentService.moments;
+  constructor(private momentService: MomentService) { }
+
+  ngOnInit() {
+    this.getMoments();
   }
 
-  ngOnInit() { }
+  private getMoments(): void {
+    this.momentService.getMoments()
+      .subscribe(moment => {
+        this.moments = moment;
+      });
+  }
 
   modalData(isOpen: boolean) {
     this.modal = isOpen;
@@ -46,9 +53,9 @@ export class HeaderComponent implements OnInit {
 
     if (this.titulo && this.data) {
 
-      const dataFormatada = this.data.replace(/(\d*)-(\d*)-(\d*).*/, '$3/$2/$1');
+      // const dataFormatada = this.data.replace(/(\d*)-(\d*)-(\d*).*/, '$3/$2/$1');
 
-      this.momentService.create(this.titulo, dataFormatada);
+      this.momentService.create(this.titulo, this.data).subscribe();
       this.limparInputs();
       alert('Evento registrado com sucesso!');
 

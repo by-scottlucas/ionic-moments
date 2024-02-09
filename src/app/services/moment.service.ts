@@ -1,48 +1,41 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { IMoment } from 'src/app/models/IMoment';
-import { StorageService } from 'src/app/services/local-storage.service';
-
-const eventosStorageKey = 'Lista_Eventos';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MomentService {
 
-  moments: IMoment[] = [];
+  private baseApiUrl = environment.baseApiUrl;
+  private api = `${this.baseApiUrl}/api/v1/moments`;
 
-  constructor(private storageService: StorageService) {
-    this.moments = this.storageService.getData(eventosStorageKey) || [];
+  constructor(private http: HttpClient) { }
+
+  getMoments(): Observable<IMoment[]> {
+    return this.http.get<IMoment[]>(this.api);
   }
 
-  private save(): void {
-    try {
-      this.storageService.setData(eventosStorageKey, this.moments);
-    } catch (error) {
-      console.log('Não foi possível salvar o evento. Erro: ', error);
-    }
+  create(titulo: string, data: string): Observable<IMoment> {
+    const novoMomento: IMoment = { titulo, data };
+    return this.http.post<IMoment>(this.api, novoMomento);
   }
 
-  create(titulo: string, data: string): void {
-    const novoEvento: IMoment = { titulo, data };
-    this.moments.unshift(novoEvento);
-    this.save();
+  read(id: number): Observable<IMoment> {
+    const url = `${this.api}/${id}`;
+    return this.http.get<IMoment>(url);
   }
 
-  read(index: number): IMoment {
-    return this.moments[index];
+  update(id: number, titulo: string, data: string): Observable<IMoment> {
+    const url = `${this.api}/${id}`;
+    const eventoAtualizado: IMoment = { id, titulo, data };
+    return this.http.put<IMoment>(url, eventoAtualizado);
   }
 
-  update(index: number, titulo: string, data: string): void {
-    if (index >= 0 && this.moments.length) {
-      this.moments[index] = { titulo, data };
-      this.save();
-    }
+  delete(id: number) {
+    const url = `${this.api}/${id}`;
+    return this.http.delete(url);
   }
-
-  delete(index: number): void {
-    this.moments.splice(index, 1);
-    this.save();
-  }
-
 }

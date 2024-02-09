@@ -4,17 +4,7 @@
 
 export const environment = {
   production: false,
-  firebaseConfig: {
-    apiKey: "AIzaSyBlTmnusH3odXwoqFq998BdI6Xy5eogcNQ",
-    authDomain: "ionic-moments-92088.firebaseapp.com",
-    databaseURL: "https://ionic-moments-92088-default-rtdb.firebaseio.com",
-    projectId: "ionic-moments-92088",
-    storageBucket: "ionic-moments-92088.appspot.com",
-    messagingSenderId: "964460749345",
-    appId: "1:964460749345:web:aa2c4626091f5428f37960",
-    measurementId: "G-XCNTT61Q3H"
-  }
-
+  baseApiUrl: "http://localhost:3000"
 };
 
 /*
