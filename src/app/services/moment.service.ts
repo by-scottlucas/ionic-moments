@@ -18,9 +18,8 @@ export class MomentService {
     return this.http.get<IMoment[]>(this.api);
   }
 
-  create(titulo: string, data: string): Observable<IMoment> {
-    const novoMomento: IMoment = { titulo, data };
-    return this.http.post<IMoment>(this.api, novoMomento);
+  create(moment: IMoment) {
+    return this.http.post<IMoment>(this.api, moment);
   }
 
   read(id: number): Observable<IMoment> {

@@ -1,5 +1,198 @@
 .container {
-    background-color: #e5e5e5;
-    height: auto;
-    min-height: 100vh;
+    height: 100vh;
+    background: #e5e5e5;
+}
+
+.header-bg {
+    height: 100px;
+    background: #212129;
+}
+
+.header-add {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    margin-top: -80px;
+    padding: 20px;
+    border-radius: 4px;
+    background: #fff;
+}
+
+.header-add img {
+    width: 225px;
+    margin-bottom: 10px;
+}
+
+.box-lista {
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.titulo {
+    margin-top: 0px;
+    color: #000;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.semMoments {
+    font-size: 1rem;
+    text-align: center;
+    margin-top: 180px;
+}
+
+.searchBar {
+    margin-top: -10px;
+    color: #000;
+    padding-left: 0;
+    padding-right: 0;
+    --box-shadow: none;
+    --border-radius: 4px;
+    --background: #fff;
+}
+
+ion-list {
+    margin-top: -6px;
+    background: transparent;
+}
+
+.item-slide {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+    background-color: #fff;
+}
+
+.item-lista {
+    width: 100%;
+    --border-color: transparent;
+    --border-radius: 0px;
+    --background: #fff;
+}
+
+.label-moment {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.data-moment {
+    font-size: .9rem;
+    margin-bottom: 5px;
+}
+
+.titulo-moment {
+    color: #000;
+    font-size: 1.2rem;
+}
+
+.botao-acoes {
+    width: 60px;
+    font-size: 1.6rem;
+}
+
+
+//**** Estilos Modal de Edição ****//
+
+.container-edicao {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #e5e5e5;
+}
+
+.header {
+    text-align: center;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    padding: 20px;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+.edicao {
+    font-family: 'Bebas Neue';
+    color: #000;
+    font-weight: bold;
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: -4px;
+}
+
+.input {
+    color: #000;
+    font-size: 1.1rem;
+    margin-bottom: 14px;
+    border-bottom: 1px solid #000;
+    background: transparent;
+    --highlight-color: trasparent;
+}
+
+.date {
+    width: 100%;
+    text-transform: lowercase;
+    font-size: 1.1rem;
+    font-weight: normal;
+    margin-top: 17px;
+    height: 40px;
+    --border-radius: 0;
+    --box-shadow: 0;
+    --background: transparent;
+}
+
+.modal-data {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #e5e5e5;
+}
+
+.calendario {
+    text-align: center;
+    margin: 0 auto;
+    width: 90%;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+ion-datetime {
+    color: #000;
+    --background: transparent;
+    --title-color: #fff --wheel-fade-background-rgb: transparent;
+    --wheel-highlight-background: transparent;
+}
+
+.botoes {
+    display: flex;
+    justify-content: space-around;
+    background: transparent;
+}
+
+.botoes ion-button {
+    width: 140px;
+    height: 50px;
+    color: #000;
+    font-weight: bold;
+    --box-shadow: none;
+    --border-radius: 2px;
+    --background: transparent;
+}
+
+.botao {
+    width: 100%;
+    height: 45px;
+    --box-shadow: 0;
+    --border-radius: 2px;
+    --background: #212929;
 }

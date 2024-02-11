@@ -1,25 +1,28 @@
-.header-bg {
-    height: 150px;
-    background-color: #212929;
-}
-
-.logo {
-    width: 180px;
-    margin-bottom: 10px;
-}
-
 .header {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 90%;
-    padding: 20px 20px 20px 20px;
     border-radius: 4px;
-    margin-top: -110px;
-    margin-bottom: -10px;
+    height: 100vh;
     background-color: #fff;
+}
+
+ion-grid {
+    text-align: center;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.title {
+    color: #000;
+    font-weight: bold;
+    font-size: 3rem;
+    font-family: 'Bebas Neue';
 }
 
 .input {
@@ -90,4 +93,13 @@ ion-datetime {
     --box-shadow: 0;
     --border-radius: 2px;
     --background: #212929;
+}
+
+.botao-cancelar {
+    width: 100%;
+    height: 45px;
+    color: #000;
+    --box-shadow: 0;
+    --border-radius: 2px;
+    --background: transparent;
 }

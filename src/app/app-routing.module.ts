@@ -11,6 +11,11 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'new-moment',
+    loadChildren: () => import('./components/pages/new-moment/new-moment.module').then(m => m.NewMomentPageModule)
+  },
+
 ];
 
 @NgModule({

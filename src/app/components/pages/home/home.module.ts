@@ -6,9 +6,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { HomePageRoutingModule } from './home-routing.module';
 
-import { HeaderModule } from '../../header/header.module';
-import { ListaModule } from '../../lista/lista.module';
 import { HomePage } from './home.page';
+import { NewMomentPageModule } from '../new-moment/new-moment.module';
 
 @NgModule({
   imports: [
@@ -16,8 +15,7 @@ import { HomePage } from './home.page';
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
-    HeaderModule,
-    ListaModule,
+    NewMomentPageModule
   ],
   declarations: [HomePage]
 })
