@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MomentService } from '../../../services/moment.service';
-import { IMoment } from '../../../models/IMoment';
 import { NgForm } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
+import { IMoment } from '../../../models/IMoment';
+import { MomentService } from '../../../services/moment.service';
 
 @Component({
   selector: 'app-edit-moment',
@@ -25,12 +25,12 @@ export class EditMomentPage implements OnInit {
   }
 
   ngOnInit() {
-    // if (this.moment) {
-    //   console.log("Atualizar")
-    //   console.log(this.moment);
-    // }
+
+    this.titulo = this.dados.titulo;
+    this.data = this.dados.data;
 
     this.getMoments();
+
   }
 
   private getMoments() {
@@ -39,7 +39,7 @@ export class EditMomentPage implements OnInit {
     })
   }
 
-  modalData(isOpen: boolean) {
+  private modalData(isOpen: boolean) {
     this.modalDate = isOpen;
   }
 
@@ -52,28 +52,25 @@ export class EditMomentPage implements OnInit {
     if (this.data !== null) {
       this.modalData(false);
     }
-
     this.data = this.dataAtual;
 
   }
 
   async salvarEdicao(form: NgForm) {
 
-    // const momentId: any = this.moments.map(momento => momento.id).reduce((momento) => momento.pop);
+    const id: number = this.dados.id;
     const moment = form.value;
 
-    // console.log(momentId);
+    if (id !== null && moment && await confirm("Deseja salvar as alterações?")) {
 
-    // if (momentId !== null && moment && await confirm("Deseja salvar as alterações?")) {
+      this.momentService.update(id, moment).subscribe(response => {
+        alert("Moment atualizado com sucesso!");
+        this.modalCtrl.dismiss(response);
+      })
 
-    //   this.momentService.update(momentId, moment).subscribe(response => {
-    //     alert("Moment atualizado com sucesso!");
-    //     this.modalCtrl.dismiss(response);
-    //   })
-
-    // } else {
-    //   alert('Os campos precisam estar preenchidos');
-    // }
+    } else {
+      alert('Os campos precisam estar preenchidos');
+    }
 
   }
 

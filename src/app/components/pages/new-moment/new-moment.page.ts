@@ -11,19 +11,18 @@ import { MomentService } from 'src/app/services/moment.service';
 })
 export class NewMomentPage implements OnInit {
 
+  modal = false;
+  dataAtual = new Date().toISOString();
+
   titulo!: string;
-  data!: any;
+  data!: string;
   moments: IMoment[] = [];
 
-  modal = false;
-  dataAtual = new Date().toISOString().replace(/^(\d{2})(\d{2})(\d{4})$/, '$2/$1/$3');
-
-  constructor(private momentService: MomentService, private modalCtrl: ModalController) {
-  }
+  constructor(private momentService: MomentService, private modalCtrl: ModalController) { }
 
   ngOnInit() { }
 
-  async modalData(isOpen: boolean) {
+  private modalData(isOpen: boolean) {
     this.modal = isOpen;
   }
 
@@ -37,11 +36,12 @@ export class NewMomentPage implements OnInit {
       this.modalData(false);
     }
 
-    this.data = this.dataAtual;
+    const dataFormatada = this.dataAtual.replace(/^(\d{2})(\d{2})(\d{4})$/, '$2/$1/$3');
+    this.data = dataFormatada;
 
   }
 
-  async adicionar(form: NgForm) {
+  async salvarAdicao(form: NgForm) {
 
     if (this.titulo && this.data) {
 
@@ -61,7 +61,7 @@ export class NewMomentPage implements OnInit {
 
   private limparInputs() {
     this.titulo = '';
-    this.data = 'dd/mm/aaaa';
+    this.data = '';
   }
 
   cancelar() {

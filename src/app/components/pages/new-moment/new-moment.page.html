@@ -1,12 +1,10 @@
 <ion-content [fullscreen]="true">
-
   <div class="header">
-
     <ion-grid [fixed]="true">
 
-      <form #f="ngForm" (ngSubmit)="adicionar(f)">
+      <form #f="ngForm" (ngSubmit)="salvarAdicao(f)">
 
-        <h1 class="title">Novo Momento</h1>
+        <h1 class="titulo">Novo Momento</h1>
 
         <ion-input type="text" placeholder="Qual momento deseja registrar?" class="input" [(ngModel)]="titulo"
           name="titulo" />
@@ -22,32 +20,24 @@
       </form>
 
     </ion-grid>
-
   </div>
-
 </ion-content>
 
 <ion-modal [isOpen]="modal" trigger="date">
-
   <ng-template>
-
     <div class="modal-data">
-
       <div class="calendario">
 
         <ion-datetime presentation="date" [(ngModel)]="dataAtual" />
 
         <div class="botoes">
 
-          <ion-button (click)="modalData(false)">Cancelar</ion-button>
+          <ion-button (click)="cancelar()">Cancelar</ion-button>
           <ion-button (click)="salvarData()">Salvar</ion-button>
 
         </div>
 
       </div>
-
     </div>
-
   </ng-template>
-
 </ion-modal>

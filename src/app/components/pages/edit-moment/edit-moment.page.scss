@@ -18,7 +18,7 @@ ion-grid {
     justify-content: center;
 }
 
-.title {
+.titulo {
     color: #000;
     font-weight: bold;
     font-size: 3rem;
@@ -33,6 +33,38 @@ ion-grid {
     background: transparent;
     --highlight-color: trasparent;
 }
+
+.data {
+    width: 100%;
+    text-transform: lowercase;
+    font-size: 1.1rem;
+    font-weight: normal;
+    margin-top: 7px;
+    height: 50px;
+    --border-radius: 0;
+    --box-shadow: 0;
+    --background: transparent;
+}
+
+.botao {
+    margin-top: 10px;
+    width: 100%;
+    height: 45px;
+    --box-shadow: 0;
+    --border-radius: 2px;
+    --background: #212929;
+}
+
+.botao-cancelar {
+    width: 100%;
+    height: 45px;
+    color: #000;
+    --box-shadow: 0;
+    --border-radius: 2px;
+    --background: transparent;
+}
+
+// **** ESTILOS DO MODAL DATA ****
 
 .modal-data {
     display: flex;
@@ -70,36 +102,6 @@ ion-datetime {
     color: #000;
     font-weight: bold;
     --box-shadow: none;
-    --border-radius: 2px;
-    --background: transparent;
-}
-
-.data {
-    width: 100%;
-    text-transform: lowercase;
-    font-size: 1.1rem;
-    font-weight: normal;
-    margin-top: 7px;
-    height: 50px;
-    --border-radius: 0;
-    --box-shadow: 0;
-    --background: transparent;
-}
-
-.botao {
-    margin-top: 10px;
-    width: 100%;
-    height: 45px;
-    --box-shadow: 0;
-    --border-radius: 2px;
-    --background: #212929;
-}
-
-.botao-cancelar {
-    width: 100%;
-    height: 45px;
-    color: #000;
-    --box-shadow: 0;
     --border-radius: 2px;
     --background: transparent;
 }

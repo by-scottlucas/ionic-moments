@@ -22,18 +22,18 @@ export class MomentService {
     return this.http.post<IMoment>(this.api, moment);
   }
 
-  read(id: string): Observable<IMoment> {
-    const url = `${this.api}/${id}`;
-    return this.http.get<IMoment>(url);
+  read(id: number): Observable<IMoment> {
+    const payload = `${this.api}/${id}`;
+    return this.http.get<IMoment>(payload);
   }
 
-  update(id: string, data: IMoment) {
-    const url = `${this.api}/${id}`;
-    return this.http.put<IMoment>(url, data);
+  update(id: number, data: IMoment) {
+    const payload = `${this.api}/${id}`;
+    return this.http.put<IMoment>(payload, data);
   }
 
-  delete(id: any) {
-    const url = `${this.api}/${id}`;
-    return this.http.delete(url);
+  delete(id: number) {
+    const payload = `${this.api}/${id}`;
+    return this.http.delete(payload);
   }
 }
