@@ -4,7 +4,7 @@ Este projeto foi desenvolvido para fins de estudo sobre Angular utilizando o fra
 
 ## Introdução
 
-O projeto se trata de um app que serve para registrar os momentos mais importantes.
+O projeto se trata de um aplicativo para registro de momentos.
 
 ### Pré-requisitos
 
@@ -14,7 +14,11 @@ Ao clonar o repositório, é necessário primeiramente baixar as dependências d
 npm install
 ```
 
-Para executar o projeto em ambiente de desenvolvimento, basta digitar o seguinte comando no terminal:
+Também será necessário utilizar uma API que está disponível no link abaixo.
+
+Link do repositório da API: https://github.com/by-scottlucas/nest-moments-api.git
+
+Após atender os pré-requisitos já é possível executar o projeto em modo de desenvolvimento, basta digitar o seguinte comando no terminal:
 
 ```
 ionic serve
