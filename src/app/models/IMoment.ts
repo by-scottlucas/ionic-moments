@@ -1,5 +1,5 @@
 export interface IMoment {
-    id?: number,
+    id: string,
     titulo: string,
     data: string,
 }

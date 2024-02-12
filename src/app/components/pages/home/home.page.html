@@ -8,7 +8,7 @@
 
       <img src="../../../assets/logo.png" alt="logo" class="logo">
 
-      <ion-button class="botao" (click)="novoMoment()">Novo Moment</ion-button>
+      <ion-button class="botao" (click)="adicionar()">Novo Moment</ion-button>
 
     </div>
 
@@ -24,11 +24,9 @@
       </div>
 
       <ng-template #nenhumMoment>
-
         <h3 class="titulo semMoments">
           Nenhum Momento Registrado
         </h3>
-
       </ng-template>
 
       <ion-list>
@@ -61,46 +59,5 @@
       </ion-list>
 
     </div>
-
-    <ion-modal [isOpen]="modal">
-      <ng-template>
-        <ion-content>
-
-          <div class="container-edicao">
-
-            <div class="header">
-
-              <h1 class="titulo edicao">Editar</h1>
-
-              <ion-input type="text" class="input" [(ngModel)]="titulo" />
-
-              <ion-button class="input date" (click)="selecionarData()">{{ data }}</ion-button>
-
-              <ion-modal [isOpen]="modalDate">
-                <ng-template>
-                  <div class="modal-data">
-
-                    <div class="calendario">
-                      <ion-datetime id="datetime" presentation="date" [(ngModel)]="dataAtual" />
-
-                      <div class="botoes">
-                        <ion-button (click)="modalData(false)">Cancelar</ion-button>
-                        <ion-button (click)="salvarData()">Salvar</ion-button>
-                      </div>
-                    </div>
-
-                  </div>
-                </ng-template>
-              </ion-modal>
-
-              <ion-button class="botao" (click)="salvarEdicao()">Editar</ion-button>
-
-            </div>
-
-          </div>
-
-        </ion-content>
-      </ng-template>
-    </ion-modal>
   </main>
 </ion-content>

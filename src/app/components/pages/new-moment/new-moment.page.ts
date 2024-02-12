@@ -11,7 +11,6 @@ import { MomentService } from 'src/app/services/moment.service';
 })
 export class NewMomentPage implements OnInit {
 
-
   titulo!: string;
   data!: any;
   moments: IMoment[] = [];
@@ -19,7 +18,8 @@ export class NewMomentPage implements OnInit {
   modal = false;
   dataAtual = new Date().toISOString().replace(/^(\d{2})(\d{2})(\d{4})$/, '$2/$1/$3');
 
-  constructor(private momentService: MomentService, private modalCtrl: ModalController) { }
+  constructor(private momentService: MomentService, private modalCtrl: ModalController) {
+  }
 
   ngOnInit() { }
 

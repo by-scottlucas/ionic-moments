@@ -22,15 +22,14 @@ export class MomentService {
     return this.http.post<IMoment>(this.api, moment);
   }
 
-  read(id: number): Observable<IMoment> {
+  read(id: string): Observable<IMoment> {
     const url = `${this.api}/${id}`;
     return this.http.get<IMoment>(url);
   }
 
-  update(id: number, titulo: string, data: string): Observable<IMoment> {
+  update(id: string, data: IMoment) {
     const url = `${this.api}/${id}`;
-    const eventoAtualizado: IMoment = { id, titulo, data };
-    return this.http.put<IMoment>(url, eventoAtualizado);
+    return this.http.put<IMoment>(url, data);
   }
 
   delete(id: any) {

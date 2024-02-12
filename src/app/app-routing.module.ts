@@ -14,7 +14,11 @@ const routes: Routes = [
   {
     path: 'new-moment',
     loadChildren: () => import('./components/pages/new-moment/new-moment.module').then(m => m.NewMomentPageModule)
+  },  {
+    path: 'edit-moment',
+    loadChildren: () => import('./components/pages/edit-moment/edit-moment.module').then( m => m.EditMomentPageModule)
   },
+
 
 ];
 

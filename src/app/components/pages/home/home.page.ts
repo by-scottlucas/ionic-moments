@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Route, Router } from '@angular/router';
-import { ModalController, PopoverController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 import { IMoment } from 'src/app/models/IMoment';
 import { MomentService } from 'src/app/services/moment.service';
+import { EditMomentPage } from '../edit-moment/edit-moment.page';
 import { NewMomentPage } from '../new-moment/new-moment.page';
 
 @Component({
@@ -12,21 +12,18 @@ import { NewMomentPage } from '../new-moment/new-moment.page';
 })
 export class HomePage implements OnInit {
 
-  dataAtual = new Date().toISOString();
-
   index: number | null = null
   titulo!: string;
-  data!: string;
+  data!: any;
   moments: IMoment[] = [];
 
   modal = false;
   modalDate = false;
+  dataAtual = new Date().toISOString().replace(/^(\d{2})(\d{2})(\d{4})$/, '$2/$1/$3');
 
   search!: string;
 
-  constructor(private momentService: MomentService, private modalCtrl: ModalController) {
-    this.getMoments();
-  }
+  constructor(private momentService: MomentService, private modalCtrl: ModalController) { }
 
   ngOnInit() {
     this.getMoments();
@@ -59,8 +56,17 @@ export class HomePage implements OnInit {
     }
   }
 
-  modalEdicao(open: boolean) {
-    this.modal = open;
+  adicionar() {
+    this.modalCtrl.create({
+      component: NewMomentPage,
+    }).then(modal => {
+      modal.present()
+      return modal.onDidDismiss();
+    }).then(({ data }) => {
+      this.momentService.getMoments().subscribe((moments: IMoment[]) => {
+        this.moments = moments;
+      });
+    });
   }
 
   modalData(open: boolean) {
@@ -68,37 +74,44 @@ export class HomePage implements OnInit {
   }
 
   selecionarData(): void {
-    this.modalData(true);
+    // this.modalData(true);
   }
 
   salvarData(): void {
 
-    const dataFormatada = this.dataAtual.replace(/(\d*)-(\d*)-(\d*).*/, '$3/$2/$1');
-    this.data = dataFormatada;
-
-
-    if (this.data.length !== 0) {
+    if (this.data !== null) {
       this.modalData(false);
     }
-  }
 
-  editar(moment: IMoment): void {
-    this.index = this.moments.indexOf(moment);
-    this.titulo = moment.titulo;
-    this.data = moment.data;
-
-    this.modalEdicao(true);
-  }
-
-  async salvarEdicao() {
-
-    if (this.index !== null && this.titulo && await confirm("Deseja salvar as alterações?")) {
-      this.momentService.update(this.index, this.titulo, this.data);
-    }
-
-    this.modalEdicao(false);
+    this.data = this.dataAtual;
 
   }
+
+  editar(moment: IMoment) {
+    this.modalCtrl.create({
+      component: EditMomentPage,
+      componentProps: moment
+    }).then(modal => {
+      modal.present()
+      return modal.onDidDismiss();
+    }).then(({ data }) => {
+      this.momentService.getMoments().subscribe((moments) => {
+        this.moments = moments;
+      });
+    });
+  }
+
+  // async salvarEdicao(form: NgForm) {
+
+  //   const moment = form.value;
+
+  //   if (this.index !== null && this.titulo && await confirm("Deseja salvar as alterações?")) {
+  //     this.momentService.update(this.index, moment);
+  //   }
+
+  //   this.modalEdicao(false);
+
+  // }
 
   async excluir(id: any) {
 
@@ -112,17 +125,8 @@ export class HomePage implements OnInit {
 
   }
 
-  novoMoment() {
-    this.modalCtrl.create({
-      component: NewMomentPage,
-    }).then(modal => {
-      modal.present()
-      return modal.onDidDismiss();
-    }).then(({ data }) => {
-      this.momentService.getMoments().subscribe((moments: IMoment[]) => {
-        this.moments = moments;
-      });
-    });
+  cancelar() {
+    this.modalCtrl.dismiss()
   }
 
 }
