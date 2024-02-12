@@ -15,6 +15,7 @@ export class MomentService {
   constructor(private http: HttpClient) { }
 
   getMoments(): Observable<IMoment[]> {
+    this.ordemDecrescente();
     return this.http.get<IMoment[]>(this.api);
   }
 
@@ -36,4 +37,12 @@ export class MomentService {
     const payload = `${this.api}/${id}`;
     return this.http.delete(payload);
   }
+
+  private ordemDecrescente() {
+    const moments: IMoment[] = [];
+    moments.sort((a, b) => {
+      return new Date(b.data).getTime() - new Date(a.data).getTime();
+    })
+  }
+
 }
