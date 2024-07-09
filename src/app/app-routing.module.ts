@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./components/pages/home/home.module').then(m => m.HomePageModule)
+    loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule)
   },
   {
     path: '',
@@ -13,10 +13,11 @@ const routes: Routes = [
   },
   {
     path: 'new-moment',
-    loadChildren: () => import('./components/pages/new-moment/new-moment.module').then(m => m.NewMomentPageModule)
-  },  {
+    loadChildren: () => import('./components/add-moment/add-moment.module').then(m => m.AddMomentPageModule)
+  },
+  {
     path: 'edit-moment',
-    loadChildren: () => import('./components/pages/edit-moment/edit-moment.module').then( m => m.EditMomentPageModule)
+    loadChildren: () => import('./components/edit-moment/edit-moment.module').then( m => m.EditMomentPageModule)
   },
 
 

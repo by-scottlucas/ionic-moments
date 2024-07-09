@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { IMoment } from 'src/app/models/IMoment';
 import { MomentService } from 'src/app/services/moment.service';
-import { EditMomentPage } from '../edit-moment/edit-moment.page';
-import { NewMomentPage } from '../new-moment/new-moment.page';
+import { EditMomentPage } from '../../components/edit-moment/edit-moment.page';
+import { AddMomentPage } from '../../components/add-moment/add-moment.page';
 
 @Component({
   selector: 'app-home',
@@ -50,7 +50,7 @@ export class HomePage implements OnInit {
 
   adicionar() {
     this.modalCtrl.create({
-      component: NewMomentPage,
+      component: AddMomentPage,
     }).then(modal => {
       modal.present()
       return modal.onDidDismiss();

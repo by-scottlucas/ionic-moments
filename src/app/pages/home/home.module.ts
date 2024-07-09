@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { HomePageRoutingModule } from './home-routing.module';
 
 import { HomePage } from './home.page';
-import { NewMomentPageModule } from '../new-moment/new-moment.module';
+import { AddMomentPageModule } from '../../components/add-moment/add-moment.module';
 
 @NgModule({
   imports: [
@@ -15,7 +15,7 @@ import { NewMomentPageModule } from '../new-moment/new-moment.module';
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
-    NewMomentPageModule
+    AddMomentPageModule
   ],
   declarations: [HomePage]
 })

@@ -5,11 +5,11 @@ import { IMoment } from 'src/app/models/IMoment';
 import { MomentService } from 'src/app/services/moment.service';
 
 @Component({
-  selector: 'app-new-moment',
-  templateUrl: './new-moment.page.html',
-  styleUrls: ['./new-moment.page.scss'],
+  selector: 'app-add-moment',
+  templateUrl: './add-moment.page.html',
+  styleUrls: ['./add-moment.page.scss'],
 })
-export class NewMomentPage implements OnInit {
+export class AddMomentPage implements OnInit {
 
   modal = false;
   dataAtual = new Date().toISOString();

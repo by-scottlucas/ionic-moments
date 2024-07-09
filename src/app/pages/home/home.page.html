@@ -4,29 +4,31 @@
 
     <div class="header-bg"></div>
 
-    <div class="header-add">
+    <div class="header-add-moment">
 
       <img src="../../../assets/logo.png" alt="logo" class="logo">
 
-      <ion-button class="botao-add" (click)="adicionar()">Novo Moment</ion-button>
+      <ion-button class="add-moment-btn" (click)="adicionar()">Novo Moment</ion-button>
 
     </div>
 
-    <div class="box-lista">
+    <div class="container-list">
 
       <div *ngIf="moments.length; else nenhumMoment">
 
-        <h3 class="titulo">Moments Recentes</h3>
+        <h3 class="title">Moments Recentes</h3>
 
-        <ion-searchbar class="searchBar" placeholder="Buscar Moments" [(ngModel)]="search"
+        <ion-searchbar class="search-bar" placeholder="Buscar Moments" [(ngModel)]="search"
           (ionInput)="searchInput($event)" />
 
       </div>
 
       <ng-template #nenhumMoment>
-        <h3 class="titulo semMoments">
+
+        <h3 class="title not-moments">
           Nenhum Momento Registrado
         </h3>
+
       </ng-template>
 
       <ion-list>

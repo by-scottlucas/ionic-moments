@@ -8,7 +8,7 @@
     background: #212129;
 }
 
-.header-add {
+.header-add-moment {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -21,12 +21,12 @@
     background: #fff;
 }
 
-.header-add img {
+.header-add-moment img {
     width: 225px;
     margin-bottom: 10px;
 }
 
-.botao-add {
+.add-moment-btn {
     width: 100%;
     height: 45px;
     --box-shadow: 0;
@@ -34,20 +34,21 @@
     --background: #212929;
 }
 
-.box-lista {
+.container-list {
     margin: 0 auto;
     padding: 20px;
 }
 
-.titulo {
+.title {
     margin-top: 0px;
     color: #000;
     font-size: 1.1rem;
     font-weight: bold;
 }
 
-.searchBar {
+.search-bar {
     margin-top: -10px;
+    margin-bottom: 10px;
     color: #000;
     padding-left: 0;
     padding-right: 0;
@@ -56,7 +57,7 @@
     --background: #fff;
 }
 
-.semMoments {
+.not-moments {
     font-size: 1rem;
     text-align: center;
     margin-top: 180px;

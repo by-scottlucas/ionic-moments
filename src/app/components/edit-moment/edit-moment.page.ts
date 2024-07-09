@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
-import { IMoment } from '../../../models/IMoment';
-import { MomentService } from '../../../services/moment.service';
+import { IMoment } from 'src/app/models/IMoment';
+import { MomentService } from 'src/app/services/moment.service';
 
 @Component({
   selector: 'app-edit-moment',
