@@ -1,23 +1,23 @@
 <ion-content [fullscreen]="true">
 
-  <div class="header">
+  <div class="container">
 
     <ion-grid [fixed]="true">
 
       <form #f="ngForm" (ngSubmit)="salvarEdicao(f)">
 
-        <h1 class="titulo">Editar Moment</h1>
+        <h1 class="title">Editar Moment</h1>
 
         <ion-input type="text" placeholder="Qual momento deseja registrar?" class="input" [(ngModel)]="titulo"
           name="titulo" />
 
-        <ion-button class="input data" (click)="selecionarData()" id="date" [(ngModel)]="data" name="data">
+        <ion-button class="input date" (click)="selecionarData()" id="date" [(ngModel)]="data" name="data">
           {{ data ? (data | date:'dd/MM/yyyy') : 'dd/mm/yyyy' }}
         </ion-button>
 
 
-        <ion-button class="botao" type="submit">Salvar</ion-button>
-        <ion-button class="botao-cancelar" (click)="cancelar()">Cancelar</ion-button>
+        <ion-button class="save-btn" type="submit">Salvar</ion-button>
+        <ion-button class="cancel-btn" (click)="cancelar()">Cancelar</ion-button>
 
       </form>
 
@@ -29,12 +29,13 @@
 
 <ion-modal [isOpen]="modalDate" trigger="date">
   <ng-template>
-    <div class="modal-data">
-      <div class="calendario">
+
+    <div class="modal-date">
+      <div class="calendary">
 
         <ion-datetime presentation="date" [(ngModel)]="dataAtual" />
 
-        <div class="botoes">
+        <div class="modal-btns">
 
           <ion-button (click)="cancelar()">Cancelar</ion-button>
           <ion-button (click)="salvarData()">Salvar</ion-button>
@@ -43,5 +44,6 @@
 
       </div>
     </div>
+    
   </ng-template>
 </ion-modal>

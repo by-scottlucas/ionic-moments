@@ -15,7 +15,10 @@ export class HomePage implements OnInit {
   moments: IMoment[] = [];
   search!: string;
 
-  constructor(private momentService: MomentService, private modalCtrl: ModalController) { }
+  constructor(
+    private momentService: MomentService,
+    private modalCtrl: ModalController
+  ) { }
 
   ngOnInit() {
     this.getMoments();

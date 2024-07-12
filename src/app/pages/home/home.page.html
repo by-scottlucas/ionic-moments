@@ -33,24 +33,26 @@
 
       <ion-list>
 
-        <ion-item-sliding *ngFor="let moment of moments;" class="item-slide">
+        <ion-item-sliding *ngFor="let moment of moments;" class="slide-item">
 
-          <ion-item class="item-lista">
+          <ion-item class="list-item">
 
             <ion-label class="label-moment">
-              <p class="data-moment">{{ moment.data | date:'dd/MM/yyyy' }}</p>
-              <p class="titulo-moment">{{ moment.titulo }}</p>
+
+              <p class="date-moment">{{ moment.data | date:'dd/MM/yyyy' }}</p>
+              <p class="title-moment">{{ moment.titulo }}</p>
+
             </ion-label>
 
           </ion-item>
 
           <ion-item-options>
 
-            <ion-item-option (click)="editar(moment)" class="botao-acoes">
+            <ion-item-option (click)="editar(moment)" class="action-btn">
               <ion-icon name="create-outline" />
             </ion-item-option>
 
-            <ion-item-option color="danger" (click)="excluir(moment.id)" class="botao-acoes">
+            <ion-item-option color="danger" (click)="excluir(moment.id)" class="action-btn">
               <ion-icon name="trash-outline" />
             </ion-item-option>
 
@@ -61,5 +63,7 @@
       </ion-list>
 
     </div>
+    
   </main>
+
 </ion-content>

@@ -68,14 +68,14 @@ ion-list {
     background: transparent;
 }
 
-.item-slide {
+.slide-item {
     display: flex;
     align-items: center;
     margin-bottom: 6px;
     background-color: #fff;
 }
 
-.item-lista {
+.list-item {
     width: 100%;
     --border-color: transparent;
     --border-radius: 0px;
@@ -88,17 +88,17 @@ ion-list {
     justify-content: space-between;
 }
 
-.data-moment {
+.date-moment {
     font-size: .9rem;
     margin-bottom: 5px;
 }
 
-.titulo-moment {
+.title-moment {
     color: #000;
     font-size: 1.2rem;
 }
 
-.botao-acoes {
+.action-btn {
     width: 60px;
     font-size: 1.6rem;
 }
