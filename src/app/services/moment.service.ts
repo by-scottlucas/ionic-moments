@@ -14,7 +14,7 @@ export class MomentService {
 
   constructor(private http: HttpClient) { }
 
-  getMoments(): Observable<IMoment[]> {
+  list(): Observable<IMoment[]> {
     this.ordemDecrescente();
     return this.http.get<IMoment[]>(this.api);
   }

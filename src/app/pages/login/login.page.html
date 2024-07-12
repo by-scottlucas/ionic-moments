@@ -13,7 +13,8 @@
 
     <div class="input-group">
 
-      <ion-input labelPlacement="stacked" placeholder="Nome" type="email">
+
+      <ion-input labelPlacement="stacked" placeholder="Nome" type="text" *ngIf="rotaAtual !== '/login'">
         <ion-icon slot="start" name="person" aria-hidden="true"></ion-icon>
       </ion-input>
 
@@ -25,7 +26,7 @@
         <ion-icon slot="start" name="lock-closed" aria-hidden="true"></ion-icon>
       </ion-input>
 
-      <a href="#" class="forget-password">
+      <a routerLink="/cadastro" class="forget-password">
         Esqueceu a senha?
       </a>
 
@@ -33,8 +34,13 @@
 
     <div class="btn-group">
 
-      <ion-button class="signin-btn">Entrar</ion-button>
-      <ion-button class="signup-btn">Criar Conta</ion-button>
+      <ion-button class="signin-btn" (click)="rotaAtual === '/login' ? entrar() : criarConta()">
+        {{ rotaAtual === '/login' ? 'Entrar' : 'Criar Conta'}}
+      </ion-button>
+
+      <ion-button class="signup-btn" (click)="navigate()">
+        {{ rotaAtual !== '/cadastro' ? 'Criar Conta' : 'Entrar'}}
+      </ion-button>
 
     </div>
 
