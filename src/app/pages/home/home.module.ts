@@ -1,13 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
+import { MomentFormPageModule } from 'src/app/components/moment-form/moment-form.module';
 
 import { HomePageRoutingModule } from './home-routing.module';
-
 import { HomePage } from './home.page';
-import { AddMomentPageModule } from '../../components/add-moment/add-moment.module';
 
 @NgModule({
   imports: [
@@ -15,8 +13,8 @@ import { AddMomentPageModule } from '../../components/add-moment/add-moment.modu
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
-    AddMomentPageModule
+    MomentFormPageModule
   ],
   declarations: [HomePage]
 })
-export class HomePageModule {}
+export class HomePageModule { }

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { MomentFormPage } from 'src/app/components/moment-form/moment-form.page';
 import { IMoment } from 'src/app/models/IMoment';
 import { MomentService } from 'src/app/services/moment.service';
-import { EditMomentPage } from '../../components/edit-moment/edit-moment.page';
-import { AddMomentPage } from '../../components/add-moment/add-moment.page';
 
 @Component({
   selector: 'app-home',
@@ -25,7 +24,7 @@ export class HomePage implements OnInit {
   }
 
   private getMoments() {
-    this.momentService.getMoments().subscribe(moment => {
+    this.momentService.list().subscribe(moment => {
       this.moments = moment;
     })
   }
@@ -53,12 +52,12 @@ export class HomePage implements OnInit {
 
   adicionar() {
     this.modalCtrl.create({
-      component: AddMomentPage,
+      component: MomentFormPage,
     }).then(modal => {
       modal.present()
       return modal.onDidDismiss();
     }).then(({ data }) => {
-      this.momentService.getMoments().subscribe((moments) => {
+      this.momentService.list().subscribe((moments) => {
         this.moments = moments;
       });
     });
@@ -66,13 +65,13 @@ export class HomePage implements OnInit {
 
   editar(moment: IMoment) {
     this.modalCtrl.create({
-      component: EditMomentPage,
+      component: MomentFormPage,
       componentProps: { dados: moment }
     }).then(modal => {
       modal.present()
       return modal.onDidDismiss();
     }).then(({ data }) => {
-      this.momentService.getMoments().subscribe((moments) => {
+      this.momentService.list().subscribe((moments) => {
         this.moments = moments;
       });
     });

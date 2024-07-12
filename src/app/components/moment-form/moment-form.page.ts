@@ -1,15 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { IMoment } from 'src/app/models/IMoment';
 import { MomentService } from 'src/app/services/moment.service';
 
 @Component({
-  selector: 'app-add-moment',
-  templateUrl: './add-moment.page.html',
-  styleUrls: ['./add-moment.page.scss'],
+  selector: 'app-moment-form',
+  templateUrl: './moment-form.page.html',
+  styleUrls: ['./moment-form.page.scss'],
 })
-export class AddMomentPage implements OnInit {
+export class MomentFormPage implements OnInit {
+
+  rotaAtual!: string;
 
   modal = false;
   dataAtual = new Date().toISOString();
@@ -18,7 +21,15 @@ export class AddMomentPage implements OnInit {
   data!: string;
   moments: IMoment[] = [];
 
-  constructor(private momentService: MomentService, private modalCtrl: ModalController) { }
+  constructor(
+    private router: Router,
+    private momentService: MomentService,
+    private modalCtrl: ModalController
+  ) {
+
+    this.rotaAtual = router.url;
+
+  }
 
   ngOnInit() { }
 

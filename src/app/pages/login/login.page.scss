@@ -8,7 +8,7 @@
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    background: #F1F1F1;
+    // background: #F1F1F1;
 }
 
 .logotipo {
@@ -54,8 +54,9 @@
     text-align: center;
     font-size: 1.1rem;
     border: none;
-    background: #d9d9d9;
+    background: #f0f0f0;
     margin-bottom: 10px;
+    --highlight-color-focused: #b8b8b8;
 }
 
 .input-group ion-icon {
@@ -94,5 +95,5 @@ ion-button {
 }
 
 .signup-btn {
-    --background: #d9d9d9;
+    --background: #f0f0f0;
 }

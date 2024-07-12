@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { MomentFormPage } from './moment-form.page';
 
-import { AddMomentPage } from './add-moment.page';
 
 const routes: Routes = [
-  {
-    path: '', component: AddMomentPage
-  }
+
+  { path: '', component: MomentFormPage }
+
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AddMomentPageRoutingModule { }
+export class MomentFormPageRoutingModule { }

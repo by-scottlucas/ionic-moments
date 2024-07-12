@@ -26,3 +26,7 @@
 @import "@ionic/angular/css/flex-utils.css";
 
 @import url('https://fonts.cdnfonts.com/css/bebas-neue');
+
+ion-content {
+    --background: #FFF;
+}
