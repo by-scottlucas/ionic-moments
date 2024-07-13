@@ -10,6 +10,9 @@ export class LoginPage implements OnInit {
 
   rotaAtual!: string;
 
+  email: string = '';
+  senha: string = '';
+
   constructor(
     private router: Router
   ) {

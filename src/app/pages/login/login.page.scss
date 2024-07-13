@@ -59,6 +59,8 @@
     background: #f0f0f0;
     margin-bottom: 10px;
     --highlight-color-focused: #3F3D56;
+    --highlight-color-valid: #3F3D56;
+    --highlight-color-invalid: #3F3D56;
 }
 
 .input-group ion-icon {
@@ -98,4 +100,95 @@ ion-button {
 
 .signup-btn {
     --background: #f0f0f0;
+}
+
+
+// ********** MEDIA QUERIES **********
+
+// TABLETS
+
+@media screen and (min-width:768px) {
+
+    .logotipo-icon {
+        width: 40%;
+    }
+
+    .logotipo-title {
+        font-size: 3.8rem;
+    }
+
+    .logotipo-subtitle {
+        font-size: 1.4rem;
+    }
+
+    .input-group ion-input {
+        width: 70%;
+        height: 68px;
+        font-size: 1.4rem;
+    }
+
+    .input-group ion-icon {
+        font-size: 1.8rem;
+    }
+
+    .forget-password {
+        margin-top: 10px;
+        font-size: 1.2rem;
+        margin-left: 120px;
+    }
+
+    .btn-group {
+        width: 70%;
+    }
+
+    ion-button {
+        height: 60px;
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+    }
+
+}
+
+// DESKTOPS
+
+@media screen and (min-width:1024px) {
+
+    .logotipo-icon {
+        width: 28%;
+    }
+
+    .logotipo-title {
+        font-size: 3rem;
+    }
+
+    .logotipo-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .input-group ion-input {
+        width: 40%;
+        height: 58px;
+        font-size: 1.2rem;
+    }
+
+    .input-group ion-icon {
+        font-size: 1.6rem;
+    }
+
+    .forget-password {
+        margin-top: 10px;
+        font-size: 1.1rem;
+        margin-left: 30%;
+    }
+
+    .btn-group {
+        width: 40%;
+    }
+
+    ion-button {
+        height: 54px;
+        font-size: 1rem;
+        margin-bottom: 5px;
+    }
+
 }
