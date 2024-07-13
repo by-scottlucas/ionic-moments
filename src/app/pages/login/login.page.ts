@@ -15,7 +15,6 @@ export class LoginPage implements OnInit {
   ) {
 
     this.rotaAtual = String(this.router.url)
-    // console.log(rota);
 
   }
 

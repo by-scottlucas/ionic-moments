@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { MomentFormPage } from 'src/app/components/moment-form/moment-form.page';
-import { IMoment } from 'src/app/models/IMoment';
+import { MomentDTO } from 'src/app/models/moment/moment.dto';
 import { MomentService } from 'src/app/services/moment.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { MomentService } from 'src/app/services/moment.service';
 })
 export class HomePage implements OnInit {
 
-  moments: IMoment[] = [];
+  moments: MomentDTO[] = [];
   search!: string;
 
   constructor(
@@ -63,7 +63,7 @@ export class HomePage implements OnInit {
     });
   }
 
-  editar(moment: IMoment) {
+  editar(moment: MomentDTO) {
     this.modalCtrl.create({
       component: MomentFormPage,
       componentProps: { dados: moment }

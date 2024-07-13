@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IMoment } from 'src/app/models/IMoment';
+import { MomentDTO } from 'src/app/models/moment/moment.dto';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -14,23 +14,23 @@ export class MomentService {
 
   constructor(private http: HttpClient) { }
 
-  list(): Observable<IMoment[]> {
+  list(): Observable<MomentDTO[]> {
     this.ordemDecrescente();
-    return this.http.get<IMoment[]>(this.api);
+    return this.http.get<MomentDTO[]>(this.api);
   }
 
-  create(moment: IMoment) {
-    return this.http.post<IMoment>(this.api, moment);
+  create(moment: MomentDTO) {
+    return this.http.post<MomentDTO>(this.api, moment);
   }
 
-  read(id: number): Observable<IMoment> {
+  read(id: number): Observable<MomentDTO> {
     const payload = `${this.api}/${id}`;
-    return this.http.get<IMoment>(payload);
+    return this.http.get<MomentDTO>(payload);
   }
 
-  update(id: number, data: IMoment) {
+  update(id: number, data: MomentDTO) {
     const payload = `${this.api}/${id}`;
-    return this.http.put<IMoment>(payload, data);
+    return this.http.put<MomentDTO>(payload, data);
   }
 
   delete(id: number) {
@@ -39,7 +39,7 @@ export class MomentService {
   }
 
   private ordemDecrescente() {
-    const moments: IMoment[] = [];
+    const moments: MomentDTO[] = [];
     moments.sort((a, b) => {
       return new Date(b.data).getTime() - new Date(a.data).getTime();
     })

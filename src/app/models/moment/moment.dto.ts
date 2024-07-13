@@ -1,5 +1,7 @@
-export interface IMoment {
+export interface MomentDTO {
+
     id: number,
     titulo: string,
     data: string,
+    
 }

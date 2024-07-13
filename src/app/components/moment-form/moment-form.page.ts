@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
-import { IMoment } from 'src/app/models/IMoment';
+import { MomentDTO } from 'src/app/models/moment/moment.dto';
 import { MomentService } from 'src/app/services/moment.service';
 
 @Component({
@@ -19,7 +19,7 @@ export class MomentFormPage implements OnInit {
 
   titulo!: string;
   data!: string;
-  moments: IMoment[] = [];
+  moments: MomentDTO[] = [];
 
   constructor(
     private router: Router,
