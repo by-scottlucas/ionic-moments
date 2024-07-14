@@ -6,12 +6,12 @@
     <div class="header-bg"></div>
 
     <!-- USER HEADER -->
-    <div class="user-header">
+    <div class="user-header" (click)="openModalUser()">
 
       <div class="user-box">
         
         <ion-icon name="person" class="user-icon"></ion-icon>
-        <p class="user-name">Lucas Santos Silva</p>
+        <p class="user-name">{{ userLogado }}</p>
         <ion-icon name="chevron-down-outline" class="user-icon"></ion-icon>
         
       </div>

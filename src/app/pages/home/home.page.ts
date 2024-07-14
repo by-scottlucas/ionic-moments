@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { MomentFormPage } from 'src/app/components/moment-form/moment-form.page';
+import { UserModalComponent } from 'src/app/components/user-modal/user-modal.component';
 import { MomentDTO } from 'src/app/models/moment/moment.dto';
 import { AuthService } from 'src/app/services/auth.service';
 import { MomentService } from 'src/app/services/moment.service';
@@ -44,11 +45,22 @@ export class HomePage implements OnInit {
 
   ngOnInit() { }
 
+  openModalUser() {
+    this.modalCtrl.create({
+      component: UserModalComponent,
+    }).then(modal => {
+      modal.present()
+      return modal.onDidDismiss();
+    }).then(({ data }) => {
+      console.log(data);
+    });
+  }
+
   async listarMoments() {
 
     this.momentService.list().subscribe(async response => {
       // this.moments = response;
-      const responseFilter =  response.filter(moment => moment.id_usuario.email === this.userLogado);
+      const responseFilter = response.filter(moment => moment.id_usuario.email === this.userLogado);
       console.log(responseFilter)
       this.moments = responseFilter;
     })
