@@ -12,6 +12,8 @@ import { MomentService } from 'src/app/services/moment.service';
 })
 export class HomePage implements OnInit {
 
+  userLogado: string = '';
+
   moments: MomentDTO[] = [];
   search!: string;
 
@@ -21,25 +23,34 @@ export class HomePage implements OnInit {
     private modalCtrl: ModalController
   ) {
 
-    this.getMoments()
+    this.listarMoments();
 
-    // authService.isAuthenticated().subscribe(response => {
-    //   console.log("Sessão Ativa")
-    // });
+    this.userLogado = JSON.parse(sessionStorage.getItem('email')!);
+
+    authService.isAuthenticated().subscribe(response => {
+      // console.log("Sessão Ativa")
+      console.log(response)
+    });
 
     // authService.logout().subscribe(response => {
     //   console.log(response)
     // })
 
+    // authService.profile().subscribe(response => {
+    //   console.log(response)
+    // })
+
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-  async getMoments() {
+  async listarMoments() {
 
-    this.momentService.list().subscribe(async moment => {
-      this.moments = moment;
-      console.log(moment)
+    this.momentService.list().subscribe(async response => {
+      // this.moments = response;
+      const responseFilter =  response.filter(moment => moment.id_usuario.email === this.userLogado);
+      console.log(responseFilter)
+      this.moments = responseFilter;
     })
   }
 
@@ -48,7 +59,7 @@ export class HomePage implements OnInit {
     this.search = event.target.value.trim().toLowerCase();
 
     if (this.search === '') {
-      this.getMoments();
+      this.listarMoments();
     } else {
 
       const filtroMoments = this.moments.filter((moment) => {
@@ -98,7 +109,7 @@ export class HomePage implements OnInit {
 
     if (await confirm("Deseja excluir este Moment?")) {
       this.momentService.delete(id).subscribe(() => {
-        this.getMoments();
+        this.listarMoments();
       });
     };
 

@@ -39,6 +39,7 @@ export class LoginPage implements OnInit {
 
 
   async entrar(form: NgForm) {
+
     if (this.email && this.senha) {
       const dados: AuthLoginDTO = form.value;
 
@@ -51,6 +52,7 @@ export class LoginPage implements OnInit {
 
               if (response) {
                 this.router.navigate(['/home']);
+                sessionStorage.setItem('email', JSON.stringify(this.email));
               }
             },
             error: (error) => {
