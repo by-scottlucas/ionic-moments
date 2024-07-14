@@ -1,6 +1,6 @@
 <ion-content [fullscreen]="true">
 
-  <div class="container">
+  <form class="container" #form="ngForm" (ngSubmit)="rotaAtual === '/login' ? entrar(form) : criarConta(form)">
 
     <div class="logotipo">
 
@@ -36,7 +36,7 @@
 
     <div class="btn-group">
 
-      <ion-button class="signin-btn" (click)="rotaAtual === '/login' ? entrar() : criarConta()">
+      <ion-button type="submit" class="signin-btn">
         {{ rotaAtual === '/login' ? 'Entrar' : 'Criar Conta'}}
       </ion-button>
 
@@ -47,6 +47,6 @@
     </div>
 
 
-  </div>
+  </form>
 
 </ion-content>

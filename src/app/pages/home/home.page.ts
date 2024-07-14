@@ -17,15 +17,35 @@ export class HomePage implements OnInit {
   constructor(
     private momentService: MomentService,
     private modalCtrl: ModalController
-  ) { }
+  ) {
+
+    // const response = await fetch("http://localhost:3000/api/v1/auth/profile", {
+    //   method: 'POST',
+    //   headers: {
+    //     'Authorization': `Bearer ${accessToken}`,
+    //     'Content-Type': 'application/json'
+    //   }
+    // });
+
+  }
 
   ngOnInit() {
     this.getMoments();
   }
 
-  private getMoments() {
-    this.momentService.list().subscribe(moment => {
-      this.moments = moment;
+  async getMoments() {
+
+    await fetch("http://localhost:3000/api/v1/auth/profile", {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJMdWNhcyBTYW50b3MgU2lsdmEiLCJlbWFpbCI6Imx1Y2FzQGVtYWlsLmNvbSIsImlhdCI6MTcyMDk0MDA3MCwiZXhwIjoxNzIxNTQ0ODcwLCJhdWQiOiJ1c2VycyIsImlzcyI6ImxvZ2luIn0.fu5FiQ_85os7KITUrHQA_hYE32T7HOuYoglaHc8c6v0`,
+        'Content-Type': 'application/json'
+      }
+    });
+
+    this.momentService.read(1).subscribe(async moment => {
+      // this.moments = moment;
+      console.log(moment)
     })
   }
 
@@ -53,6 +73,7 @@ export class HomePage implements OnInit {
   adicionar() {
     this.modalCtrl.create({
       component: MomentFormPage,
+      componentProps: { formType: 'adicionar' }
     }).then(modal => {
       modal.present()
       return modal.onDidDismiss();
@@ -66,7 +87,7 @@ export class HomePage implements OnInit {
   editar(moment: MomentDTO) {
     this.modalCtrl.create({
       component: MomentFormPage,
-      componentProps: { dados: moment }
+      componentProps: { dados: moment, formType: 'editar' }
     }).then(modal => {
       modal.present()
       return modal.onDidDismiss();

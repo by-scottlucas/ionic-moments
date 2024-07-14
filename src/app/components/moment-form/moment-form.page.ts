@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
@@ -11,6 +11,9 @@ import { MomentService } from 'src/app/services/moment.service';
   styleUrls: ['./moment-form.page.scss'],
 })
 export class MomentFormPage implements OnInit {
+
+
+  @Input() formType: any;
 
   rotaAtual!: string;
 
@@ -28,6 +31,8 @@ export class MomentFormPage implements OnInit {
   ) {
 
     this.rotaAtual = router.url;
+    
+    console.log(this.formType)
 
   }
 

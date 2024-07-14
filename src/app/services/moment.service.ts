@@ -23,9 +23,9 @@ export class MomentService {
     return this.http.post<MomentDTO>(this.api, moment);
   }
 
-  read(id: number): Observable<MomentDTO> {
+  read(id: number): Observable<MomentDTO[]> {
     const payload = `${this.api}/${id}`;
-    return this.http.get<MomentDTO>(payload);
+    return this.http.get<MomentDTO[]>(payload);
   }
 
   update(id: number, data: MomentDTO) {
