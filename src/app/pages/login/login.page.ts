@@ -24,56 +24,101 @@ export class LoginPage implements OnInit {
 
     this.rotaAtual = String(this.router.url)
 
+    // authService.isAuthenticated().subscribe(response => {
+      
+    //   console.log(response)
+    // });
+
+    // authService.logout().subscribe(response => {
+    //   console.log(response)
+    // })
+
   }
 
   ngOnInit() { }
 
 
   async entrar(form: NgForm) {
-
     if (this.email && this.senha) {
-
-      const dados: AuthLoginDTO = form.value as AuthLoginDTO;
+      const dados: AuthLoginDTO = form.value;
 
       try {
 
-        const accessToken = await new Promise<string>((resolve, reject) => {
+        await new Promise<string>((resolve, reject) => {
           this.authService.login(dados).subscribe({
             next: (response) => {
-              resolve(response.accessToken);
+              resolve(response);
+
+              if (response) {
+                this.router.navigate(['/home']);
+              }
             },
             error: (error) => {
               reject(error);
+
+              console.error('Erro ao fazer login:', error);
             }
           });
         });
 
-        console.log('Access Token:', accessToken);
-
-        // Agora você pode fazer a chamada para a rota profile no backend
-        const response = await fetch("http://localhost:3000/api/v1/auth/profile", {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${accessToken}`,
-            'Content-Type': 'application/json'
-          }
-        });
-
-        if (response.ok) {
-          const dados = await response.json();
-          console.log('Dados do perfil:', dados);
-          // Redirecione para a página desejada após o login bem-sucedido
-          this.router.navigate(['home']);
-        } else {
-          console.error('Erro ao chamar perfil:', response.statusText);
-        }
+        // const response = await this.authService.login(dados).toPromise();
+        // if (response) {
+        //   this.router.navigate(['/home']);
+        // }
 
       } catch (error) {
         console.error('Erro ao fazer login:', error);
       }
     }
-
   }
+
+
+
+  // async entrar(form: NgForm) {
+
+  //   if (this.email && this.senha) {
+
+  //     const dados: AuthLoginDTO = form.value as AuthLoginDTO;
+
+  //     try {
+
+  //       const accessToken = await new Promise<string>((resolve, reject) => {
+  //         this.authService.login(dados).subscribe({
+  //           next: (response) => {
+  //             resolve(response.accessToken);
+  //           },
+  //           error: (error) => {
+  //             reject(error);
+  //           }
+  //         });
+  //       });
+
+  //       console.log('Access Token:', accessToken);
+
+  //       // Agora você pode fazer a chamada para a rota profile no backend
+  //       const response = await fetch("http://localhost:3000/api/v1/auth/profile", {
+  //         method: 'POST',
+  //         headers: {
+  //           'Authorization': `Bearer ${accessToken}`,
+  //           'Content-Type': 'application/json'
+  //         }
+  //       });
+
+  //       if (response.ok) {
+  //         const dados = await response.json();
+  //         console.log('Dados do perfil:', dados);
+  //         // Redirecione para a página desejada após o login bem-sucedido
+  //         this.router.navigate(['home']);
+  //       } else {
+  //         console.error('Erro ao chamar perfil:', response.statusText);
+  //       }
+
+  //     } catch (error) {
+  //       console.error('Erro ao fazer login:', error);
+  //     }
+  //   }
+
+  // }
 
 
   criarConta(form: NgForm) {

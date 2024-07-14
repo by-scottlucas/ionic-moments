@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { MomentFormPage } from 'src/app/components/moment-form/moment-form.page';
 import { MomentDTO } from 'src/app/models/moment/moment.dto';
+import { AuthService } from 'src/app/services/auth.service';
 import { MomentService } from 'src/app/services/moment.service';
 
 @Component({
@@ -15,36 +16,29 @@ export class HomePage implements OnInit {
   search!: string;
 
   constructor(
+    private authService: AuthService,
     private momentService: MomentService,
     private modalCtrl: ModalController
   ) {
 
-    // const response = await fetch("http://localhost:3000/api/v1/auth/profile", {
-    //   method: 'POST',
-    //   headers: {
-    //     'Authorization': `Bearer ${accessToken}`,
-    //     'Content-Type': 'application/json'
-    //   }
+    this.getMoments()
+
+    // authService.isAuthenticated().subscribe(response => {
+    //   console.log("Sessão Ativa")
     // });
 
+    // authService.logout().subscribe(response => {
+    //   console.log(response)
+    // })
+
   }
 
-  ngOnInit() {
-    this.getMoments();
-  }
+  ngOnInit() {}
 
   async getMoments() {
 
-    await fetch("http://localhost:3000/api/v1/auth/profile", {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJMdWNhcyBTYW50b3MgU2lsdmEiLCJlbWFpbCI6Imx1Y2FzQGVtYWlsLmNvbSIsImlhdCI6MTcyMDk0MDA3MCwiZXhwIjoxNzIxNTQ0ODcwLCJhdWQiOiJ1c2VycyIsImlzcyI6ImxvZ2luIn0.fu5FiQ_85os7KITUrHQA_hYE32T7HOuYoglaHc8c6v0`,
-        'Content-Type': 'application/json'
-      }
-    });
-
-    this.momentService.read(1).subscribe(async moment => {
-      // this.moments = moment;
+    this.momentService.list().subscribe(async moment => {
+      this.moments = moment;
       console.log(moment)
     })
   }

@@ -29,9 +29,14 @@ export class AuthService {
     return this.http.post<AuthLoginDTO>(url, data, { withCredentials: true });
   }
 
-  profile(user: UserDTO, token: string): Observable<any> {
+  logout(): Observable<any> {
+    const url = `${this.api}/logout`;
+    return this.http.post(url, {}, { withCredentials: true });
+  }
+
+  profile(user: UserDTO): Observable<any> {
     const url = `${this.api}/profile`;
-    return this.http.post<any>(url, { user, token }, { withCredentials: true });
+    return this.http.post<any>(url, { user }, { withCredentials: true });
   }
 
   forget(data: AuthForgetDTO): Observable<any> {
@@ -42,5 +47,11 @@ export class AuthService {
   reset(data: AuthResetDTO): Observable<any> {
     const url = `${this.api}/reset`;
     return this.http.post<AuthResetDTO>(url, data, { withCredentials: true });
+  }
+
+  // VERIFICAR SE O USUÁRIO ESTÁ LOGADO POR SESSÃO NO BACK END
+  isAuthenticated(): Observable<any> {
+    const url = `${this.api}/get-session`;
+    return this.http.get<any>(url, { withCredentials: true });
   }
 }
