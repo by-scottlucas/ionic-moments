@@ -3,7 +3,9 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { MomentDTO } from 'src/app/models/moment/moment.dto';
+import { AuthService } from 'src/app/services/auth.service';
 import { MomentService } from 'src/app/services/moment.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-moment-form',
@@ -12,34 +14,55 @@ import { MomentService } from 'src/app/services/moment.service';
 })
 export class MomentFormPage implements OnInit {
 
-
-  @Input() formType: any;
+  @Input() formType: string = '';
 
   rotaAtual!: string;
+  modalIsOpen = false;
 
-  modal = false;
   dataAtual = new Date().toISOString();
 
   titulo!: string;
-  data!: string;
-  moments: MomentDTO[] = [];
+  date!: string; // Alterado para string para aceitar o formato YYYY-MM-DD
+  id_usuario!: number;
 
   constructor(
     private router: Router,
+    private userService: UserService,
+    private authService: AuthService,
     private momentService: MomentService,
     private modalCtrl: ModalController
   ) {
-
     this.rotaAtual = router.url;
-    
-    console.log(this.formType)
-
+    this.getUser();
   }
 
-  ngOnInit() { }
+  getUser() {
+    const emailUser = sessionStorage.getItem('email');
+
+    if (emailUser) {
+      this.userService.list().subscribe(response => {
+        const user = response.find(user => emailUser.includes(user.email!));
+
+        if (user) {
+          console.log('Usuário encontrado:', user);
+          this.id_usuario = Number(user.id);
+        } else {
+          console.log('Usuário não encontrado');
+        }
+      }, error => {
+        console.error('Erro ao buscar usuários:', error);
+      });
+    } else {
+      console.log('Email não encontrado no sessionStorage');
+    }
+  }
+
+  ngOnInit() {
+    console.log("Tipo de Formulário:", this.formType);
+  }
 
   private modalData(isOpen: boolean) {
-    this.modal = isOpen;
+    this.modalIsOpen = isOpen;
   }
 
   selecionarData() {
@@ -47,37 +70,34 @@ export class MomentFormPage implements OnInit {
   }
 
   salvarData(): void {
+    if (this.dataAtual) {
+      this.date = this.dataAtual.slice(0, 10); // Apenas pegando YYYY-MM-DD da data atual em formato ISO
+      console.log(this.date); // Saída: "2024-07-15"
 
-    if (this.data !== null) {
       this.modalData(false);
+    } else {
+      console.error('Data inválida');
     }
-
-    const dataFormatada = this.dataAtual.replace(/^(\d{2})(\d{2})(\d{4})$/, '$2/$1/$3');
-    this.data = dataFormatada;
-
   }
 
   async salvarAdicao(form: NgForm) {
+    if (this.titulo && this.date) {
+      const moment: MomentDTO = {
+        ...form.value,
+        id_usuario: Number(this.id_usuario),
+      };
 
-    if (this.titulo && this.data) {
-
-      const moment = form.value;
+      console.log(moment);
 
       this.momentService.create(moment).subscribe(response => {
-        this.limparInputs();
-        alert('Moment registrado com sucesso!');
-        this.modalCtrl.dismiss(response);
-      })
-
+        console.log(response);
+        // Limpar inputs ou outra lógica após salvar
+      }, error => {
+        console.error('Erro ao salvar momento:', error);
+      });
     } else {
       alert('Por favor preencha todos os campos');
     }
-
-  }
-
-  private limparInputs() {
-    this.titulo = '';
-    this.data = '';
   }
 
   cancelar() {

@@ -14,15 +14,7 @@ export class AppComponent {
     private authService: AuthService
   ) {
 
-    // authService.isAuthenticated().subscribe(response => {
-    //   console.log("Sessão Ativa")
-    // });
-
-
-    // authService.logout().subscribe(response => {
-    //   console.log(response)
-    //   router.navigate(['/'])
-    // })
+    authService.isAuthenticated().subscribe();
 
   }
 

@@ -9,7 +9,7 @@
         <ion-img src="../../../assets/images/polaroids.png" class="form-header-img" />
 
         <h1 class="form-header-title">
-          {{ rotaAtual === '/add-moment' ? 'Adicionar Moment' : 'Editar Moment' }}
+          {{ formType === 'adicionar' ? 'Adicionar Moment' : 'Editar Moment' }}
         </h1>
 
       </div>
@@ -19,8 +19,8 @@
         <ion-input type="text" placeholder="Qual momento deseja registrar?" class="input-title" [(ngModel)]="titulo"
           name="titulo" />
 
-        <ion-button class="input-date" (click)="selecionarData()" id="date" [(ngModel)]="data" name="data">
-          {{ data ? (data | date:'dd/MM/yyyy') : 'dd/mm/yyyy' }}
+        <ion-button class="input-date" (click)="selecionarData()" id="date" [(ngModel)]="date" name="date">
+          {{ date ? (date | date:'dd/MM/yyyy') : 'dd/mm/yyyy' }}
         </ion-button>
 
       </div>
@@ -28,7 +28,7 @@
       <div class="form-buttons">
 
         <ion-button class="add-button" type="submit">
-          {{ rotaAtual === '/add-moment' ? 'Adicionar' : 'Salvar Edição' }}
+          {{ formType === 'adicionar' ? 'Adicionar' : 'Salvar Edição' }}
         </ion-button>
 
         <ion-button class="cancel-button" (click)="cancelar()">
@@ -45,7 +45,7 @@
 
 <!-- MODAL PARA SELECIONAR DATA -->
 
-<ion-modal [isOpen]="modal" trigger="date">
+<ion-modal [isOpen]="modalIsOpen" trigger="date">
   <ng-template>
     <div class="modal-data">
       <div class="calendario">

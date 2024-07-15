@@ -28,19 +28,6 @@ export class HomePage implements OnInit {
 
     this.userLogado = JSON.parse(sessionStorage.getItem('email')!);
 
-    authService.isAuthenticated().subscribe(response => {
-      // console.log("Sessão Ativa")
-      console.log(response)
-    });
-
-    // authService.logout().subscribe(response => {
-    //   console.log(response)
-    // })
-
-    // authService.profile().subscribe(response => {
-    //   console.log(response)
-    // })
-
   }
 
   ngOnInit() { }
@@ -59,10 +46,13 @@ export class HomePage implements OnInit {
   async listarMoments() {
 
     this.momentService.list().subscribe(async response => {
-      // this.moments = response;
-      const responseFilter = response.filter(moment => moment.id_usuario.email === this.userLogado);
-      console.log(responseFilter)
+
+      const responseFilter = response.filter(
+        moment => moment.id_usuario.email === this.userLogado
+      );
+
       this.moments = responseFilter;
+
     })
   }
 
@@ -87,31 +77,36 @@ export class HomePage implements OnInit {
     }
   }
 
+
   adicionar() {
     this.modalCtrl.create({
       component: MomentFormPage,
-      componentProps: { formType: 'adicionar' }
+      componentProps: { formType: "adicionar" }
     }).then(modal => {
       modal.present()
       return modal.onDidDismiss();
     }).then(({ data }) => {
-      this.momentService.list().subscribe((moments) => {
-        this.moments = moments;
-      });
+
+      console.log(data);
+      this.listarMoments();
+
     });
   }
 
   editar(moment: MomentDTO) {
     this.modalCtrl.create({
       component: MomentFormPage,
-      componentProps: { dados: moment, formType: 'editar' }
+      componentProps: {
+        dados: moment,
+        formType: 'editar'
+      }
     }).then(modal => {
       modal.present()
       return modal.onDidDismiss();
     }).then(({ data }) => {
-      this.momentService.list().subscribe((moments) => {
-        this.moments = moments;
-      });
+      console.log(data);
+
+      this.listarMoments();
     });
   }
 

@@ -4,6 +4,6 @@ export interface MomentDTO {
 
     id?: number;
     titulo: string;
-    data: string;
+    data: Date;
     id_usuario: UserDTO;
 }
