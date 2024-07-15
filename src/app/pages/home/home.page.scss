@@ -95,14 +95,21 @@
 }
 
 .search-bar {
-    margin-top: -10px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     color: #000;
-    padding-left: 0;
-    padding-right: 0;
+    font-size: 1.1rem;
+    --padding-start: 15px;
     --box-shadow: none;
-    --border-radius: 4px;
-    --background: #fff;
+    border-radius: 4px;
+    background: #fff;
+    --highlight-color-focused: #3F3D56;
+    --highlight-color-valid: #3F3D56;
+    --highlight-color-invalid: #3F3D56;
+}
+
+.search-bar ion-icon {
+    color: #979797;
+    font-size: 1.4rem;
 }
 
 .not-moments {

@@ -57,25 +57,21 @@ export class HomePage implements OnInit {
   }
 
   // CORRIGIR MÉTODO
-  searchInput(event: any) {
+  searchMoments(event: Event) {
 
-    this.search = event.target.value.trim().toLowerCase();
+    const inputElement = event.target as HTMLInputElement;
 
-    if (this.search === '') {
-      this.listarMoments();
-    } else {
+    const termo = inputElement.value;
+    this.search = termo;
 
-      const filtroMoments = this.moments.filter((moment) => {
-        return moment.titulo.toLowerCase().includes(this.search);
-      });
+    let momentsFiltrados = this.moments;
 
-      if (filtroMoments.length === 0) {
-        alert("Nenhum Moment encontrado");
-        this.search = '';
-      } else {
-        this.moments = filtroMoments;
-      }
-    }
+    momentsFiltrados = momentsFiltrados.filter(moment => {
+      moment.titulo.toLowerCase().includes(this.search.toLowerCase());
+    });
+
+    this.moments = momentsFiltrados;
+
   }
 
 
