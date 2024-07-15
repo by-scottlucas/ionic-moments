@@ -30,7 +30,7 @@ export class MomentService {
 
   update(id: number, data: MomentDTO) {
     const payload = `${this.api}/${id}`;
-    return this.http.put<MomentDTO>(payload, data);
+    return this.http.patch<MomentDTO>(payload, data);
   }
 
   delete(id: number) {

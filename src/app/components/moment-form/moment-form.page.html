@@ -2,7 +2,7 @@
 
   <div class="container">
 
-    <form #f="ngForm" (ngSubmit)="salvarAdicao(f)" class="form">
+    <form #f="ngForm" (ngSubmit)="formType === 'adicionar' ? salvarAdicao(f) : salvarEdicao(f)" class="form">
 
       <div class="form-header">
 
@@ -19,9 +19,9 @@
         <ion-input type="text" placeholder="Qual momento deseja registrar?" class="input-title" [(ngModel)]="titulo"
           name="titulo" />
 
-        <ion-input class="input-date" (click)="selecionarData()" id="date" [(ngModel)]="date" name="date" disabled>
+        <ion-button class="input-date" (click)="selecionarData()" id="date" [(ngModel)]="date" name="date">
           {{ date ? (date | date:'dd/MM/yyyy') : 'dd/mm/yyyy' }}
-        </ion-input>
+        </ion-button>
 
       </div>
 

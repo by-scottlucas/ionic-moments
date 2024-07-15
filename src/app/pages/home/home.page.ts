@@ -97,7 +97,7 @@ export class HomePage implements OnInit {
     this.modalCtrl.create({
       component: MomentFormPage,
       componentProps: {
-        dados: moment,
+        dadosEdicao: moment,
         formType: 'editar'
       }
     }).then(modal => {

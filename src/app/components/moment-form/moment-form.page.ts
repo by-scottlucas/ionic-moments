@@ -15,6 +15,7 @@ import { UserService } from 'src/app/services/user.service';
 export class MomentFormPage implements OnInit {
 
   @Input() formType: string = '';
+  @Input() dadosEdicao!: MomentDTO;
 
   rotaAtual!: string;
   modalIsOpen = false;
@@ -22,7 +23,7 @@ export class MomentFormPage implements OnInit {
   dataAtual = new Date().toISOString();
 
   titulo!: string;
-  date!: string; // Alterado para string para aceitar o formato YYYY-MM-DD
+  date!: string | Date; // Alterado para string para aceitar o formato YYYY-MM-DD
   id_usuario!: number;
 
   constructor(
@@ -37,28 +38,35 @@ export class MomentFormPage implements OnInit {
   }
 
   getUser() {
+
     const emailUser = sessionStorage.getItem('email');
 
     if (emailUser) {
+
       this.userService.list().subscribe(response => {
+
         const user = response.find(user => emailUser.includes(user.email!));
 
         if (user) {
-          console.log('Usuário encontrado:', user);
+          // console.log('Usuário encontrado:', user);
           this.id_usuario = Number(user.id);
         } else {
           console.log('Usuário não encontrado');
         }
-      }, error => {
-        console.error('Erro ao buscar usuários:', error);
-      });
+      })
+
     } else {
       console.log('Email não encontrado no sessionStorage');
     }
   }
 
   ngOnInit() {
-    console.log("Tipo de Formulário:", this.formType);
+
+    if (this.formType === 'editar') {
+      this.titulo = this.dadosEdicao.titulo;
+      this.date = this.dadosEdicao.data;
+    }
+    
   }
 
   private modalData(isOpen: boolean) {
@@ -74,9 +82,8 @@ export class MomentFormPage implements OnInit {
     if (this.dataAtual) {
 
       this.date = this.dataAtual.slice(0, 10); // Apenas pegando YYYY-MM-DD da data atual em formato ISO
-
       this.modalData(false);
-      
+
     } else {
       console.error('Data inválida');
     }
@@ -103,6 +110,32 @@ export class MomentFormPage implements OnInit {
     } else {
       alert('Por favor preencha todos os campos');
     }
+
+  }
+
+  async salvarEdicao(form: NgForm) {
+
+    if (this.titulo && this.date) {
+
+      const id = Number(this.dadosEdicao.id)
+
+      const moment: MomentDTO = {
+        ...form.value,
+        data: this.date,
+      };
+
+      console.log(moment);
+
+      this.momentService.update(id, moment).subscribe(response => {
+        console.log(response);
+        this.modalCtrl.dismiss(response);
+      }, error => {
+        console.error('Erro ao editar momento:', error);
+      });
+    } else {
+      alert('Por favor preencha todos os campos');
+    }
+
   }
 
   cancelar() {
