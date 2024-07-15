@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ModalController } from '@ionic/angular';
+import { AlertController, ModalController, ToastController } from '@ionic/angular';
 import { MomentDTO } from 'src/app/models/moment/moment.dto';
 import { AuthService } from 'src/app/services/auth.service';
 import { MomentService } from 'src/app/services/moment.service';
@@ -29,11 +29,11 @@ export class MomentFormPage implements OnInit {
   constructor(
     private router: Router,
     private userService: UserService,
-    private authService: AuthService,
+    private toastCtrl: ToastController,
+    private modalCtrl: ModalController,
     private momentService: MomentService,
-    private modalCtrl: ModalController
   ) {
-    this.rotaAtual = router.url;
+    this.rotaAtual = this.router.url;
     this.getUser();
   }
 
@@ -66,7 +66,7 @@ export class MomentFormPage implements OnInit {
       this.titulo = this.dadosEdicao.titulo;
       this.date = this.dadosEdicao.data;
     }
-    
+
   }
 
   private modalData(isOpen: boolean) {
@@ -107,8 +107,17 @@ export class MomentFormPage implements OnInit {
       }, error => {
         console.error('Erro ao salvar momento:', error);
       });
+
     } else {
-      alert('Por favor preencha todos os campos');
+
+      this.toastCtrl.create({
+        message: 'Por favor preencha todos os campos',
+        duration: 1000,
+        position: 'top',
+        cssClass: 'toast-message'
+
+      }).then(toast => { toast.present() })
+
     }
 
   }
@@ -132,8 +141,17 @@ export class MomentFormPage implements OnInit {
       }, error => {
         console.error('Erro ao editar momento:', error);
       });
+
     } else {
-      alert('Por favor preencha todos os campos');
+
+      this.toastCtrl.create({
+        message: 'Por favor preencha todos os campos',
+        duration: 1000,
+        position: 'top',
+        cssClass: 'toast-message'
+
+      }).then(toast => { toast.present() })
+
     }
 
   }

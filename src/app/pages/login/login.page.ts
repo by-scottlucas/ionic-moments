@@ -26,15 +26,6 @@ export class LoginPage implements OnInit {
 
     this.rotaAtual = String(this.router.url)
 
-    // authService.isAuthenticated().subscribe(response => {
-      
-    //   console.log(response)
-    // });
-
-    // authService.logout().subscribe(response => {
-    //   console.log(response)
-    // })
-
   }
 
   ngOnInit() { }
@@ -65,11 +56,6 @@ export class LoginPage implements OnInit {
           });
         });
 
-        // const response = await this.authService.login(dados).toPromise();
-        // if (response) {
-        //   this.router.navigate(['/home']);
-        // }
-
       } catch (error) {
         console.error('Erro ao fazer login:', error);
       }
@@ -91,7 +77,7 @@ export class LoginPage implements OnInit {
     this.router.navigate(['/login'])
   }
 
-  navigate() {
+  navigateToForm() {
     if (this.rotaAtual === '/login') {
       this.router.navigate(['/cadastro']);
     } else {

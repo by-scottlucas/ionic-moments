@@ -9,12 +9,18 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./user-modal.page.scss'],
 })
 export class UserModalPage implements OnInit {
-  
+
+  userEmail: string = '';
+
   constructor(
     private router: Router,
     private authService: AuthService,
     private modalCtrl: ModalController
-  ) { }
+  ) {
+
+    this.userEmail = JSON.parse(sessionStorage.getItem('email')!);
+
+  }
 
   ngOnInit() { }
 
@@ -27,8 +33,8 @@ export class UserModalPage implements OnInit {
     })
   }
 
-  fecharModal(){
+  fecharModal() {
     this.modalCtrl.dismiss();
   }
-  
+
 }

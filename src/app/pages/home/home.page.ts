@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { MomentFormPage } from 'src/app/components/moment-form/moment-form.page';
 import { UserModalPage } from 'src/app/components/user-modal/user-modal.page';
 import { MomentDTO } from 'src/app/models/moment/moment.dto';
@@ -19,9 +19,9 @@ export class HomePage implements OnInit {
   search!: string;
 
   constructor(
-    private authService: AuthService,
+    private modalCtrl: ModalController,
+    private toastCtrl: ToastController,
     private momentService: MomentService,
-    private modalCtrl: ModalController
   ) {
 
     this.userLogado = JSON.parse(sessionStorage.getItem('email')!);
@@ -56,6 +56,7 @@ export class HomePage implements OnInit {
     })
   }
 
+  // CORRIGIR MÉTODO
   searchInput(event: any) {
 
     this.search = event.target.value.trim().toLowerCase();
@@ -104,9 +105,10 @@ export class HomePage implements OnInit {
       modal.present()
       return modal.onDidDismiss();
     }).then(({ data }) => {
-      console.log(data);
 
+      console.log(data);
       this.listarMoments();
+
     });
   }
 

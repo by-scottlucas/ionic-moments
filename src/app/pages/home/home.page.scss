@@ -8,7 +8,10 @@
     background: #212129;
 }
 
+// HEADER USUÁRIO LOGADO
+
 .user-header {
+    cursor: pointer;
     margin-top: -130px;
     margin-bottom: 10px;
     display: flex;
@@ -34,6 +37,8 @@
     align-items: center;
     justify-content: center;
 }
+
+// HEADER ADD MOMENT
 
 .header-add-moment {
     margin: 0 auto;

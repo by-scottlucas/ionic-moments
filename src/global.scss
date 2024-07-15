@@ -32,3 +32,11 @@ ion-content {
     --background: #FFF;
 }
 
+.toast-message {
+    padding: 20px;
+    color: #000;
+    font-size: 1.1rem;
+    text-align: center;
+    --box-shadow: 0;
+    --background: #ececec;
+  }
