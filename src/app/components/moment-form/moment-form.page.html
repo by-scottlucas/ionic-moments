@@ -19,9 +19,9 @@
         <ion-input type="text" placeholder="Qual momento deseja registrar?" class="input-title" [(ngModel)]="titulo"
           name="titulo" />
 
-        <ion-button class="input-date" (click)="selecionarData()" id="date" [(ngModel)]="date" name="date">
+        <ion-input class="input-date" (click)="selecionarData()" id="date" [(ngModel)]="date" name="date" disabled>
           {{ date ? (date | date:'dd/MM/yyyy') : 'dd/mm/yyyy' }}
-        </ion-button>
+        </ion-input>
 
       </div>
 

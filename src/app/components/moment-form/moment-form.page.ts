@@ -70,20 +70,25 @@ export class MomentFormPage implements OnInit {
   }
 
   salvarData(): void {
+
     if (this.dataAtual) {
+
       this.date = this.dataAtual.slice(0, 10); // Apenas pegando YYYY-MM-DD da data atual em formato ISO
-      console.log(this.date); // Saída: "2024-07-15"
 
       this.modalData(false);
+      
     } else {
       console.error('Data inválida');
     }
   }
 
   async salvarAdicao(form: NgForm) {
+
     if (this.titulo && this.date) {
+
       const moment: MomentDTO = {
         ...form.value,
+        data: this.date,
         id_usuario: Number(this.id_usuario),
       };
 
@@ -91,7 +96,7 @@ export class MomentFormPage implements OnInit {
 
       this.momentService.create(moment).subscribe(response => {
         console.log(response);
-        // Limpar inputs ou outra lógica após salvar
+        this.modalCtrl.dismiss(response);
       }, error => {
         console.error('Erro ao salvar momento:', error);
       });

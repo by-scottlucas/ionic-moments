@@ -24,13 +24,13 @@ export class HomePage implements OnInit {
     private modalCtrl: ModalController
   ) {
 
-    this.listarMoments();
-
     this.userLogado = JSON.parse(sessionStorage.getItem('email')!);
 
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.listarMoments();
+  }
 
   openModalUser() {
     this.modalCtrl.create({
