@@ -5,11 +5,11 @@ import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-user-modal',
-  templateUrl: './user-modal.component.html',
-  styleUrls: ['./user-modal.component.scss'],
+  templateUrl: './user-modal.page.html',
+  styleUrls: ['./user-modal.page.scss'],
 })
-export class UserModalComponent implements OnInit {
-
+export class UserModalPage implements OnInit {
+  
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -27,4 +27,8 @@ export class UserModalComponent implements OnInit {
     })
   }
 
+  fecharModal(){
+    this.modalCtrl.dismiss();
+  }
+  
 }

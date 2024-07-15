@@ -1,0 +1,43 @@
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    height: 100dvh;
+    background: rgba($color: #000000, $alpha: .4);
+}
+
+.modal-content {
+    width: 85%;
+    padding: 30px;
+    background: #f0f0f0;
+}
+
+.modal-title {
+    color: #000;
+    font-size: 2.6rem;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Bebas Neue';
+}
+
+.btn-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-btn {
+    height: 48px;
+    --box-shadow: 0;
+    --border-radius: 2px;
+}
+
+.exit {
+    --background: #ff002b;
+}
+
+.close {
+    color: #000;
+    font-weight: 600;
+    --background: #dddddd
+}

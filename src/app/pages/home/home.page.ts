@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { MomentFormPage } from 'src/app/components/moment-form/moment-form.page';
-import { UserModalComponent } from 'src/app/components/user-modal/user-modal.component';
+import { UserModalPage } from 'src/app/components/user-modal/user-modal.page';
 import { MomentDTO } from 'src/app/models/moment/moment.dto';
 import { AuthService } from 'src/app/services/auth.service';
 import { MomentService } from 'src/app/services/moment.service';
@@ -34,7 +34,7 @@ export class HomePage implements OnInit {
 
   openModalUser() {
     this.modalCtrl.create({
-      component: UserModalComponent,
+      component: UserModalPage,
     }).then(modal => {
       modal.present()
       return modal.onDidDismiss();
