@@ -1,6 +1,6 @@
 /* Container principal que ocupa toda a altura da tela */
 .main-container {
-    height: 100vh;
+    height: 100dvh;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -80,7 +80,7 @@
 }
 
 /* Grupo de botões do formulário */
-.form-button-group {
+.form-buttons-group {
     margin-top: 15px;
     width: 100%;
     display: flex;
@@ -90,7 +90,7 @@
 }
 
 /* Estilos dos botões dentro do grupo de botões do formulário */
-.form-button-group ion-button {
+.form-button {
     width: 100%;
     height: 56px;
     margin: 0;
@@ -143,8 +143,10 @@ ion-datetime {
     --wheel-highlight-background: transparent;
 }
 
+
 /* Container de botões dentro do modal */
 .modal-button-group {
+    margin-bottom: 20px;
     display: flex;
     justify-content: space-around;
     background: transparent;

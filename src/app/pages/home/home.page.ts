@@ -36,7 +36,6 @@ export class HomePage implements OnInit {
 
     this.modalCtrl.create({
       component: UserModalPage,
-
     })
       .then(modal => {
         modal.present()
@@ -88,8 +87,8 @@ export class HomePage implements OnInit {
       component: MomentFormPage,
       componentProps: {
         tipoFormulario: "adicionar"
-      }
-
+      },
+      cssClass: 'form-modal'
     })
       .then(modal => {
         modal.present()
@@ -117,8 +116,8 @@ export class HomePage implements OnInit {
       componentProps: {
         dadosEdicao: moment,
         tipoFormulario: 'editar'
-      }
-
+      },
+      cssClass: 'form-modal'
     })
       .then(modal => {
         modal.present()
