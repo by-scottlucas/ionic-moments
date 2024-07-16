@@ -1,4 +1,4 @@
-.container {
+.modal-container {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -22,12 +22,12 @@
     font-family: 'Lexend', sans-serif;
 }
 
-.btn-group {
+.modal-button-group {
     display: flex;
     flex-direction: column;
 }
 
-.modal-btn {
+.modal-button {
     height: 48px;
     --box-shadow: 0;
     --border-radius: 2px;
