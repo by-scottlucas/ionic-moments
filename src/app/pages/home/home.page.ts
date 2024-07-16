@@ -3,7 +3,6 @@ import { AlertController, ModalController, ToastController } from '@ionic/angula
 import { MomentFormPage } from 'src/app/components/moment-form/moment-form.page';
 import { UserModalPage } from 'src/app/components/user-modal/user-modal.page';
 import { MomentDTO } from 'src/app/models/moment/moment.dto';
-import { AuthService } from 'src/app/services/auth.service';
 import { MomentService } from 'src/app/services/moment.service';
 
 @Component({
@@ -39,15 +38,15 @@ export class HomePage implements OnInit {
       component: UserModalPage,
 
     })
-    .then(modal => {
-      modal.present()
-      return modal.onDidDismiss();
+      .then(modal => {
+        modal.present()
+        return modal.onDidDismiss();
 
-    })
-    .then(({ data }) => {
-      console.log(data);
+      })
+      .then(({ data }) => {
+        console.log(data);
 
-    });
+      });
 
   }
 
@@ -66,27 +65,25 @@ export class HomePage implements OnInit {
 
   }
 
-  // CORRIGIR MÉTODO
   searchMoments(event: Event) {
 
     const inputElement = event.target as HTMLInputElement;
-
     const termo = inputElement.value;
     this.searchInput = termo;
 
-    let momentsFiltrados = this.moments;
+    this.moments = this.moments.filter(moment =>
+      moment.titulo.toLowerCase().includes(this.searchInput.toLowerCase())
+    );
 
-    momentsFiltrados = momentsFiltrados.filter(moment => {
-      moment.titulo.toLowerCase().includes(this.searchInput.toLowerCase());
-    });
-
-    this.moments = momentsFiltrados;
+    if (this.searchInput === '') {
+      this.listarMoments()
+    }
 
   }
 
 
   adicionar() {
-    
+
     this.modalCtrl.create({
       component: MomentFormPage,
       componentProps: {
@@ -94,23 +91,27 @@ export class HomePage implements OnInit {
       }
 
     })
-    .then(modal => {
-      modal.present()
-      return modal.onDidDismiss();
+      .then(modal => {
+        modal.present()
+        return modal.onDidDismiss();
 
-    })
-    .then(({ data }) => {
-      console.log(data);
-      this.mensagemToast('Moment Adicionado com sucesso!');
-      this.listarMoments();
+      })
+      .then(({ data }) => {
 
-    });
+        console.log(data);
+
+        if (data !== undefined) {
+          this.mensagemToast('Moment Adicionado com sucesso!');
+          this.listarMoments();
+        }
+
+      });
 
   }
 
 
   editar(moment: MomentDTO) {
-  
+
     this.modalCtrl.create({
       component: MomentFormPage,
       componentProps: {
@@ -119,17 +120,21 @@ export class HomePage implements OnInit {
       }
 
     })
-    .then(modal => {
-      modal.present()
-      return modal.onDidDismiss();
+      .then(modal => {
+        modal.present()
+        return modal.onDidDismiss();
 
-    })
-    .then(({ data }) => {
-      console.log(data);
-      this.mensagemToast('Moment Atualizado com sucesso!');
-      this.listarMoments();
+      })
+      .then(({ data }) => {
 
-    });
+        console.log(data);
+
+        if (data !== undefined) {
+          this.mensagemToast('Moment Atualizado com sucesso!');
+          this.listarMoments();
+        }
+
+      });
 
   }
 
@@ -163,7 +168,7 @@ export class HomePage implements OnInit {
           }
         }
       ],
-      
+
     }).then(alert => { alert.present() })
 
   }
@@ -173,7 +178,7 @@ export class HomePage implements OnInit {
   }
 
 
-  mensagemToast(mensagem: string){
+  mensagemToast(mensagem: string) {
 
     this.toastCtrl.create({
       message: mensagem,

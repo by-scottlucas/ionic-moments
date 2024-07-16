@@ -46,6 +46,13 @@
 
       <ng-template #nenhumMoment>
 
+        <h3 class="title">Moments Recentes</h3>
+
+        <ion-input class="search-bar" labelPlacement="stacked" placeholder="Buscar Moments" type="text"
+        [(ngModel)]="searchInput" (ionInput)="searchMoments($event)">
+        <ion-icon slot="start" name="search-outline" aria-hidden="true"></ion-icon>
+      </ion-input>
+
         <h3 class="title not-moments">
           Nenhum Momento Registrado
         </h3>
