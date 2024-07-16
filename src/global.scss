@@ -39,4 +39,10 @@ ion-content {
     text-align: center;
     --box-shadow: 0;
     --background: #ececec;
-  }
+}
+
+.alert-modal {
+    color: #000 !important;
+    --background: #ececec;
+    --backdrop-opacity: 0.7;
+}

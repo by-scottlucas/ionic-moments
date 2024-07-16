@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, ToastController } from '@ionic/angular';
+import { AlertController, ModalController, ToastController } from '@ionic/angular';
 import { MomentFormPage } from 'src/app/components/moment-form/moment-form.page';
 import { UserModalPage } from 'src/app/components/user-modal/user-modal.page';
 import { MomentDTO } from 'src/app/models/moment/moment.dto';
@@ -21,6 +21,7 @@ export class HomePage implements OnInit {
   constructor(
     private modalCtrl: ModalController,
     private toastCtrl: ToastController,
+    private alertCtrl: AlertController,
     private momentService: MomentService,
   ) {
 
@@ -110,13 +111,39 @@ export class HomePage implements OnInit {
 
   async excluir(id: any) {
 
-    await this.momentService.read(id);
+    const alert = await this.alertCtrl.create({
 
-    if (await confirm("Deseja excluir este Moment?")) {
-      this.momentService.delete(id).subscribe(() => {
-        this.listarMoments();
-      });
-    };
+      message: 'Deseja excluir este Moment?',
+      cssClass: 'alert-modal',
+      translucent: true,
+      buttons: [
+        {
+          text: 'Cancelar', role: 'cancel',
+          handler: () => { console.log('Exclusão cancelada') }
+        },
+        {
+          text: 'Confirmar', handler: () => {
+
+            this.momentService.delete(id).subscribe(() => {
+
+              this.listarMoments().then(() => {
+
+                this.toastCtrl.create({
+                  message: 'Moment Excluído com sucesso!',
+                  duration: 1000,
+                  position: 'top',
+                  cssClass: 'toast-message'
+
+                }).then(toast => { toast.present() })
+
+              });
+
+            });
+
+          }
+        }
+      ]
+    }).then(alert => { alert.present() })
 
   }
 
