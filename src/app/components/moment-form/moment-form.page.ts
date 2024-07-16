@@ -1,9 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController, ModalController, ToastController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { MomentDTO } from 'src/app/models/moment/moment.dto';
-import { AuthService } from 'src/app/services/auth.service';
 import { MomentService } from 'src/app/services/moment.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -14,109 +13,110 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class MomentFormPage implements OnInit {
 
-  @Input() formType: string = '';
+  @Input() tipoFormulario: string = '';
   @Input() dadosEdicao!: MomentDTO;
 
   rotaAtual!: string;
-  modalIsOpen = false;
+  modalAberto = false;
 
-  dataAtual = new Date().toISOString();
+  dataAtualISO = new Date().toISOString();
 
   titulo!: string;
-  date!: string | Date; // Alterado para string para aceitar o formato YYYY-MM-DD
-  id_usuario!: number;
+  dataSelecionada!: string | Date;
+  idUsuario!: number;
 
   constructor(
     private router: Router,
     private userService: UserService,
-    private toastCtrl: ToastController,
-    private modalCtrl: ModalController,
+    private toastController: ToastController,
+    private modalController: ModalController,
     private momentService: MomentService,
   ) {
+
     this.rotaAtual = this.router.url;
-    this.getUser();
-  }
+    this.obterUsuario();
 
-  getUser() {
-
-    const emailUser = sessionStorage.getItem('email');
-
-    if (emailUser) {
-
-      this.userService.list().subscribe(response => {
-
-        const user = response.find(user => emailUser.includes(user.email!));
-
-        if (user) {
-          // console.log('Usuário encontrado:', user);
-          this.id_usuario = Number(user.id);
-        } else {
-          console.log('Usuário não encontrado');
-        }
-      })
-
-    } else {
-      console.log('Email não encontrado no sessionStorage');
-    }
   }
 
   ngOnInit() {
 
-    if (this.formType === 'editar') {
+    if (this.tipoFormulario === 'editar') {
       this.titulo = this.dadosEdicao.titulo;
-      this.date = this.dadosEdicao.data;
+      this.dataSelecionada = this.dadosEdicao.data;
+      
+    }
+    
+  }
+
+  obterUsuario() {
+    
+    const emailUsuario = sessionStorage.getItem('email');
+
+    if (emailUsuario) {
+      
+      this.userService.list().subscribe(usuarios => {
+
+        const usuario = usuarios.find(usuario => emailUsuario.includes(usuario.email!));
+
+        if (usuario) {
+          this.idUsuario = Number(usuario.id);
+
+        } else {
+          console.log('Usuário não encontrado');
+
+        }
+
+      });
+
+    } else {
+      console.log('Email não encontrado no sessionStorage');
+
     }
 
   }
 
-  private modalData(isOpen: boolean) {
-    this.modalIsOpen = isOpen;
+  private alternarModal(aberto: boolean) {
+    this.modalAberto = aberto;
+
   }
 
   selecionarData() {
-    this.modalData(true);
+    this.alternarModal(true);
+
   }
 
   salvarData(): void {
-
-    if (this.dataAtual) {
-
-      this.date = this.dataAtual.slice(0, 10); // Apenas pegando YYYY-MM-DD da data atual em formato ISO
-      this.modalData(false);
+    
+    if (this.dataAtualISO) {
+      this.dataSelecionada = this.dataAtualISO.slice(0, 10); // Apenas pegando YYYY-MM-DD da data atual em formato ISO
+      this.alternarModal(false);
 
     } else {
       console.error('Data inválida');
     }
+
   }
 
   async salvarAdicao(form: NgForm) {
-
-    if (this.titulo && this.date) {
-
-      const moment: MomentDTO = {
+    
+    if (this.titulo && this.dataSelecionada) {
+    
+      const dadosMoment: MomentDTO = {
         ...form.value,
-        data: this.date,
-        id_usuario: Number(this.id_usuario),
+        data: this.dataSelecionada,
+        id_usuario: Number(this.idUsuario),
       };
 
-      console.log(moment);
+      this.momentService.create(dadosMoment).subscribe(response => {
+        this.modalController.dismiss(response);
 
-      this.momentService.create(moment).subscribe(response => {
-        console.log(response);
-        this.modalCtrl.dismiss(response);
       }, error => {
         console.error('Erro ao salvar momento:', error);
+        this.mensagemToast('Erro ao salvar momento');
+
       });
-
     } else {
-
-      this.toastCtrl.create({
-        message: 'Por favor preencha todos os campos',
-        duration: 1000,
-        position: 'top',
-        cssClass: 'toast-message'
-
-      }).then(toast => { toast.present() })
+      this.mensagemToast('Por favor preencha todos os campos');
 
     }
 
@@ -124,40 +124,43 @@ export class MomentFormPage implements OnInit {
 
   async salvarEdicao(form: NgForm) {
 
-    if (this.titulo && this.date) {
+    if (this.titulo && this.dataSelecionada) {
+      const id = Number(this.dadosEdicao.id);
 
-      const id = Number(this.dadosEdicao.id)
-
-      const moment: MomentDTO = {
+      const momento: MomentDTO = {
         ...form.value,
-        data: this.date,
+        data: this.dataSelecionada,
       };
 
-      console.log(moment);
+      this.momentService.update(id, momento).subscribe(response => {
+        this.modalController.dismiss(response);
 
-      this.momentService.update(id, moment).subscribe(response => {
-        console.log(response);
-        this.modalCtrl.dismiss(response);
       }, error => {
         console.error('Erro ao editar momento:', error);
+        this.mensagemToast('Erro ao editar momento');
+        
       });
 
     } else {
-
-      this.toastCtrl.create({
-        message: 'Por favor preencha todos os campos',
-        duration: 1000,
-        position: 'top',
-        cssClass: 'toast-message'
-
-      }).then(toast => { toast.present() })
+      this.mensagemToast('Por favor preencha todos os campos');
 
     }
 
   }
 
   cancelar() {
-    this.modalCtrl.dismiss();
+    this.modalController.dismiss();
+  }
+
+  mensagemToast(mensagem: string) {
+    
+    this.toastController.create({
+      message: mensagem,
+      duration: 1000,
+      position: 'top',
+      cssClass: 'toast-message'
+    }).then(toast => { toast.present() });
+
   }
 
 }

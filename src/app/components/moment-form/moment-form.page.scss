@@ -1,4 +1,5 @@
-.container {
+/* Container principal que ocupa toda a altura da tela */
+.main-container {
     height: 100vh;
     display: flex;
     align-items: center;
@@ -6,14 +7,13 @@
     justify-content: center;
 }
 
-.form {
+/* Formulário principal */
+.main-form {
     width: 90%;
     padding: 20px;
 }
 
-
-// ESTILOS DO HEADER DO FORMULÁRIO
-
+/* Header do formulário */
 .form-header {
     display: flex;
     align-items: center;
@@ -21,12 +21,14 @@
     justify-content: center;
 }
 
-.form-header-img {
+/* Imagem do header do formulário */
+.form-header-image {
     width: 40%;
     margin: 0 auto;
     margin-bottom: 0;
 }
 
+/* Título do header do formulário */
 .form-header-title {
     margin-top: 5px;
     margin-bottom: 10px;
@@ -37,10 +39,8 @@
     font-family: 'Bebas Neue';
 }
 
-
-// ESTILOS DOS INPUTS DO FOMULÁRIO
-
-.form-group {
+/* Grupo de inputs do formulário */
+.form-input-group {
     width: 100%;
     display: flex;
     align-items: center;
@@ -48,7 +48,7 @@
     justify-content: center;
 }
 
-
+/* Input de título do formulário */
 .input-title,
 .input-date {
     color: #000;
@@ -66,6 +66,7 @@
     --highlight-color-invalid: #3F3D56;
 }
 
+/* Input de data do formulário */
 .input-date {
     width: 100%;
     text-transform: lowercase;
@@ -78,7 +79,8 @@
     --background: transparent;
 }
 
-.form-buttons {
+/* Grupo de botões do formulário */
+.form-button-group {
     margin-top: 15px;
     width: 100%;
     display: flex;
@@ -87,7 +89,8 @@
     justify-content: center;
 }
 
-.form-buttons ion-button {
+/* Estilos dos botões dentro do grupo de botões do formulário */
+.form-button-group ion-button {
     width: 100%;
     height: 56px;
     margin: 0;
@@ -96,11 +99,13 @@
     --border-radius: 4px;
 }
 
-.add-button {
+/* Botão de adicionar */
+.button-add {
     --background: #212929;
 }
 
-.cancel-button {
+/* Botão de cancelar */
+.button-cancel {
     width: 100%;
     height: 45px;
     color: #000;
@@ -109,7 +114,8 @@
     --background: #f0f0f0;
 }
 
-.modal-data {
+/* Container do modal de data */
+.modal-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -118,7 +124,8 @@
     background-color: #e5e5e5;
 }
 
-.calendario {
+/* Calendário dentro do modal */
+.modal-calendar {
     text-align: center;
     margin: 0 auto;
     width: 90%;
@@ -126,6 +133,7 @@
     background-color: #fff;
 }
 
+/* Estilos do ion-datetime */
 ion-datetime {
     color: #000;
     --text-transform: capitalize;
@@ -135,13 +143,15 @@ ion-datetime {
     --wheel-highlight-background: transparent;
 }
 
-.botoes {
+/* Container de botões dentro do modal */
+.modal-button-group {
     display: flex;
     justify-content: space-around;
     background: transparent;
 }
 
-.botoes ion-button {
+/* Estilos dos botões dentro do container de botões do modal */
+.modal-button-group ion-button {
     color: #000;
     font-weight: bold;
     --box-shadow: none;
