@@ -1,19 +1,19 @@
 <ion-content [fullscreen]="true">
 
-  <form class="container" #form="ngForm" (ngSubmit)="rotaAtual === '/login' ? entrar(form) : criarConta(form)">
+  <form class="form-container" #form="ngForm" (ngSubmit)="rotaAtual === '/login' ? entrar(form) : criarConta(form)">
 
-    <div class="logotipo">
+    <div class="form-logotipo-group">
 
-      <ion-img src="../../../assets/identidade-visual/icon.png" class="logotipo-icon" />
-      <h1 class="logotipo-title">Moments</h1>
+      <ion-img src="../../../assets/identidade-visual/icon.png" class="form-logotipo-icon" />
+      <h1 class="form-logotipo-title">Moments</h1>
 
-      <p class="logotipo-subtitle">
+      <p class="form-logotipo-subtitle">
         Transforme seus momentos em lembranças!
       </p>
 
     </div>
 
-    <div class="input-group">
+    <div class="form-input-group">
 
       <ion-input labelPlacement="stacked" placeholder="Nome" type="text" name="nome" *ngIf="rotaAtual !== '/login'" [(ngModel)]="nome">
         <ion-icon slot="start" name="person" aria-hidden="true"></ion-icon>
@@ -27,24 +27,23 @@
         <ion-icon slot="start" name="lock-closed" aria-hidden="true"></ion-icon>
       </ion-input>
 
-      <a routerLink="/cadastro" class="forget-password">
+      <a routerLink="/cadastro" class="form-forget-password">
         Esqueceu a senha?
       </a>
 
     </div>
 
-    <div class="btn-group">
+    <div class="form-buttons-group">
 
-      <ion-button type="submit" class="signin-btn">
+      <ion-button type="submit" class="form-button signin-button">
         {{ rotaAtual === '/login' ? 'Entrar' : 'Criar Conta'}}
       </ion-button>
 
-      <ion-button class="signup-btn" (click)="navigateToForm()">
+      <ion-button class="form-button signup-button" (click)="navigateToForm()">
         {{ rotaAtual !== '/cadastro' ? 'Criar Conta' : 'Entrar'}}
       </ion-button>
 
     </div>
-
 
   </form>
 

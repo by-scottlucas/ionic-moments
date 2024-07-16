@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 import { AuthLoginDTO } from 'src/app/models/auth/auth.login.dto';
 import { AuthRegisterDTO } from 'src/app/models/auth/auth.register.dto';
 import { UserDTO } from 'src/app/models/user/user.dto';
@@ -15,13 +16,14 @@ export class LoginPage implements OnInit {
 
   rotaAtual!: string;
 
-  nome: string =  '';
+  nome: string = '';
   email: string = '';
   senha: string = '';
 
   constructor(
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private toastController: ToastController
   ) {
 
     this.rotaAtual = String(this.router.url)
@@ -34,6 +36,7 @@ export class LoginPage implements OnInit {
   async entrar(form: NgForm) {
 
     if (this.email && this.senha) {
+
       const dados: AuthLoginDTO = form.value;
 
       try {
@@ -58,23 +61,33 @@ export class LoginPage implements OnInit {
 
       } catch (error) {
         console.error('Erro ao fazer login:', error);
+
       }
+
+    } else {
+
+      this.mensagemToast("Por Favor Preencha todos os campos!")
+
     }
+
+
   }
 
   criarConta(form: NgForm) {
 
-    if(form.value){
+    if (this.nome && this.email && this.senha) {
 
-      const dados : AuthRegisterDTO = form.value;
+      const dados: AuthRegisterDTO = form.value;
 
       this.authService.register(dados).subscribe(response => {
         console.log(response);
         this.router.navigate(['login']);
       })
-    }
 
-    this.router.navigate(['/login'])
+    } else {
+      this.mensagemToast("Por Favor Preencha todos os campos!")
+
+    }
   }
 
   navigateToForm() {
@@ -83,6 +96,20 @@ export class LoginPage implements OnInit {
     } else {
       this.router.navigate(['/login']);
     }
+  }
+
+  mensagemToast(mensagem: string) {
+
+    this.toastController.create({
+      message: mensagem,
+      duration: 1000,
+      position: 'top',
+      cssClass: 'toast-message'
+    })
+      .then(toast => {
+        toast.present()
+      });
+
   }
 
 }
