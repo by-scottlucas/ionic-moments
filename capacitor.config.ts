@@ -2,7 +2,7 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'io.ionic.moments',
-  appName: 'moments',
+  appName: 'Moments',
   webDir: 'www',
   server: {
     androidScheme: 'https'
@@ -11,7 +11,6 @@ const config: CapacitorConfig = {
     SplashScreen: {
       launchShowDuration: 1000,
       launchAutoHide: true,
-      launchFadeOutDuration: 1000,
       backgroundColor: "#ffffffff",
       androidSplashResourceName: "splash",
       androidScaleType: "CENTER",
@@ -25,7 +24,6 @@ const config: CapacitorConfig = {
       useDialog: true,
     },
   },
-
 };
 
 export default config;
