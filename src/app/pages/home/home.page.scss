@@ -1,5 +1,10 @@
+ion-content {
+    height: 100dvh !important;
+}
+
 .container {
-    height: 100vh;
+    height: auto;
+    min-height: 100dvh;
     background: #e5e5e5;
 }
 
@@ -8,7 +13,7 @@
     background: #212129;
 }
 
-// HEADER USUÁRIO LOGADO
+// SEÇÃO USER LOGADO
 
 .user-header {
     cursor: pointer;
@@ -38,9 +43,10 @@
     justify-content: center;
 }
 
-// HEADER ADD MOMENT
 
-.header-add-moment {
+// SEÇÃO MOMENT ADD
+
+.header-add-box {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -52,7 +58,7 @@
     background: #fff;
 }
 
-.logotipo {
+.header-add-logotipo {
     gap: 10px;
     display: flex;
     align-items: center;
@@ -60,11 +66,11 @@
     margin-bottom: 20px;
 }
 
-.logotipo-icon {
+.header-add-icon {
     width: 18%;
 }
 
-.logotipo-title {
+.header-add-title {
     margin: 0;
     margin-top: 5px;
     color: #3F3D56;
@@ -74,13 +80,16 @@
     font-family: 'Lexend', sans-serif;
 }
 
-.add-moment-btn {
+.header-add-btn {
     width: 100%;
     height: 50px;
     --box-shadow: 0;
     --border-radius: 2px;
     --background: #212929;
 }
+
+
+// SEÇÃO LISTA
 
 .container-list {
     margin: 0 auto;
@@ -95,15 +104,15 @@
 }
 
 .search-bar {
-    margin-bottom: 20px;
     color: #000;
     font-size: 1.1rem;
-    --padding-start: 15px;
-    --box-shadow: none;
-    border-radius: 4px;
     background: #fff;
-    --highlight-color-focused: #3F3D56;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    --box-shadow: none;
+    --padding-start: 15px;
     --highlight-color-valid: #3F3D56;
+    --highlight-color-focused: #3F3D56;
     --highlight-color-invalid: #3F3D56;
 }
 
@@ -119,7 +128,6 @@
 }
 
 ion-list {
-    margin-top: -6px;
     background: transparent;
 }
 
@@ -140,7 +148,7 @@ ion-list {
 .label-moment {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .date-moment {
@@ -158,4 +166,193 @@ ion-list {
 .action-btn {
     width: 60px;
     font-size: 1.6rem;
+}
+
+
+
+// ********** MEDIA QUERIES **********
+
+// TABLETS
+
+@media screen and (min-width:768px) {
+
+    .header-bg {
+        height: 200px;
+    }
+
+    .user-box {
+        margin-top: -70px;
+    }
+
+    .user-name {
+        font-size: 1.6rem;
+    }
+
+    .user-icon {
+        font-size: 2rem;
+    }
+
+    .user-header {
+        margin-bottom: 0;
+    }
+
+    // SEÇÃO MOMENT ADD 
+
+    .header-add-icon {
+        width: 16%;
+    }
+
+    .header-add-title {
+        font-size: 4rem;
+    }
+
+    .header-add-btn {
+        height: 80px;
+        font-size: 1.2rem;
+    }
+
+
+    // SEÇÃO LISTA DE MOMENTS
+
+    .container-list {
+        padding: 0 40px;
+    }
+
+    .title {
+        margin-top: 25px;
+        font-size: 1.6rem;
+        margin-bottom: 15px;
+    }
+
+    .search-bar {
+        height: 70px;
+        font-size: 1.4rem;
+        --padding-start: 20px;
+    }
+
+    .search-bar ion-icon {
+        font-size: 1.8rem;
+    }
+
+    .slide-item {
+        margin-bottom: 15px;
+    }
+
+    .label-moment {
+        padding: 15px 10px;
+    }
+
+    .date-moment {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+    }
+
+    .title-moment {
+        font-size: 1.8rem;
+    }
+
+    .action-btn {
+        width: 100px;
+    }
+
+    .action-btn ion-icon {
+        font-size: 2.4rem;
+    }
+
+}
+
+
+// DESKTOP
+
+@media screen and (min-width:1024px) {
+
+    .header-bg {
+        height: 200px;
+    }
+
+    .user-box {
+        margin-top: -70px;
+    }
+
+    .user-name {
+        font-size: 1.4rem;
+    }
+
+    .user-icon {
+        font-size: 1.6rem;
+    }
+
+    .user-header {
+        margin-bottom: 0;
+    }
+
+    // SEÇÃO MOMENT ADD 
+
+
+    .header-add-box{
+        width: 85%;
+    }
+
+    .header-add-icon {
+        width: 12%;
+    }
+
+    .header-add-title {
+        font-size: 3rem;
+    }
+
+    .header-add-btn {
+        height: 60px;
+        font-size: 1rem;
+    }
+
+
+    // SEÇÃO LISTA DE MOMENTS
+
+    .container-list {
+        padding: 0;
+        width: 85%;
+    }
+
+    .title {
+        margin-top: 35px;
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+
+    .search-bar {
+        height: 50px;
+        font-size: 1.2rem;
+        --padding-start: 20px;
+    }
+
+    .search-bar ion-icon {
+        font-size: 1.5rem;
+    }
+
+    .slide-item {
+        margin-bottom: 15px;
+    }
+
+    .label-moment {
+        padding: 5px;
+    }
+
+    .date-moment {
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+
+    .title-moment {
+        font-size: 1.4rem;
+    }
+
+    .action-btn {
+        width: 80px;
+    }
+
+    .action-btn ion-icon {
+        font-size: 1.6rem;
+    }
+
 }
