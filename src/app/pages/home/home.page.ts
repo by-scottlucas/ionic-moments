@@ -13,10 +13,10 @@ import { MomentService } from 'src/app/services/moment.service';
 })
 export class HomePage implements OnInit {
 
-  userLogado: string = '';
+  usuarioLogado: string = '';
 
+  searchInput!: string;
   moments: MomentDTO[] = [];
-  search!: string;
 
   constructor(
     private modalCtrl: ModalController,
@@ -25,7 +25,7 @@ export class HomePage implements OnInit {
     private momentService: MomentService,
   ) {
 
-    this.userLogado = JSON.parse(sessionStorage.getItem('email')!);
+    this.usuarioLogado = JSON.parse(sessionStorage.getItem('email')!);
 
   }
 
@@ -33,28 +33,37 @@ export class HomePage implements OnInit {
     this.listarMoments();
   }
 
-  openModalUser() {
+  abrirModalUsuario() {
+
     this.modalCtrl.create({
       component: UserModalPage,
-    }).then(modal => {
+
+    })
+    .then(modal => {
       modal.present()
       return modal.onDidDismiss();
-    }).then(({ data }) => {
+
+    })
+    .then(({ data }) => {
       console.log(data);
+
     });
+
   }
+
 
   async listarMoments() {
 
     this.momentService.list().subscribe(async response => {
 
       const responseFilter = response.filter(
-        moment => moment.id_usuario.email === this.userLogado
+        moment => moment.id_usuario.email === this.usuarioLogado
       );
 
       this.moments = responseFilter;
 
     })
+
   }
 
   // CORRIGIR MÉTODO
@@ -63,12 +72,12 @@ export class HomePage implements OnInit {
     const inputElement = event.target as HTMLInputElement;
 
     const termo = inputElement.value;
-    this.search = termo;
+    this.searchInput = termo;
 
     let momentsFiltrados = this.moments;
 
     momentsFiltrados = momentsFiltrados.filter(moment => {
-      moment.titulo.toLowerCase().includes(this.search.toLowerCase());
+      moment.titulo.toLowerCase().includes(this.searchInput.toLowerCase());
     });
 
     this.moments = momentsFiltrados;
@@ -77,41 +86,57 @@ export class HomePage implements OnInit {
 
 
   adicionar() {
+    
     this.modalCtrl.create({
       component: MomentFormPage,
-      componentProps: { formType: "adicionar" }
-    }).then(modal => {
+      componentProps: {
+        tipoFormulario: "adicionar"
+      }
+
+    })
+    .then(modal => {
       modal.present()
       return modal.onDidDismiss();
-    }).then(({ data }) => {
 
+    })
+    .then(({ data }) => {
       console.log(data);
+      this.mensagemToast('Moment Adicionado com sucesso!');
       this.listarMoments();
 
     });
+
   }
 
+
   editar(moment: MomentDTO) {
+  
     this.modalCtrl.create({
       component: MomentFormPage,
       componentProps: {
         dadosEdicao: moment,
-        formType: 'editar'
+        tipoFormulario: 'editar'
       }
-    }).then(modal => {
+
+    })
+    .then(modal => {
       modal.present()
       return modal.onDidDismiss();
-    }).then(({ data }) => {
 
+    })
+    .then(({ data }) => {
       console.log(data);
+      this.mensagemToast('Moment Atualizado com sucesso!');
       this.listarMoments();
 
     });
+
   }
+
 
   async excluir(id: any) {
 
-    const alert = await this.alertCtrl.create({
+    await this.alertCtrl.create({
 
       message: 'Deseja excluir este Moment?',
       cssClass: 'alert-modal',
@@ -119,6 +144,7 @@ export class HomePage implements OnInit {
       buttons: [
         {
           text: 'Cancelar', role: 'cancel',
+          cssClass: 'btn-cancel',
           handler: () => { console.log('Exclusão cancelada') }
         },
         {
@@ -128,13 +154,7 @@ export class HomePage implements OnInit {
 
               this.listarMoments().then(() => {
 
-                this.toastCtrl.create({
-                  message: 'Moment Excluído com sucesso!',
-                  duration: 1000,
-                  position: 'top',
-                  cssClass: 'toast-message'
-
-                }).then(toast => { toast.present() })
+                this.mensagemToast('Moment Excluído com sucesso!');
 
               });
 
@@ -142,13 +162,27 @@ export class HomePage implements OnInit {
 
           }
         }
-      ]
+      ],
+      
     }).then(alert => { alert.present() })
 
   }
 
   cancelar() {
     this.modalCtrl.dismiss()
+  }
+
+
+  mensagemToast(mensagem: string){
+
+    this.toastCtrl.create({
+      message: mensagem,
+      duration: 1000,
+      position: 'top',
+      cssClass: 'toast-message',
+
+    }).then(toast => { toast.present() })
+
   }
 
 }

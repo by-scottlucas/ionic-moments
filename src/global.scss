@@ -33,7 +33,7 @@ ion-content {
 }
 
 .toast-message {
-    padding: 20px;
+    --height: 40px;
     color: #000;
     font-size: 1.1rem;
     text-align: center;
@@ -42,12 +42,21 @@ ion-content {
 }
 
 .alert-modal {
+
     --width: 60%;
-    // color: #000 !important;
     --background: #ececec;
     --backdrop-opacity: 0.7;
-}
 
+    .alert-message {
+        color: #000;
+    }
+
+    .btn-cancel {
+        color: #000;
+    }
+
+
+}
 
 // ********** MEDIA QUERIES **********
 

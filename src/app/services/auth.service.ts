@@ -49,7 +49,7 @@ export class AuthService {
     return this.http.post<AuthResetDTO>(url, data, { withCredentials: true });
   }
 
-  // VERIFICAR SE O USUÁRIO ESTÁ LOGADO POR SESSÃO NO BACK END
+  // VERIFICAR SE O USUÁRIO ESTÁ LOGADO E AUTENTICADO NO BACK END
   isAuthenticated(): Observable<any> {
     const url = `${this.api}/get-session`;
     return this.http.get<any>(url, { withCredentials: true });

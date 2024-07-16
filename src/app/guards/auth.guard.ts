@@ -11,19 +11,11 @@ import { AuthService } from '../services/auth.service';
 export class AuthGuard implements CanActivate {
 
   constructor(
+    private router: Router,
     private authService: AuthService,
-    private router: Router
   ) { }
 
   canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-
-    //  CHECAR DEPOIS
-    
-    // if (this.authService.isAuthenticated()) {
-    //   return this.router.parseUrl('/home');
-    // } else {
-    //   return true;
-    // }
 
     return this.authService.isAuthenticated().pipe(map((response: any) => {
 
