@@ -68,3 +68,6 @@ testem.log
 Thumbs.db
 
 resources/android/**/*
+
+src/environments/environment.prod.ts
+src/environments/environment.ts
