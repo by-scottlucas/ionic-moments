@@ -1,0 +1,26 @@
+<ion-content [fullscreen]="true">
+  <div class="bg-white h-screen px-5 py-12 flex flex-col w-full">
+    <ion-text class="font-bold text-red-500 text-3xl mb-6">Entrar</ion-text>
+
+    <form action="#" class="flex flex-col gap-5">
+      <div class="form-control flex flex-col w-full">
+        <label for="title" class="label-style text-black font-bold mb-2">E-mail</label>
+        <input type="text" name="title"
+          class="border border-gray-300 focus:border-blue-600 rounded-md px-2 py-3 bg-white outline-none"
+          placeholder="Seu e-mail">
+      </div>
+
+      <div class="form-control flex flex-col w-full">
+        <label for="title" class="label-style text-black font-bold mb-2">Senha</label>
+        <input type="password" name="password"
+          class="border border-gray-300 focus:border-blue-600 rounded-md px-2 py-3 bg-white outline-none"
+          placeholder="Sua Senha">
+      </div>
+
+      <app-input-field
+        [label]="'Teste'"
+        
+      ></app-input-field>
+    </form>
+  </div>
+</ion-content>

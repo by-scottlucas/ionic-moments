@@ -1,0 +1,27 @@
+<div class="input-field relative">
+  <label [for]="name" class="input-field__label">
+    {{ label }} <span *ngIf="required" class="text-red-500">*</span>
+  </label>
+
+  <input
+    [id]="name"
+    [type]="computedType"
+    [formControl]="control"
+    [placeholder]="placeholder"
+    class="input-field__input"
+    [attr.required]="required ? true : null"
+  />
+
+  <button
+    type="button"
+    *ngIf="type === 'password'"
+    (click)="togglePassword()"
+    class="absolute right-3 top-11 transform -translate-y-1/2 text-gray-500 cursor-pointer"
+  >
+    <lucide-icon [name]="showPassword ? EyeIcon : EyeOffIcon" class="h-4 w-4" />
+  </button>
+
+  <p *ngIf="control.invalid && control.touched" class="input-field__error">
+    {{ getErrorMessage() }}
+  </p>
+</div>

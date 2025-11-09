@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { AuthService } from './services/auth.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,14 +6,5 @@ import { Router } from '@angular/router';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-
-  constructor(
-    private router: Router,
-    private authService: AuthService
-  ) {
-
-    authService.isAuthenticated().subscribe();
-
-  }
-
+  constructor() {}
 }
