@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { LoadingService } from 'src/app/shared/services/loading.service';
 import { getFormControl } from 'src/app/shared/utils/formUtils';
 
+import { AuthService } from '../../services/auth.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -15,7 +17,8 @@ export class LoginPage implements OnInit {
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private loadingService: LoadingService
+    private authService: AuthService,
+    private loadingService: LoadingService,
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.required],
@@ -25,8 +28,11 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {}
 
-  onSubmit() {
-    // To do
+  handleLogin() {
+    this.authService.login(this.loginForm.value).then(async () =>{
+      await this.loadingService.showLoading(500);
+      this.router.navigate(['/home'])
+    });
   }
 
   async goToForgot() {
