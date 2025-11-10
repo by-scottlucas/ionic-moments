@@ -1,0 +1,16 @@
+.forgot-success {
+  @apply bg-white h-screen px-8 py-12 flex flex-col justify-center w-full;
+}
+
+.forgot-success__icon-box{
+  @apply bg-blue-600 rounded-full w-24 aspect-square flex flex-col items-center justify-center mx-auto mb-5;
+}
+
+.forgot-success__title {
+  font-family: "Open Sans", sans-serif;
+  @apply font-extrabold text-blue-600 text-3xl mb-3 text-center;
+}
+
+.forgot-success__button{
+  @apply bg-blue-600 py-3 rounded-md mt-10;
+}

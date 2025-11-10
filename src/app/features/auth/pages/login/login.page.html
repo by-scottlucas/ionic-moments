@@ -27,9 +27,9 @@
           placeholder="Sua senha aqui"
           [control]="getControl('password')"
         ></app-input-field>
-        <a routerLink="/auth/forgot" class="login__forgot-password">
+        <span (click)="goToForgot()" class="login__forgot-password">
           Esqueceu a senha?
-        </a>
+        </span>
       </div>
 
       <button type="submit" class="login__button">

@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginPage } from './pages/login/login.page';
 import { RegisterPage } from './pages/register/register.page';
+import { ForgotPage } from './pages/forgot/forgot.page';
+import { ForgotSuccessPage } from './pages/forgot-sucess/forgot-success.page';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'login', pathMatch: 'full'},
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   {
     path: 'login',
     component: LoginPage,
@@ -12,6 +14,14 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterPage,
+  },
+  {
+    path: 'forgot',
+    component: ForgotPage,
+  },
+  {
+    path: 'forgot/success',
+    component: ForgotSuccessPage,
   },
 ];
 
