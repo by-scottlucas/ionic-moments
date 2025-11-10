@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoadingService } from 'src/app/shared/services/loading.service';
+import { ToastService } from 'src/app/shared/services/toast.service';
 import { getFormControl } from 'src/app/shared/utils/formUtils';
+
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -20,6 +18,8 @@ export class RegisterPage implements OnInit {
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private toastService: ToastService,
     private loadingService: LoadingService
   ) {
     this.registerForm = this.formBuilder.group({
@@ -31,8 +31,40 @@ export class RegisterPage implements OnInit {
 
   ngOnInit() {}
 
-  onSubmit() {
-    // To do
+  async registerUser() {
+    if (this.registerForm.invalid) return;
+
+    try {
+      await this.loadingService.showLoading();
+      await this.authService.register(this.registerForm.value);
+
+      await this.toastService.showToast('Conta criada com sucesso!', 1000);
+      this.router.navigate(['/auth/login']);
+    } catch (error: any) {
+      let message: string;
+
+      switch (error.message) {
+        case 'EMAIL_ALREADY_EXISTS':
+          message = 'Este e-mail já está cadastrado.';
+          break;
+        case 'WEAK_PASSWORD':
+          message = 'A senha é muito fraca, tente uma mais segura.';
+          break;
+        case 'NETWORK_ERROR':
+          message = 'Falha de conexão, verifique sua internet.';
+          break;
+        case 'INVALID_EMAIL':
+          message = 'O formato do e-mail é inválido.';
+          break;
+        default:
+          message = 'Erro ao criar a conta, tente novamente mais tarde.';
+          break;
+      }
+
+      await this.toastService.showToast(message, 1500);
+    } finally {
+      await this.loadingService.hideLoading();
+    }
   }
 
   async goToLogin() {

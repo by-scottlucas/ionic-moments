@@ -3,6 +3,7 @@ import { initializeApp } from 'firebase/app';
 import {
   browserLocalPersistence,
   createUserWithEmailAndPassword,
+  deleteUser,
   getAuth,
   onAuthStateChanged,
   setPersistence,
@@ -37,20 +38,33 @@ export class AuthService {
   }
 
   async register({ email, password }: AuthDTO): Promise<void> {
+    let newUser: User | null = null;
+
     try {
-      await createUserWithEmailAndPassword(this.auth, email, password);
-    } catch (error) {
+      const userCredential = await createUserWithEmailAndPassword(
+        this.auth,
+        email,
+        password
+      );
+      newUser = userCredential.user;
+    } catch (error: any) {
       console.error('[AuthService] Failed to register:', error);
-      throw error;
+
+      if (newUser) {
+        await this.runRollback(newUser);
+      }
+
+      this.handleRegisterError(error);
     }
   }
 
   async login({ email, password }: AuthDTO): Promise<void> {
     try {
       await signInWithEmailAndPassword(this.auth, email, password);
-    } catch (error) {
+    } catch (error: any) {
       console.error('[AuthService] Failed to login:', error);
-      throw error;
+
+      this.handleLoginError(error);
     }
   }
 
@@ -92,6 +106,47 @@ export class AuthService {
     } catch (error) {
       console.error('[AuthService] Failed to update user data:', error);
       throw error;
+    }
+  }
+
+  private async runRollback(user: User): Promise<void> {
+    try {
+      await deleteUser(user);
+      console.warn('[AuthService] Rollback: user deleted after failure');
+    } catch (rollbackError) {
+      console.error('[AuthService] Rollback failed:', rollbackError);
+    }
+  }
+
+  private handleRegisterError(error: any): never {
+    switch (error.code) {
+      case 'auth/email-already-in-use':
+        throw new Error('EMAIL_ALREADY_EXISTS');
+      case 'auth/weak-password':
+        throw new Error('WEAK_PASSWORD');
+      case 'auth/network-request-failed':
+        throw new Error('NETWORK_ERROR');
+      case 'auth/invalid-email':
+        throw new Error('INVALID_EMAIL');
+      default:
+        throw new Error('REGISTER_ERROR');
+    }
+  }
+
+  private handleLoginError(error: any): never {
+    switch (error.code) {
+      case 'auth/user-not-found':
+      case 'auth/wrong-password':
+      case 'auth/invalid-credential':
+        throw new Error('INVALID_CREDENTIALS');
+      case 'auth/invalid-email':
+        throw new Error('INVALID_EMAIL');
+      case 'auth/network-request-failed':
+        throw new Error('NETWORK_ERROR');
+      case 'auth/user-disabled':
+        throw new Error('USER_DISABLED');
+      default:
+        throw new Error('LOGIN_ERROR');
     }
   }
 
