@@ -15,7 +15,7 @@
         label="E-mail"
         [required]="true"
         placeholder="Seu e-mail aqui"
-        [control]="getFormControl('email')"
+        [control]="getControl('email')"
       ></app-input-field>
 
       <div class="login__password-group">
@@ -25,9 +25,9 @@
           [name]="'password'"
           [required]="true"
           placeholder="Sua senha aqui"
-          [control]="getFormControl('password')"
+          [control]="getControl('password')"
         ></app-input-field>
-        <a href="#" class="login__forgot-password">
+        <a routerLink="/auth/forgot" class="login__forgot-password">
           Esqueceu a senha?
         </a>
       </div>
@@ -39,9 +39,9 @@
 
     <ion-text class="login__register">
       É novo por aqui?
-      <a href="#" class="login__register-link">
+      <span (click)="goToRegister()" class="login__register-link">
         Crie uma conta
-      </a>
+      </span>
     </ion-text>
   </div>
 </ion-content>

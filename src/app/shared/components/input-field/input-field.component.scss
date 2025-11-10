@@ -14,3 +14,7 @@
 .input-field__error {
   @apply text-xs text-red-600 mt-1;
 }
+
+.eye-button{
+  @apply absolute right-3 top-12 transform -translate-y-1/2 text-gray-500 cursor-pointer;
+}

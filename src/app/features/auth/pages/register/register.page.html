@@ -1,0 +1,51 @@
+<ion-content [fullscreen]="true">
+  <div class="register">
+    <form
+      class="register__form"
+      [formGroup]="registerForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <ion-text class="register__title">
+        Criar Conta
+      </ion-text>
+
+      <app-input-field
+        name="name"
+        type="text"
+        label="Nome"
+        [required]="true"
+        placeholder="Seu nome aqui"
+        [control]="getControl('name')"
+      ></app-input-field>
+
+      <app-input-field
+        name="email"
+        type="email"
+        label="E-mail"
+        [required]="true"
+        placeholder="Seu e-mail aqui"
+        [control]="getControl('email')"
+      ></app-input-field>
+
+      <app-input-field
+        label="Senha"
+        type="password"
+        [name]="'password'"
+        [required]="true"
+        placeholder="Sua senha aqui"
+        [control]="getControl('password')"
+      ></app-input-field>
+
+      <button type="submit" class="register__button">
+        Criar Conta
+      </button>
+    </form>
+
+    <ion-text class="register__register">
+      Já possui uma conta?
+      <span (click)="goToLogin()" class="register__register-link">
+        Entre agora
+      </span>
+    </ion-text>
+  </div>
+</ion-content>

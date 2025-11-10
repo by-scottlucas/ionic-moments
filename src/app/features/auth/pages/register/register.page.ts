@@ -9,15 +9,16 @@ import { Router } from '@angular/router';
 import { getFormControl } from 'src/app/shared/utils/formUtils';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+  selector: 'app-register',
+  templateUrl: './register.page.html',
+  styleUrls: ['./register.page.scss'],
 })
-export class LoginPage implements OnInit {
-  loginForm: FormGroup;
+export class RegisterPage implements OnInit {
+  registerForm: FormGroup;
 
   constructor(private router: Router, private formBuilder: FormBuilder) {
-    this.loginForm = this.formBuilder.group({
+    this.registerForm = this.formBuilder.group({
+      name: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required],
     });
@@ -29,12 +30,12 @@ export class LoginPage implements OnInit {
     // To do
   }
 
-  goToRegister(){
-    this.loginForm.reset();
-    this.router.navigate(['/auth/register']);
+  goToLogin() {
+    this.registerForm.reset();
+    this.router.navigate(['/auth/login']);
   }
 
   getControl(name: string) {
-    return getFormControl(this.loginForm, name);
+    return getFormControl(this.registerForm, name);
   }
 }
