@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+import { ForgotSuccessPage } from './pages/forgot-sucess/forgot-success.page';
+import { ForgotPage } from './pages/forgot/forgot.page';
 import { LoginPage } from './pages/login/login.page';
 import { RegisterPage } from './pages/register/register.page';
-import { ForgotPage } from './pages/forgot/forgot.page';
-import { ForgotSuccessPage } from './pages/forgot-sucess/forgot-success.page';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },

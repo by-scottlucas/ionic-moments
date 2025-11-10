@@ -8,9 +8,13 @@
 
 .forgot-success__title {
   font-family: "Open Sans", sans-serif;
-  @apply font-extrabold text-blue-600 text-3xl mb-3 text-center;
+  @apply font-extrabold text-blue-600 text-2xl mb-3 text-center;
+}
+
+.forgot-success__message{
+  @apply text-black text-justify;
 }
 
 .forgot-success__button{
-  @apply bg-blue-600 py-3 rounded-md mt-10;
+  @apply bg-blue-600 py-3 rounded-md mt-6;
 }

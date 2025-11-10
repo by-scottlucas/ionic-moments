@@ -6,6 +6,7 @@ import {
   deleteUser,
   getAuth,
   onAuthStateChanged,
+  sendPasswordResetEmail,
   setPersistence,
   signInWithEmailAndPassword,
   signOut,
@@ -37,9 +38,10 @@ export class AuthService {
     });
   }
 
+  // --- AUTENTICAÇÃO ---
+
   async register({ email, password }: AuthDTO): Promise<void> {
     let newUser: User | null = null;
-
     try {
       const userCredential = await createUserWithEmailAndPassword(
         this.auth,
@@ -49,11 +51,7 @@ export class AuthService {
       newUser = userCredential.user;
     } catch (error: any) {
       console.error('[AuthService] Failed to register:', error);
-
-      if (newUser) {
-        await this.runRollback(newUser);
-      }
-
+      if (newUser) await this.runRollback(newUser);
       this.handleRegisterError(error);
     }
   }
@@ -63,8 +61,16 @@ export class AuthService {
       await signInWithEmailAndPassword(this.auth, email, password);
     } catch (error: any) {
       console.error('[AuthService] Failed to login:', error);
-
       this.handleLoginError(error);
+    }
+  }
+
+  async requestPasswordReset(email: string): Promise<void> {
+    try {
+      await sendPasswordResetEmail(this.auth, email);
+    } catch (error: any) {
+      console.error('[AuthService] Failed to send reset link:', error);
+      this.handlePasswordResetError(error);
     }
   }
 
@@ -86,22 +92,16 @@ export class AuthService {
     email?: string;
   }): Promise<void> {
     const user = this.auth.currentUser;
-
-    if (!user) {
-      throw new Error('No authenticated user to update the data.');
-    }
-
-    const { displayName, email } = updates;
+    if (!user) throw new Error('No authenticated user to update.');
 
     try {
+      const { displayName, email } = updates;
       if (displayName && displayName !== user.displayName) {
         await updateProfile(user, { displayName });
       }
-
       if (email && email !== user.email) {
         await updateEmail(user, email);
       }
-
       this.userSubject.next(this.auth.currentUser);
     } catch (error) {
       console.error('[AuthService] Failed to update user data:', error);
@@ -147,6 +147,25 @@ export class AuthService {
         throw new Error('USER_DISABLED');
       default:
         throw new Error('LOGIN_ERROR');
+    }
+  }
+
+  private handlePasswordResetError(error: any): never {
+    switch (error.code) {
+      case 'auth/user-not-found':
+        throw new Error('USER_NOT_FOUND');
+      case 'auth/invalid-email':
+        throw new Error('INVALID_EMAIL');
+      case 'auth/network-request-failed':
+        throw new Error('NETWORK_ERROR');
+      case 'auth/expired-action-code':
+        throw new Error('EXPIRED_CODE');
+      case 'auth/invalid-action-code':
+        throw new Error('INVALID_CODE');
+      case 'auth/weak-password':
+        throw new Error('WEAK_PASSWORD');
+      default:
+        throw new Error('RESET_PASSWORD_ERROR');
     }
   }
 
