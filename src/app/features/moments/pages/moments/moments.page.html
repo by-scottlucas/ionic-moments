@@ -1,0 +1,50 @@
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button class="add-button">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+<ion-content [fullscreen]="true">
+  <ion-header class="header-user">
+    <div class="header-user__info">
+      <ion-text class="header-user__greeting">
+        Olá, {{ user.name }}
+      </ion-text>
+      <ion-text class="header-user__welcome">
+        Bem-vindo(a) ao Moments
+      </ion-text>
+    </div>
+
+    <ion-avatar class="header-user__avatar">
+      <img class="header-user__avatar-image" [src]="user.avatar" />
+    </ion-avatar>
+  </ion-header>
+
+  <div class="moments">
+    <div class="moments__action-bar">
+      <div class="moments__filter-search">
+        <lucide-angular [size]="22" [name]="searchIcon" class="moments__search-icon"></lucide-angular>
+        <input type="text" placeholder="Pesquisar por..." class="moments__searchbar" aria-label="Search Bar" />
+      </div>
+    </div>
+
+    <h1 class="moments__title">Meus Moments</h1>
+
+    <ion-list class="moments__list">
+      <ion-item class="moments__item" *ngFor="let item of moments">
+        <div class="moments__item-content">
+          <div class="moments__item-header">
+            <lucide-angular [size]="18" [name]="itemIcon" class="moments__item-icon"></lucide-angular>
+            <ion-text class="moments__item-date">
+              {{ item.date }}
+            </ion-text>
+          </div>
+
+          <ion-text class="moments__item-title">
+            {{ item.title }}
+          </ion-text>
+        </div>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

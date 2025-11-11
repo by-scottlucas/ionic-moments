@@ -1,0 +1,89 @@
+.add-button {
+  --background: #2563eb;
+}
+
+ion-content {
+  --background: #f3f4f6 !important;
+}
+
+.header-user {
+  @apply p-5 bg-transparent shadow-none w-full flex items-center justify-between;
+}
+
+.header-user__info {
+  @apply flex flex-col;
+}
+
+.header-user__greeting {
+  @apply text-black text-start mb-0 text-xl font-extrabold;
+}
+
+.header-user__welcome {
+  @apply text-black text-xs;
+}
+
+.header-user__avatar {
+  @apply h-12 w-12;
+}
+
+.header-user__avatar-image {
+  @apply h-full aspect-square;
+}
+
+.moments {
+  @apply w-full px-5 py-10 flex flex-col justify-center;
+}
+
+ion-item {
+  --border-width: 0;
+  --background: transparent;
+  --border-color: transparent;
+}
+
+.moments__action-bar {
+  @apply flex items-center justify-between mb-14 h-10 gap-3;
+}
+
+.moments__filter-search {
+  @apply relative w-full;
+}
+
+.moments__search-icon {
+  @apply absolute text-gray-600 translate-y-[6.5px] left-1.5;
+}
+
+.moments__searchbar {
+  @apply w-full py-3 rounded-md bg-white text-black ps-10 outline-none border border-gray-400 focus:border-blue-600;
+}
+
+.moments__title {
+  @apply text-black font-bold text-2xl mb-2;
+}
+
+.moments__list {
+  @apply bg-transparent p-0;
+}
+
+.moments__item {
+  @apply rounded-md py-3 bg-white mb-2;
+}
+
+.moments__item-content {
+  @apply flex flex-col w-full items-start;
+}
+
+.moments__item-header {
+  @apply flex items-center gap-0.5 mb-1.5;
+}
+
+.moments__item-icon {
+  @apply text-gray-500;
+}
+
+.moments__item-date {
+  @apply text-gray-500 text-sm mt-0.5;
+}
+
+.moments__item-title {
+  @apply text-black text-base font-semibold;
+}
