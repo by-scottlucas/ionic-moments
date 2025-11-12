@@ -1,0 +1,67 @@
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  display: none;
+}
+
+input[type="date"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+ion-content {
+  --background: #f3f4f6 !important;
+}
+
+.moment-form {
+  @apply bg-white h-screen px-5 py-12 flex flex-col justify-center w-full;
+}
+
+.moment-form__container {
+  @apply flex flex-col gap-5;
+}
+
+.moment-form__header {
+  @apply flex items-center justify-between mb-8;
+}
+
+.moment-form__title {
+  font-family: "Open Sans", sans-serif;
+  @apply font-extrabold text-blue-600 text-2xl text-center;
+}
+
+.moment-form__close {
+  @apply p-1 rounded-md hover:bg-gray-100 transition;
+}
+
+.moment-form__icon {
+  @apply text-black;
+}
+
+.moment-form__field {
+  @apply flex flex-col;
+}
+
+.moment-form__label {
+  @apply text-sm font-medium text-gray-700 mb-1;
+}
+
+.moment-form__textarea {
+  @apply bg-white text-sm border border-gray-300 focus:border-blue-600 rounded-md px-2 py-3 outline-none text-black min-h-[100px];
+}
+
+.moment-form__date-wrapper {
+  @apply relative;
+}
+
+.moment-form__date-icon {
+  @apply text-gray-500 absolute translate-y-1.5 right-1;
+}
+
+.moment-form__date-input {
+  @apply w-full bg-white text-sm border border-gray-300 focus:border-blue-600 rounded-md px-2 py-2.5 outline-none text-black;
+}
+
+.moment-form__button {
+  @apply bg-blue-600 text-white py-3 rounded-md mt-3 font-semibold hover:bg-blue-700 transition;
+}

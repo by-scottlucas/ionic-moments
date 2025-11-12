@@ -1,5 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { CalendarDays, Home, Plus, Search, UserRound } from 'lucide-angular';
+import {
+  ActionSheetController,
+  AlertController,
+  ModalController,
+} from '@ionic/angular';
+import { CalendarDays, Search } from 'lucide-angular';
+import { LoadingService } from 'src/app/shared/services/loading.service';
+import { ToastService } from 'src/app/shared/services/toast.service';
+
+import { MomentFormComponent } from '../../components/moment-form/moment-form.component';
+import { MomentDTO } from '../../models/moment.dto';
+import { MomentsService } from '../../services/moments.service';
 
 @Component({
   selector: 'app-moments',
@@ -16,26 +27,136 @@ export class MomentsPage implements OnInit {
       'https://sm.ign.com/ign_pk/cover/a/avatar-gen/avatar-generations_rpge.jpg',
   };
 
-  moments = [
-    { date: '02/01/2025', title: 'Comecei o curso de desenvolvimento mobile' },
-    {
-      date: '15/02/2025',
-      title: 'Primeiro aplicativo publicado na Play Store',
-    },
-    { date: '08/03/2025', title: 'Vi o nascer do sol na praia' },
-    { date: '21/04/2025', title: 'Fiz minha primeira viagem sozinho' },
-    { date: '10/06/2025', title: 'Aprendi a tocar violão' },
-    {
-      date: '28/07/2025',
-      title: 'Ganhei meu primeiro projeto como freelancer',
-    },
-    { date: '14/08/2025', title: 'Completei 6 meses de academia' },
-    { date: '30/09/2025', title: 'Ajudei um amigo a criar seu portfólio' },
-    { date: '25/10/2025', title: 'Passei o fim de semana com a família' },
-    { date: '11/11/2025', title: 'Aprendi desenho realista' },
-  ];
+  moments: MomentDTO[] = [];
 
-  constructor() {}
+  constructor(
+    private toastService: ToastService,
+    private momentService: MomentsService,
+    private loadingService: LoadingService,
+    private modalController: ModalController,
+    private alertController: AlertController,
+    private actionSheetController: ActionSheetController
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.listMoments();
+  }
+
+  listMoments() {
+    this.momentService.getMoments().subscribe((response) => {
+      this.moments = response;
+    });
+  }
+
+  async onAdd() {
+    const modal = await this.modalController.create({
+      component: MomentFormComponent,
+      componentProps: {
+        formType: 'add',
+      },
+    });
+
+    await modal.present();
+
+    const { data, role } = await modal.onDidDismiss();
+
+    if (role === 'confirm' && data) {
+      this.toastService.showToast('Moment criado com sucesso', 2000);
+    }
+  }
+
+  async onEdit(moment: MomentDTO) {
+    const modal = await this.modalController.create({
+      component: MomentFormComponent,
+      componentProps: {
+        formType: 'edit',
+        formData: moment,
+      },
+    });
+
+    await modal.present();
+
+    const { data, role } = await modal.onDidDismiss();
+
+    if (role === 'confirm' && data?.edited) {
+      this.toastService.showToast('Moment editado com sucesso', 2000);
+    }
+  }
+
+  async onDelete(moment: MomentDTO) {
+    const alert = await this.alertController.create({
+      header: 'Confirmar exclusão',
+      message: `Tem certeza que deseja excluir este Moment?`,
+      cssClass: 'alert',
+      mode: 'ios',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+        },
+        {
+          text: 'Excluir',
+          role: 'destructive',
+        },
+      ],
+    });
+
+    await alert.present();
+
+    const { role } = await alert.onDidDismiss();
+
+    if (role === 'destructive') {
+      try {
+        await this.loadingService.showLoading();
+
+        if (moment.id) {
+          await this.momentService.delete(moment.id!).then(() => {
+            this.toastService.showToast('Moment excluido com sucesso', 2000);
+            this.listMoments();
+          });
+        } else {
+          console.error('Erro: ID do cartão não encontrado para exclusão.');
+        }
+      } catch (error) {
+        this.toastService.showToast(
+          'Não foi possível excluir o cartão. Tente novamente.',
+          500
+        );
+      } finally {
+        await this.loadingService.hideLoading();
+      }
+    }
+  }
+
+  async presentItemActions(moment: MomentDTO) {
+    const actionSheet = await this.actionSheetController.create({
+      header: `${moment.title}`,
+      mode: 'ios',
+      cssClass: 'action-sheet',
+      buttons: [
+        {
+          text: 'Editar',
+          icon: 'create-outline',
+          handler: () => {
+            this.onEdit(moment);
+          },
+        },
+        {
+          text: 'Excluir',
+          role: 'destructive',
+          icon: 'trash-outline',
+          handler: () => {
+            this.onDelete(moment);
+          },
+        },
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          icon: 'close-outline',
+        },
+      ],
+    });
+
+    await actionSheet.present();
+  }
 }

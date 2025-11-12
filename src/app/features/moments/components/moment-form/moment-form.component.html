@@ -1,0 +1,78 @@
+<ion-content [fullscreen]="true">
+  <div class="moment-form">
+    <form
+      class="moment-form__container"
+      [formGroup]="momentForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <div class="moment-form__header">
+        <ion-text class="moment-form__title">
+          {{ formTitle }}
+        </ion-text>
+        <button
+          type="button"
+          class="moment-form__close"
+          (click)="onClose()"
+        >
+          <lucide-angular
+            [size]="25"
+            [name]="closeIcon"
+            class="moment-form__icon"
+          ></lucide-angular>
+        </button>
+      </div>
+
+      <app-input-field
+        name="title"
+        type="text"
+        label="Título"
+        [required]="true"
+        placeholder="Ex.: Aprendi Pintura Artística"
+        [control]="getControl('title')"
+      ></app-input-field>
+
+      <div class="moment-form__field">
+        <label
+          for="description"
+          class="moment-form__label"
+        >
+          Descrição
+        </label>
+        <textarea
+          id="description"
+          name="description"
+          formControlName="description"
+          placeholder="Descreva o que tornou esse momento especial..."
+          class="moment-form__textarea"
+        ></textarea>
+      </div>
+
+      <div class="moment-form__field">
+        <label
+          for="date"
+          class="moment-form__label"
+        >
+          Data deste Moment
+        </label>
+        <div class="moment-form__date-wrapper">
+          <lucide-angular
+            [name]="dateIcon"
+            [size]="18"
+            class="moment-form__date-icon"
+          ></lucide-angular>
+          <input
+            type="date"
+            id="date"
+            name="date"
+            formControlName="date"
+            class="moment-form__date-input"
+          />
+        </div>
+      </div>
+
+      <button type="submit" class="moment-form__button">
+        {{ formButton }}
+      </button>
+    </form>
+  </div>
+</ion-content>

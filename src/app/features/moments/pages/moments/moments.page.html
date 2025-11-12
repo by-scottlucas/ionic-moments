@@ -1,5 +1,5 @@
 <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-  <ion-fab-button class="add-button">
+  <ion-fab-button class="add-button" (click)="onAdd()">
     <ion-icon name="add"></ion-icon>
   </ion-fab-button>
 </ion-fab>
@@ -31,20 +31,27 @@
     <h1 class="moments__title">Meus Moments</h1>
 
     <ion-list class="moments__list">
-      <ion-item class="moments__item" *ngFor="let item of moments">
-        <div class="moments__item-content">
-          <div class="moments__item-header">
-            <lucide-angular [size]="18" [name]="itemIcon" class="moments__item-icon"></lucide-angular>
-            <ion-text class="moments__item-date">
-              {{ item.date }}
+      <ng-container *ngIf="moments.length > 0; else noItems">
+        <ion-item class="moments__item" *ngFor="let item of moments" (click)="presentItemActions(item)">
+          <div class="moments__item-content">
+            <div class="moments__item-header">
+              <lucide-angular [size]="18" [name]="itemIcon" class="moments__item-icon"></lucide-angular>
+              <ion-text class="moments__item-date">
+                {{ item.date | date: 'dd/MM/YY' }}
+              </ion-text>
+            </div>
+
+            <ion-text class="moments__item-title">
+              {{ item.title }}
             </ion-text>
           </div>
-
-          <ion-text class="moments__item-title">
-            {{ item.title }}
-          </ion-text>
+        </ion-item>
+      </ng-container>
+      <ng-template #noItems>
+        <div class="moments__empty">
+          <span class="moments__empty-text">Nenhum moment cadastrado</span>
         </div>
-      </ion-item>
+      </ng-template>
     </ion-list>
   </div>
 </ion-content>

@@ -38,8 +38,6 @@ export class AuthService {
     });
   }
 
-  // --- AUTENTICAÇÃO ---
-
   async register({ email, password }: AuthDTO): Promise<void> {
     let newUser: User | null = null;
     try {
