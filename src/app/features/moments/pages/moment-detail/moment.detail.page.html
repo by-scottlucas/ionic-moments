@@ -1,0 +1,39 @@
+<ion-content [fullscreen]="true">
+  <ion-header class="moment-detail__header">
+    <div class="moment-detail__header-left">
+      <button class="moment-detail__icon-btn" (click)="onBack()">
+        <lucide-angular [name]="backIcon" [size]="20"></lucide-angular>
+      </button>
+    </div>
+
+    <h2 class="moment-detail__header-title">Detalhes do Moment</h2>
+
+    <div class="moment-detail__header-right">
+      <button class="moment-detail__icon-btn" (click)="onOptions(moment!)">
+        <lucide-angular [name]="settingsIcon" [size]="20"></lucide-angular>
+      </button>
+    </div>
+  </ion-header>
+
+  <div class="moment-detail">
+    <div class="moment-detail__content">
+      <div class="moment-detail__section">
+        <label class="moment-detail__label">Título</label>
+        <h2 class="moment-detail__title">{{ moment!.title }}</h2>
+      </div>
+
+      <div class="moment-detail__section">
+        <label class="moment-detail__label">Data</label>
+        <div class="moment-detail__date">
+          <lucide-angular [name]="dateIcon" [size]="18"></lucide-angular>
+          <p class="moment-detail__date-text">{{ formatDateFull(moment!.date)}}</p>
+        </div>
+      </div>
+
+      <div class="moment-detail__section">
+        <label class="moment-detail__label">Descrição</label>
+        <p class="moment-detail__description">{{ moment!.description }}</p>
+      </div>
+    </div>
+  </div>
+</ion-content>

@@ -67,6 +67,7 @@ export class FilterBarComponent implements OnInit, OnDestroy {
     const alert = await this.alertController.create({
       header: 'Filtrar por ano',
       inputs,
+      mode: 'ios',
       buttons: [
         { text: 'Cancelar', role: 'cancel' },
         {

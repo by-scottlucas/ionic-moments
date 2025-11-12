@@ -1,6 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { MomentDTO } from '../../models/moment.dto';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CalendarDays } from 'lucide-angular';
+
+import { MomentDTO } from '../../models/moment.dto';
 
 @Component({
   selector: 'app-moment-item',
@@ -11,13 +13,14 @@ export class MomentItemComponent implements OnInit {
   readonly itemIcon = CalendarDays;
 
   @Input() moment!: MomentDTO;
-  @Output() actionSheet = new EventEmitter();
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit() {}
 
-  showActionSheet(moment: MomentDTO) {
-    this.actionSheet.emit(moment);
+  showMomentDetail(moment: MomentDTO) {
+    if (moment.id) {
+      this.router.navigate(['/home/moment/detail', moment.id]);
+    }
   }
 }

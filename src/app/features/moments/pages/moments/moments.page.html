@@ -19,10 +19,7 @@
     <ng-container *ngIf="moments.length > 0; else noItems">
       <ion-list class="moments__list">
         <div *ngFor="let item of moments">
-          <app-moment-item
-            [moment]="item"
-            (actionSheet)="presentItemActions(item)"
-          ></app-moment-item>
+          <app-moment-item [moment]="item"></app-moment-item>
         </div>
       </ion-list>
     </ng-container>

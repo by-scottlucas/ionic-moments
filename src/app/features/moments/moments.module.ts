@@ -7,6 +7,7 @@ import { MomentItemComponent } from './components/moment-item/moment-item.compon
 import { MomentsRoutingModule } from './moments-routing.module';
 import { MomentsPage } from './pages/moments/moments.page';
 import { FilterBarComponent } from './components/filter-bar/filter-bar.component';
+import { MomentDetailPage } from './pages/moment-detail/moment.detail.page';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { FilterBarComponent } from './components/filter-bar/filter-bar.component
     MomentFormComponent,
     HeaderUserComponent,
     MomentItemComponent,
-    FilterBarComponent
+    FilterBarComponent,
+    MomentDetailPage
   ],
   imports: [SharedModule, MomentsRoutingModule],
 })

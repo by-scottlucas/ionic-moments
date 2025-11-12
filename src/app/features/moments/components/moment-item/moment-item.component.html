@@ -1,7 +1,11 @@
-<ion-item class="moments__item" (click)="showActionSheet(moment)">
+<ion-item class="moments__item" (click)="showMomentDetail(moment)">
   <div class="moments__item-content">
     <div class="moments__item-header">
-      <lucide-angular [size]="18" [name]="itemIcon" class="moments__item-icon"></lucide-angular>
+      <lucide-angular
+        [size]="18"
+        [name]="itemIcon"
+        class="moments__item-icon"
+      ></lucide-angular>
       <ion-text class="moments__item-date">
         {{ moment.date | date: 'dd/MM/YY' }}
       </ion-text>

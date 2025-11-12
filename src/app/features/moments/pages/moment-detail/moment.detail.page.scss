@@ -1,0 +1,52 @@
+ion-content{
+  --background: #f3f4f6;
+}
+
+.moment-detail__header {
+  @apply flex justify-between items-center mb-4 px-4 py-3 bg-white shadow-sm;
+}
+
+.moment-detail__header-title {
+  @apply text-lg font-semibold text-blue-600;
+}
+
+.moment-detail__header-left,
+.moment-detail__header-right {
+  @apply flex gap-3;
+}
+
+.moment-detail__icon-btn {
+  @apply p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition;
+}
+
+.moment-detail {
+  @apply h-auto px-5 py-10 flex flex-col w-full;
+}
+
+.moment-detail__content {
+  @apply space-y-6;
+}
+
+.moment-detail__section {
+  @apply mb-4;
+}
+
+.moment-detail__label {
+  @apply text-sm font-medium text-gray-600 mb-2 block;
+}
+
+.moment-detail__title {
+  @apply text-2xl text-black font-extrabold;
+}
+
+.moment-detail__date {
+  @apply flex items-center gap-1;
+}
+
+.moment-detail__date-text {
+  @apply text-black mt-0.5 font-semibold;
+}
+
+.moment-detail__description {
+  @apply text-black whitespace-pre-line italic;
+}

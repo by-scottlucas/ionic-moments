@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  ActionSheetController,
-  AlertController,
-  ModalController,
-} from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 import { AuthService } from 'src/app/features/auth/services/auth.service';
-import { LoadingService } from 'src/app/shared/services/loading.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
 
 import { MomentFormComponent } from '../../components/moment-form/moment-form.component';
@@ -27,10 +22,7 @@ export class MomentsPage implements OnInit {
     private authService: AuthService,
     private toastService: ToastService,
     private momentService: MomentsService,
-    private loadingService: LoadingService,
-    private modalController: ModalController,
-    private alertController: AlertController,
-    private actionSheetController: ActionSheetController
+    private modalController: ModalController
   ) {}
 
   ngOnInit(): void {
@@ -67,87 +59,6 @@ export class MomentsPage implements OnInit {
       this.toastService.showToast('Moment criado com sucesso', 2000);
       this.listMoments();
     }
-  }
-
-  async onEdit(moment: MomentDTO) {
-    const modal = await this.modalController.create({
-      component: MomentFormComponent,
-      componentProps: {
-        formType: 'edit',
-        formData: moment,
-      },
-    });
-
-    await modal.present();
-    const { data, role } = await modal.onDidDismiss();
-
-    if (role === 'confirm' && data?.edited) {
-      this.toastService.showToast('Moment editado com sucesso', 2000);
-      this.listMoments();
-    }
-  }
-
-  async onDelete(moment: MomentDTO) {
-    const alert = await this.alertController.create({
-      header: 'Confirmar exclusão',
-      message: `Tem certeza que deseja excluir este Moment?`,
-      cssClass: 'alert',
-      mode: 'ios',
-      buttons: [
-        { text: 'Cancelar', role: 'cancel' },
-        { text: 'Excluir', role: 'destructive' },
-      ],
-    });
-
-    await alert.present();
-    const { role } = await alert.onDidDismiss();
-
-    if (role === 'destructive') {
-      try {
-        await this.loadingService.showLoading();
-
-        if (moment.id) {
-          await this.momentService.delete(moment.id);
-          this.toastService.showToast('Moment excluído com sucesso', 2000);
-          this.listMoments();
-        }
-      } catch {
-        this.toastService.showToast(
-          'Não foi possível excluir o moment. Tente novamente.',
-          2000
-        );
-      } finally {
-        await this.loadingService.hideLoading();
-      }
-    }
-  }
-
-  async presentItemActions(moment: MomentDTO) {
-    const actionSheet = await this.actionSheetController.create({
-      header: `${moment.title}`,
-      mode: 'ios',
-      cssClass: 'action-sheet',
-      buttons: [
-        {
-          text: 'Editar',
-          icon: 'create-outline',
-          handler: () => this.onEdit(moment),
-        },
-        {
-          text: 'Excluir',
-          role: 'destructive',
-          icon: 'trash-outline',
-          handler: () => this.onDelete(moment),
-        },
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-          icon: 'close-outline',
-        },
-      ],
-    });
-
-    await actionSheet.present();
   }
 
   onSearchChange(term: string) {

@@ -11,7 +11,7 @@ import {
   set,
   update,
 } from 'firebase/database';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 import { MomentDTO } from '../models/moment.dto';
@@ -169,5 +169,11 @@ export class MomentsService {
 
   getCurrentMoments(): MomentDTO[] {
     return this.momentSubject.value;
+  }
+
+  getMomentById(id: string): Observable<MomentDTO | null> {
+    return this.moment$.pipe(
+      map((moments) => moments.find((moment) => moment.id === id) || null)
+    );
   }
 }

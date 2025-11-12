@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { MomentsPage } from './pages/moments/moments.page';
+import { MomentDetailPage } from './pages/moment-detail/moment.detail.page';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -9,6 +10,10 @@ const routes: Routes = [
     path: 'home',
     component: MomentsPage,
   },
+  {
+    path:'moment/detail/:id',
+    component: MomentDetailPage
+  }
 ];
 
 @NgModule({
