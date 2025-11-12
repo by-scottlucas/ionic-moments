@@ -16,7 +16,6 @@ export class AppComponent {
       .pipe(
         filter((user) => !!user),
         take(1)
-      )
-      .subscribe(() => this.router.navigate(['/home']));
+      ).subscribe(() => this.router.navigate(['/home']));
   }
 }

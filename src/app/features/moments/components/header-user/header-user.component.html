@@ -8,10 +8,11 @@
     </ion-text>
   </div>
 
-  <ion-avatar class="header-user__avatar">
+  <ion-avatar class="header-user__avatar" (click)="showUserActions()">
     <img
       class="header-user__avatar-image"
       [src]="avatarImage"
+      [alt]="username"
     />
   </ion-avatar>
 </ion-header>

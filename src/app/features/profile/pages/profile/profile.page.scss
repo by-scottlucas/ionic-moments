@@ -1,0 +1,43 @@
+.profile {
+  @apply h-[80dvh] flex flex-col justify-center items-center bg-white;
+}
+
+.profile__action-header {
+  @apply flex justify-between items-center mb-4 px-4 py-3 bg-white shadow-sm;
+}
+
+.profile__action-header-left{
+  @apply flex gap-3;
+}
+
+.profile__header {
+  @apply text-center flex flex-col items-center;
+}
+
+.profile__username {
+  @apply font-extrabold text-3xl text-gray-900;
+}
+
+.profile__description {
+  @apply text-sm text-gray-500;
+}
+
+.profile__avatar {
+  @apply h-32 w-32 mb-2 mx-auto rounded-full overflow-hidden shadow-md;
+}
+
+.profile__avatar-image {
+  @apply h-full w-full object-cover;
+}
+
+.profile__infos {
+  @apply w-full max-w-md px-6 flex flex-col gap-4 mt-5;
+}
+
+.profile__button {
+  @apply bg-blue-600 text-white py-3 rounded-md mt-3 font-semibold hover:bg-blue-700 transition-colors duration-200 ease-in-out;
+}
+
+.profile__button:disabled {
+  @apply bg-gray-300 text-gray-600 cursor-not-allowed;
+}

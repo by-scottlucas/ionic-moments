@@ -16,6 +16,12 @@ const routes: Routes = [
       import('./features/moments/moments.module').then((m) => m.MomentsModule),
     canActivate: [AuthGuard],
   },
+  {
+    path: 'profile',
+    loadChildren: () =>
+      import('./features/profile/profile.module').then((m) => m.ProfileModule),
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({

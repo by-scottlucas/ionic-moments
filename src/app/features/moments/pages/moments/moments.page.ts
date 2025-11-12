@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { AuthService } from 'src/app/features/auth/services/auth.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
@@ -6,14 +6,16 @@ import { ToastService } from 'src/app/shared/services/toast.service';
 import { MomentFormComponent } from '../../components/moment-form/moment-form.component';
 import { MomentDTO } from '../../models/moment.dto';
 import { MomentsService } from '../../services/moments.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-moments',
   templateUrl: './moments.page.html',
   styleUrls: ['./moments.page.scss'],
 })
-export class MomentsPage implements OnInit {
+export class MomentsPage implements OnInit, OnDestroy {
   userLogged!: string;
+  private userSub!: Subscription;
   moments: MomentDTO[] = [];
   allMoments: MomentDTO[] = [];
   availableYears: number[] = [];
@@ -28,8 +30,13 @@ export class MomentsPage implements OnInit {
   ngOnInit(): void {
     this.listMoments();
 
-    const user = this.authService.getUserData();
-    this.userLogged = user?.displayName || 'Usuário';
+    this.userSub = this.authService.user$.subscribe((user) => {
+      this.userLogged = user?.displayName || 'Usuário';
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.userSub) this.userSub.unsubscribe();
   }
 
   listMoments() {
