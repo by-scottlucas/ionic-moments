@@ -166,4 +166,8 @@ export class MomentsService {
   getMoments(): Observable<MomentDTO[]> {
     return this.moment$;
   }
+
+  getCurrentMoments(): MomentDTO[] {
+    return this.momentSubject.value;
+  }
 }

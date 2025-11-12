@@ -1,0 +1,24 @@
+<div class="filter-bar">
+  <div class="filter-bar__search">
+    <lucide-angular
+      [size]="22"
+      [name]="searchIcon"
+      class="filter-bar__search-icon"
+    ></lucide-angular>
+    <input
+      type="text"
+      placeholder="Pesquisar por..."
+      class="filter-bar__input"
+      (input)="onSearch($event)"
+      aria-label="Search Bar"
+    />
+  </div>
+
+  <button class="filter-bar__button" (click)="openYearPicker()">
+    <lucide-angular
+      [name]="filterIcon"
+      [size]="22"
+      class="filter-bar__button-icon"
+    ></lucide-angular>
+  </button>
+</div>

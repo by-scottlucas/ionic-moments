@@ -1,0 +1,29 @@
+ion-item {
+  --border-width: 0;
+  --background: transparent;
+  --border-color: transparent;
+}
+
+.moments__item {
+  @apply rounded-md py-3 bg-white mb-2;
+}
+
+.moments__item-content {
+  @apply flex flex-col w-full items-start;
+}
+
+.moments__item-header {
+  @apply flex items-center gap-1 mb-1.5;
+}
+
+.moments__item-icon {
+  @apply text-gray-500;
+}
+
+.moments__item-date {
+  @apply text-gray-500 text-sm mt-0.5;
+}
+
+.moments__item-title {
+  @apply text-black text-base font-semibold;
+}

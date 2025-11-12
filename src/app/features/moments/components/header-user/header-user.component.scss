@@ -1,0 +1,23 @@
+.header-user {
+  @apply p-5 bg-transparent shadow-none w-full flex items-center justify-between;
+}
+
+.header-user__info {
+  @apply flex flex-col;
+}
+
+.header-user__greeting {
+  @apply text-black text-start mb-0 text-xl font-extrabold;
+}
+
+.header-user__welcome {
+  @apply text-black text-xs;
+}
+
+.header-user__avatar {
+  @apply h-12 w-12;
+}
+
+.header-user__avatar-image {
+  @apply h-full aspect-square;
+}
