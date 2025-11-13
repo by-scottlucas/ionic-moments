@@ -1,8 +1,29 @@
 {
-  "name": "moments",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "name": "ionic-moments",
+  "version": "1.0.0",
+  "description": "Moments is a mobile application built with Ionic and Angular that allows users to record and relive meaningful moments in life, serving as a modern diary with a minimalist design and Firebase integration.",
+  "author": {
+    "name": "Lucas Santos Silva",
+    "email": "lucas.scott.dev@gmail.com",
+    "url": "https://github.com/by-scottlucas"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/by-scottlucas/ionic-moments",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/by-scottlucas/ionic-moments.git"
+  },
+  "keywords": [
+    "ionic",
+    "angular",
+    "typescript",
+    "firebase",
+    "mobile-app",
+    "journal",
+    "moments",
+    "diary",
+    "tailwind"
+  ],
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -69,6 +90,5 @@
     "tailwindcss": "^3.1.6",
     "ts-node": "^8.3.0",
     "typescript": "~5.2.2"
-  },
-  "description": "An Ionic project"
+  }
 }
