@@ -1,0 +1,16 @@
+.forgot {
+  @apply bg-white h-screen px-5 py-12 flex flex-col justify-center w-full;
+}
+
+.forgot__form {
+  @apply flex flex-col gap-5;
+}
+
+.forgot__title {
+  font-family: "Open Sans", sans-serif;
+  @apply font-extrabold text-blue-600 text-4xl mb-4 text-center;
+}
+
+.forgot__button{
+  @apply bg-blue-600 py-3 rounded-md mt-3 text-white font-semibold;
+}

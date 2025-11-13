@@ -1,0 +1,47 @@
+<ion-content [fullscreen]="true">
+  <div class="login">
+    <form
+      class="login__form"
+      [formGroup]="loginForm"
+      (ngSubmit)="handleLogin()"
+    >
+      <ion-text class="login__title">
+        Entrar
+      </ion-text>
+
+      <app-input-field
+        name="email"
+        type="email"
+        label="E-mail"
+        [required]="true"
+        placeholder="Seu e-mail aqui"
+        [control]="getControl('email')"
+      ></app-input-field>
+
+      <div class="login__password-group">
+        <app-input-field
+          label="Senha"
+          type="password"
+          [name]="'password'"
+          [required]="true"
+          placeholder="Sua senha aqui"
+          [control]="getControl('password')"
+        ></app-input-field>
+        <span (click)="goToForgot()" class="login__forgot-password">
+          Esqueceu a senha?
+        </span>
+      </div>
+
+      <button type="submit" class="login__button">
+        Entrar
+      </button>
+    </form>
+
+    <ion-text class="login__register">
+      É novo por aqui?
+      <span (click)="goToRegister()" class="login__register-link">
+        Crie uma conta
+      </span>
+    </ion-text>
+  </div>
+</ion-content>

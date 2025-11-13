@@ -1,0 +1,28 @@
+.add-button {
+  --background: #2563eb;
+}
+
+ion-content {
+  --background: #f3f4f6 !important;
+}
+
+.moments {
+  @apply w-full px-5 py-10 flex flex-col justify-center;
+}
+
+.moments__title {
+  font-family: 'Open Sans', sans-serif;
+  @apply text-blue-600 font-black text-xl mb-2;
+}
+
+.moments__list {
+  @apply bg-transparent p-0;
+}
+
+.moments__empty {
+  @apply h-[50vh] flex flex-col items-center justify-center;
+}
+
+.moments__empty-text {
+  @apply text-gray-500 italic;
+}

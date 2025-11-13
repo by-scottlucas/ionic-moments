@@ -1,0 +1,28 @@
+.register {
+  @apply bg-white h-screen px-5 py-12 flex flex-col justify-center w-full;
+}
+
+.register__form {
+  @apply flex flex-col gap-5;
+}
+
+.register__title {
+  font-family: "Open Sans", sans-serif;
+  @apply font-extrabold text-blue-600 text-4xl mb-4 text-center;
+}
+
+.register__forgot-password {
+  @apply mt-2 text-blue-600 font-semibold;
+}
+
+.register__button{
+  @apply bg-blue-600 py-3 rounded-md mt-3 text-white font-semibold;
+}
+
+.register__login{
+  @apply text-black text-center mt-6;
+}
+
+.register__login-link{
+  @apply text-blue-600 font-semibold cursor-pointer;
+}

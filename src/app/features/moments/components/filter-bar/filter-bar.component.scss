@@ -1,0 +1,23 @@
+.filter-bar {
+  @apply mb-14 flex w-full gap-3;
+}
+
+.filter-bar__search {
+  @apply relative w-full;
+}
+
+.filter-bar__search-icon {
+  @apply absolute text-gray-600 translate-y-3 left-2;
+}
+
+.filter-bar__input {
+  @apply w-full py-3 rounded-md bg-white text-black ps-10 outline-none border border-gray-400 focus:border-blue-600;
+}
+
+.filter-bar__button {
+  @apply p-3 bg-blue-600 rounded-md;
+}
+
+.filter-bar__button-icon {
+  @apply text-white;
+}

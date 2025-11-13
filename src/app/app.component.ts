@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { AuthService } from './services/auth.service';
+import { AuthService } from './features/auth/services/auth.service';
 import { Router } from '@angular/router';
+import { filter, take } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -8,14 +9,13 @@ import { Router } from '@angular/router';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
+  constructor(private router: Router, private authService: AuthService) {}
 
-  constructor(
-    private router: Router,
-    private authService: AuthService
-  ) {
-
-    authService.isAuthenticated().subscribe();
-
+  ngOnInit(): void {
+    this.authService.user$
+      .pipe(
+        filter((user) => !!user),
+        take(1)
+      ).subscribe(() => this.router.navigate(['/home']));
   }
-
 }

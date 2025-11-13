@@ -1,0 +1,40 @@
+<ion-content [fullscreen]="true">
+  <ion-header class="p-1 bg-white shadow-none">
+    <button
+      type="button"
+      (click)="goToLogin()"
+      class="rounded-full p-1 aspect-square"
+    >
+      <lucide-angular
+        [name]="backIcon"
+        [size]="38"
+        class="text-blue-600"
+      ></lucide-angular>
+    </button>
+  </ion-header>
+
+  <div class="forgot">
+    <form
+      class="forgot__form"
+      [formGroup]="forgotForm"
+      (ngSubmit)="forgetPassword()"
+    >
+      <ion-text class="forgot__title">
+        Recuperar Senha
+      </ion-text>
+
+      <app-input-field
+        name="email"
+        type="email"
+        label="Seu E-mail"
+        [required]="true"
+        placeholder="Insira seu e-mail aqui"
+        [control]="getControl('email')"
+      ></app-input-field>
+
+      <button type="submit" class="forgot__button">
+        Recuperar Senha
+      </button>
+    </form>
+  </div>
+</ion-content>

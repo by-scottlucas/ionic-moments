@@ -1,0 +1,54 @@
+<ion-content [fullscreen]="true">
+  <ion-header class="profile__action-header">
+    <div class="profile__action-header-left">
+      <button class="profile__icon-btn" (click)="onBack()">
+        <lucide-angular [name]="backIcon" [size]="25"></lucide-angular>
+      </button>
+    </div>
+  </ion-header>
+
+  <form
+    [formGroup]="profileForm"
+    (ngSubmit)="onSubmit()"
+    class="profile"
+  >
+    <div class="profile__header">
+      <ion-avatar class="profile__avatar">
+        <img class="profile__avatar-image" [src]="avatarImage" />
+      </ion-avatar>
+
+      <h1 class="profile__username">{{ profileForm.get('fullName')?.value || 'Usuário' }}</h1>
+      <span class="profile__description">Gerencie suas informações</span>
+    </div>
+
+    <div class="profile__infos">
+      <app-input-field
+        name="fullName"
+        type="text"
+        label="Nome"
+        [required]="true"
+        formControlName="fullName"
+        placeholder="Seu nome aqui"
+        [control]="getControl('fullName')"
+      ></app-input-field>
+
+      <app-input-field
+        name="email"
+        type="text"
+        label="E-mail"
+        [required]="true"
+        formControlName="email"
+        placeholder="Seu e-mail aqui"
+        [control]="getControl('email')"
+      ></app-input-field>
+
+      <button
+        type="submit"
+        class="profile__button"
+        [disabled]="profileForm.pristine || profileForm.invalid"
+      >
+        Salvar Alterações
+      </button>
+    </div>
+  </form>
+</ion-content>

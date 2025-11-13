@@ -1,0 +1,32 @@
+.login {
+  @apply bg-white h-screen px-5 py-12 flex flex-col justify-center w-full;
+}
+
+.login__form {
+  @apply flex flex-col gap-5;
+}
+
+.login__title {
+  font-family: "Open Sans", sans-serif;
+  @apply font-extrabold text-blue-600 text-4xl mb-4 text-center;
+}
+
+.login__password-group{
+  @apply flex flex-col;
+}
+
+.login__forgot-password {
+  @apply mt-2 text-blue-600 font-semibold;
+}
+
+.login__button{
+  @apply bg-blue-600 py-3 rounded-md mt-3 text-white font-semibold;
+}
+
+.login__register{
+  @apply text-black text-center mt-6;
+}
+
+.login__register-link{
+  @apply text-blue-600 font-semibold cursor-pointer;
+}

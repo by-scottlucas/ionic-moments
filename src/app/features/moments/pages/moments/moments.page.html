@@ -1,0 +1,35 @@
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button class="add-button" (click)="onAdd()">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+<ion-content [fullscreen]="true">
+  <app-header-user [username]="userLogged"></app-header-user>
+
+  <div class="moments">
+      <app-filter-bar
+        [availableYears]="availableYears"
+        (searchChange)="onSearchChange($event)"
+        (yearSelected)="onYearSelected($event)"
+      ></app-filter-bar>
+
+      <h1 class="moments__title">Meus Moments</h1>
+
+    <ng-container *ngIf="moments.length > 0; else noItems">
+      <ion-list class="moments__list">
+        <div *ngFor="let item of moments">
+          <app-moment-item [moment]="item"></app-moment-item>
+        </div>
+      </ion-list>
+    </ng-container>
+
+    <ng-template #noItems>
+      <div class="moments__empty">
+        <span class="moments__empty-text">
+          Nenhum Moment cadastrado
+        </span>
+      </div>
+    </ng-template>
+  </div>
+</ion-content>

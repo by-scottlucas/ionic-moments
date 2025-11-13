@@ -1,0 +1,31 @@
+<ion-content [fullscreen]="true">
+  <div class="forgot-success">
+    <div class="forgot-success__icon-box">
+      <lucide-icon
+        [name]="icon"
+        [size]="60"
+      ></lucide-icon>
+    </div>
+
+    <ion-text class="forgot-success__title">
+      E-mail de recuperação enviado!
+    </ion-text>
+
+    <ion-text class="forgot-success__message">
+      Enviamos um e-mail com as instruções para que você possa
+      redefinir sua senha com segurança.
+    </ion-text>
+
+    <ion-text class="forgot-success__message mt-4 italic font-semibold">
+      Obs: Se o e-mail não estiver na sua caixa de entrada, verifique também a caixa de spam.
+    </ion-text>
+
+    <button
+      type="button"
+      (click)="goToLogin()"
+      class="forgot-success__button"
+    >
+      Voltar para o login
+    </button>
+  </div>
+</ion-content>
